@@ -1,0 +1,31 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+idea {
+    project {
+        jdkName = sourceCompatibility
+        languageLevel = sourceCompatibility
+    }
+}
+
+compileGroovy {
+    groovyOptions.configurationScript = file('compileConfig.groovy')
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.5'
+    testCompile 'junit:junit:4.12'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+    distributionUrl = 'http://services.gradle.org/distributions/gradle-2.8-all.zip'
+}
