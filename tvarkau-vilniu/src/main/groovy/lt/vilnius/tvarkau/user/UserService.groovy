@@ -1,5 +1,6 @@
 package lt.vilnius.tvarkau.user
 
+import groovy.transform.PackageScope
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -15,6 +16,7 @@ interface UserService {
 }
 
 @Service
+@PackageScope
 class DefaultUserService implements UserService {
 
     @Autowired

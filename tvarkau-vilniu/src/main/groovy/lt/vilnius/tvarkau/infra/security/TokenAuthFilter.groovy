@@ -1,5 +1,6 @@
 package lt.vilnius.tvarkau.infra.security
 
+import groovy.transform.PackageScope
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.filter.GenericFilterBean
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest
 
 import static lt.vilnius.tvarkau.common.UUIDUtils.maybeUUID
 
+@PackageScope
 class TokenAuthFilter extends GenericFilterBean {
 
     @Override

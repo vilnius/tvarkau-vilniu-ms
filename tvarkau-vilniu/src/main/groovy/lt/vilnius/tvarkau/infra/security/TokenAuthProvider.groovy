@@ -1,10 +1,12 @@
 package lt.vilnius.tvarkau.infra.security
 
+import groovy.transform.PackageScope
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
 
+@PackageScope
 class TokenAuthProvider implements AuthenticationProvider {
 
     CustomUserDetailsService userDetailsService

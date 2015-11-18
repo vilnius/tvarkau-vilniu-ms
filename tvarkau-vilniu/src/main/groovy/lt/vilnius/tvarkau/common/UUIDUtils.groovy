@@ -1,6 +1,6 @@
 package lt.vilnius.tvarkau.common
 
-public class UUIDUtils {
+class UUIDUtils {
 
     static Optional<UUID> maybeUUID(String uuidString) {
         try {

@@ -1,5 +1,6 @@
 package lt.vilnius.tvarkau.infra.security
 
+import groovy.transform.PackageScope
 import lt.vilnius.tvarkau.user.AuthenticatedUser
 import org.springframework.security.authentication.AbstractAuthenticationToken
 import org.springframework.security.core.GrantedAuthority
@@ -7,6 +8,7 @@ import org.springframework.security.core.authority.AuthorityUtils
 
 import static org.springframework.security.core.authority.AuthorityUtils.NO_AUTHORITIES
 
+@PackageScope
 class SpringSecurityToken extends AbstractAuthenticationToken {
 
     UUID token
