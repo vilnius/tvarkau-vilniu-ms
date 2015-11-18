@@ -37,6 +37,7 @@ allprojects {
         resolutionStrategy {
             eachDependency { DependencyResolveDetails details ->
                 if (details.requested.group == 'org.springframework') details.useVersion spring_version
+                if (details.requested.group == 'org.springframework.security') details.useVersion spring_security_version
             }
         }
     }
