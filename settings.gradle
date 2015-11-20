@@ -1,1 +1,3 @@
-rootProject.name = 'tvarkau-vilniu-ms'
+rootProject.name = 'tvarkau-vilniu-root'
+
+include 'tvarkau-vilniu', 'modules:test-core'

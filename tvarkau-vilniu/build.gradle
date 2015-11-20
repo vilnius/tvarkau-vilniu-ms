@@ -1,0 +1,18 @@
+project(':tvarkau-vilniu') {
+    apply plugin: 'spring-boot'
+    apply plugin: 'groovy'
+
+    dependencies {
+        compile "org.springframework.boot:spring-boot-starter-web:$spring_boot_version"
+        compile "org.springframework.boot:spring-boot-starter-data-jpa:$spring_boot_version"
+        compile "org.springframework.boot:spring-boot-starter-security:$spring_boot_version"
+        compile 'org.springframework.hateoas:spring-hateoas:0.19.0.RELEASE'
+        compile 'com.h2database:h2:1.4.190'
+
+        testCompile "org.springframework:spring-test:$spring_version"
+        compile "org.springframework.security:spring-security-test:$spring_security_version"
+        testCompile 'org.spockframework:spock-spring:1.0-groovy-2.4'
+        testCompile 'junit:junit:4.12'
+        testCompile project(':modules:test-core')
+    }
+}
