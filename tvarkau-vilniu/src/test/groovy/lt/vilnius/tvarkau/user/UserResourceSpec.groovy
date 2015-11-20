@@ -18,7 +18,7 @@ class UserResourceSpec extends MockMvcSpecification {
         when:
             def response = mvc get('/user/token')
         then:
-            response.status() == OK
+            response.status == OK
             response.json().token
     }
 
@@ -28,7 +28,7 @@ class UserResourceSpec extends MockMvcSpecification {
         and:
             def response = mvc get('/user/token').header('X-Auth', token)
         then:
-            response.status() == FORBIDDEN
+            response.status == FORBIDDEN
     }
 
     def 'tokens should be unique'() {
@@ -44,7 +44,7 @@ class UserResourceSpec extends MockMvcSpecification {
         when:
             def response = mvc(get('/user'))
         then:
-            response.status() == FORBIDDEN
+            response.status == FORBIDDEN
     }
 
     def 'user should be able to access his profile'() {
@@ -53,7 +53,7 @@ class UserResourceSpec extends MockMvcSpecification {
         when:
             def response = mvc get('/user').header('X-Auth', token)
         then:
-            response.status() == OK
+            response.status == OK
             response.json().token == token
     }
 

@@ -30,8 +30,8 @@ class MockMvcSpecification extends Specification {
         MockHttpServletResponse response = mockMvc.perform(requestBuilder).andReturn().response
         Map json = slurp response
         return [
-                status: { HttpStatus.valueOf(response.status) },
-                json  : { json }
+                getStatus: { HttpStatus.valueOf(response.status) },
+                json     : { json }
         ] as ResponseOps
     }
 
@@ -40,7 +40,8 @@ class MockMvcSpecification extends Specification {
     }
 
     interface ResponseOps {
-        HttpStatus status()
+        HttpStatus getStatus()
+
         Map json()
     }
 
