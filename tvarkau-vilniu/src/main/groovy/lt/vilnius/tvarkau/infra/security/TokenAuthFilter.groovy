@@ -17,7 +17,7 @@ class TokenAuthFilter extends GenericFilterBean {
 
     @Override
     void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String tokenHeader = (request as HttpServletRequest).getHeader 'X-Auth-Token'
+        String tokenHeader = (request as HttpServletRequest).getHeader 'X-Auth'
         Optional<UUID> token = maybeUUID(tokenHeader)
 
         token.ifPresent {

@@ -26,7 +26,7 @@ class UserResourceSpec extends MockMvcSpecification {
         when:
             String token = mvc(get('/user/token')).json().token
         and:
-            def response = mvc get('/user/token').header('X-Auth-Token', token)
+            def response = mvc get('/user/token').header('X-Auth', token)
         then:
             response.status() == FORBIDDEN
     }
@@ -51,7 +51,7 @@ class UserResourceSpec extends MockMvcSpecification {
         given:
             String token = mvc(get('/user/token')).json().token
         when:
-            def response = mvc get('/user').header('X-Auth-Token', token)
+            def response = mvc get('/user').header('X-Auth', token)
         then:
             response.status() == OK
             response.json().token == token
