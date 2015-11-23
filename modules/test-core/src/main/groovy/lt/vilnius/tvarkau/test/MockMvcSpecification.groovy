@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 import spock.lang.Specification
 
+import static org.springframework.http.MediaType.APPLICATION_JSON
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity
 
 class MockMvcSpecification extends Specification {
@@ -27,6 +28,7 @@ class MockMvcSpecification extends Specification {
     }
 
     protected ResponseOps mvc(MockHttpServletRequestBuilder requestBuilder) {
+        requestBuilder.contentType(APPLICATION_JSON)
         MockHttpServletResponse response = mockMvc.perform(requestBuilder).andReturn().response
         Map json = slurp response
         return [
