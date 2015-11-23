@@ -3,6 +3,7 @@ package lt.vilnius.tvarkau.issue
 import lt.vilnius.tvarkau.user.AuthenticatedUser
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.hateoas.ExposesResourceFor
+import org.springframework.hateoas.Resources
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.PathVariable
@@ -34,8 +35,8 @@ class IssueController {
     }
 
     @RequestMapping(method = GET)
-    List<IssueResource> list() {
-        issueService.list().with(resourceAssembler.&toResources)
+    Resources<IssueResource> list() {
+        new Resources<IssueResource>(issueService.list().with(resourceAssembler.&toResources))
     }
 
     @RequestMapping(method = GET, value = '/{id}')
