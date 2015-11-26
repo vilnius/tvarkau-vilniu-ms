@@ -7,6 +7,8 @@ project(':tvarkau-vilniu') {
         compile "org.springframework.boot:spring-boot-starter-data-jpa:$spring_boot_version"
         compile "org.springframework.boot:spring-boot-starter-security:$spring_boot_version"
         compile 'org.springframework.hateoas:spring-hateoas:0.19.0.RELEASE'
+        compile 'org.atteo:evo-inflector:1.2.1'
+        compile 'org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE'
         compile 'com.h2database:h2:1.4.190'
 
         testCompile "org.springframework:spring-test:$spring_version"
