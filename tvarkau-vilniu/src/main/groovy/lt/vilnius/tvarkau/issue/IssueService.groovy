@@ -23,8 +23,12 @@ interface IssueService {
 @PackageScope
 class DefaultIssueService implements IssueService {
 
+    private final IssueRepository repository
+
     @Autowired
-    IssueRepository repository
+    DefaultIssueService(IssueRepository repository) {
+        this.repository = repository
+    }
 
     @Override
     Issue createNewIssue(User user, IssueType type, String description) {

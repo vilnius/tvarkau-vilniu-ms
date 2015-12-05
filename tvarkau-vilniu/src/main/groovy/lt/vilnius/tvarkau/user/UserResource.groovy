@@ -11,8 +11,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET
 @RequestMapping(path = '/user')
 class UserResource {
 
+    private final UserService userService
+
     @Autowired
-    UserService userService
+    UserResource(UserService userService) {
+        this.userService = userService
+    }
 
     @RequestMapping(method = GET, path = '/token')
     AcquireTokenResponse acquireToken() {

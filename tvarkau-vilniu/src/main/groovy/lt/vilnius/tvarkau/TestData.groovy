@@ -16,8 +16,12 @@ import static lt.vilnius.tvarkau.common.Profiles.dev
 @Configuration
 class TestData {
 
+    private final UserRepository userRepository
+
     @Autowired
-    UserRepository userRepository
+    TestData(UserRepository userRepository) {
+        this.userRepository = userRepository
+    }
 
     @PostConstruct
     void seed() {

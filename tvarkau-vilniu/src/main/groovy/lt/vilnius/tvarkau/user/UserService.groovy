@@ -19,8 +19,12 @@ interface UserService {
 @PackageScope
 class DefaultUserService implements UserService {
 
+    private final UserRepository repository
+
     @Autowired
-    UserRepository repository
+    DefaultUserService(UserRepository repository) {
+        this.repository = repository
+    }
 
     @Override
     User create() {

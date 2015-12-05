@@ -20,11 +20,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST
 @RequestMapping(value = '/issues')
 class IssueController {
 
-    @Autowired
-    IssueService issueService
+    private final IssueService issueService
+    private final IssueResourceAssembler resourceAssembler
 
     @Autowired
-    IssueResourceAssembler resourceAssembler
+    IssueController(IssueService issueService, IssueResourceAssembler resourceAssembler) {
+        this.issueService = issueService
+        this.resourceAssembler = resourceAssembler
+    }
 
     @RequestMapping(method = POST)
     ResponseEntity reportIssue(@AuthenticationPrincipal AuthenticatedUser authenticatedUser,
