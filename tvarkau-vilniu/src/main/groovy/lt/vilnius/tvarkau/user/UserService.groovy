@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional
 interface UserService {
 
     @Transactional
-    User create()
+    User create(UUID token)
 
     @Transactional(readOnly = true)
     Optional<User> findByToken(UUID token)
@@ -27,8 +27,8 @@ class DefaultUserService implements UserService {
     }
 
     @Override
-    User create() {
-        new User(token: UUID.randomUUID(), enabled: true)
+    User create(UUID token) {
+        new User(token: token, enabled: true)
                 .with(repository.&save)
     }
 
