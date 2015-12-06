@@ -4,14 +4,14 @@ import org.springframework.hateoas.mvc.ResourceAssemblerSupport
 import org.springframework.stereotype.Component
 
 @Component
-class UserResourceAssembler extends ResourceAssemblerSupport<User, UserProfileResource> {
+class UserResourceAssembler extends ResourceAssemblerSupport<User, UserResource> {
 
     UserResourceAssembler() {
-        super(UserController, UserProfileResource)
+        super(UserController, UserResource)
     }
 
     @Override
-    UserProfileResource toResource(User entity) {
+    UserResource toResource(User entity) {
         createResourceWithId(entity.id, entity).with {
             token = entity.token
             it
