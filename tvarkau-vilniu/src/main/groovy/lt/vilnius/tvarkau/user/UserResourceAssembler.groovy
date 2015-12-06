@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 class UserResourceAssembler extends ResourceAssemblerSupport<User, UserProfileResource> {
 
     UserResourceAssembler() {
-        super(UserResource, UserProfileResource)
+        super(UserController, UserProfileResource)
     }
 
     @Override

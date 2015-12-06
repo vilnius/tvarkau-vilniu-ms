@@ -16,13 +16,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST
 @RestController
 @ExposesResourceFor(User)
 @RequestMapping(path = '/users')
-class UserResource {
+class UserController {
 
     private final UserService userService
     private final UserResourceAssembler resourceAssembler
 
     @Autowired
-    UserResource(UserService userService, UserResourceAssembler resourceAssembler) {
+    UserController(UserService userService, UserResourceAssembler resourceAssembler) {
         this.userService = userService
         this.resourceAssembler = resourceAssembler
     }
