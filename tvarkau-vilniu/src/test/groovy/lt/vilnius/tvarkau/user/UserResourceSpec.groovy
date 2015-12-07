@@ -6,55 +6,49 @@ import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration
 
-import static org.springframework.http.HttpStatus.FORBIDDEN
-import static org.springframework.http.HttpStatus.OK
+import static org.springframework.http.HttpStatus.*
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 @ContextConfiguration(loader = SpringApplicationContextLoader, classes = [Application])
 @WebAppConfiguration
 class UserResourceSpec extends MockMvcSpecification {
 
-    def 'anonymous user should be able to acquire a token'() {
-        when:
-            def response = mvcWithoutAuth get('/user/token')
-        then:
-            response.status == OK
-            response.json().token
+    def 'should allow to create one user with a token'() {
+        given:
+            String token = acquireToken()
+        expect:
+            createUser(token).status == CREATED
+            createUser(token).status == CONFLICT
     }
 
-    def 'authenticated user should not be able to acquire a token'() {
-        when:
-            String token = mvcWithoutAuth(get('/user/token')).json().token
-        and:
-            def response = mvcWithoutAuth get('/user/token').header('X-Auth', token)
-        then:
-            response.status == FORBIDDEN
-    }
-
-    def 'tokens should be unique'() {
-        when:
-            def token1 = mvcWithoutAuth(get('/user/token')).json().token
-            def token2 = mvcWithoutAuth(get('/user/token')).json().token
-        then:
-            token1 && token2
-            token1 != token2
+    def 'should validate token for user creation'() {
+        expect:
+            createUser('batman-token').status == BAD_REQUEST
     }
 
     def 'user profile should be secured'() {
         when:
-            def response = mvcWithoutAuth(get('/user'))
+            def response = mvcWithoutAuth get("/users/$currentUserId")
         then:
             response.status == FORBIDDEN
     }
 
     def 'user should be able to access his profile'() {
-        given:
-            String token = mvcWithoutAuth(get('/user/token')).json().token
         when:
-            def response = mvcWithoutAuth get('/user').header('X-Auth', token)
+            def response = mvc get("/users/$currentUserId")
         then:
             response.status == OK
-            response.json().token == token
+            response.json().token == currentToken
+    }
+
+    private String acquireToken() {
+        mvcWithoutAuth(get('/token')).json().token
+    }
+
+    @SuppressWarnings("UnnecessaryQualifiedReference")
+    private MockMvcSpecification.ResponseOps createUser(String token) {
+        mvcWithoutAuth post('/users').content(""" { "token": "$token" } """)
     }
 
 }

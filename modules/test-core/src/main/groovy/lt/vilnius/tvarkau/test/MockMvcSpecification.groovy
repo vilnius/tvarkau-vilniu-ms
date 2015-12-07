@@ -13,6 +13,7 @@ import spock.lang.Specification
 import static org.springframework.http.MediaType.APPLICATION_JSON
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
 class MockMvcSpecification extends Specification {
 
@@ -20,7 +21,8 @@ class MockMvcSpecification extends Specification {
     WebApplicationContext context
 
     protected MockMvc mockMvc
-    private String validToken
+    protected String currentToken
+    protected String currentUserId
 
     def setup() {
         mockMvc = MockMvcBuilders
@@ -28,16 +30,24 @@ class MockMvcSpecification extends Specification {
                 .apply(springSecurity())
                 .build()
 
-        validToken = mockMvc.perform(get('/user/token'))
+        currentToken = mockMvc.perform(get('/token').contentType(APPLICATION_JSON))
                 .andReturn().response
                 .with(MockMvcSpecification.&slurp)
                 .token
+        assert currentToken
+
+        currentUserId = mockMvc.perform(post('/users').contentType(APPLICATION_JSON).content("""{ "token": "$currentToken" }"""))
+                .andReturn().response
+                .getHeader('Location')
+                .split('/users/')
+                .last()
+        assert currentUserId
     }
 
 
     protected ResponseOps mvc(MockHttpServletRequestBuilder requestBuilder, boolean authenticated = true) {
         if (authenticated) {
-            requestBuilder.header('X-Auth', validToken)
+            requestBuilder.header('X-Auth', currentToken)
         }
 
         requestBuilder.contentType(APPLICATION_JSON)

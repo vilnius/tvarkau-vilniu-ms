@@ -17,8 +17,12 @@ import static lt.vilnius.tvarkau.common.UUIDUtils.maybeUUID
 @PackageScope
 class CustomUserDetailsService implements UserDetailsService {
 
+    private final UserService userService
+
     @Autowired
-    UserService userService
+    CustomUserDetailsService(UserService userService) {
+        this.userService = userService
+    }
 
     @Override
     UserDetails loadUserByUsername(String tokenString) throws UsernameNotFoundException {

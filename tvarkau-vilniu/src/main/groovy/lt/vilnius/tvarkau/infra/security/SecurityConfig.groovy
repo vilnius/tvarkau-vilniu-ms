@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
 
+import static org.springframework.http.HttpMethod.GET
+import static org.springframework.http.HttpMethod.POST
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS
 
 @Configuration
@@ -34,7 +36,8 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers('/user/token').anonymous()
+                .antMatchers(GET, '/token').anonymous()
+                .antMatchers(POST, '/users').anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new TokenAuthFilter(), BasicAuthenticationFilter)
