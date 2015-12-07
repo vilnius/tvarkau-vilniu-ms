@@ -15,7 +15,7 @@ Manages problems reported by Vilnius citizens. Used by both - mobile apps and vi
 ## Related projects:
 
 - Android: https://github.com/vilnius/tvarkau-vilniu
-- iOS: https://github.com/vilnius/tvarkau-vilnius-ios
+- iOS: https://github.com/vilnius/tvarkau-vilniu-ios
 
 ## Contribute
 
