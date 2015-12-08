@@ -9,8 +9,12 @@ Manages problems reported by Vilnius citizens. Used by both - mobile apps and vi
 
 - Pre-requisite: latest JDK8
 - Build: `./gradlew build`
-- Test: `./gradlew test`
 - Run: `./gradlew run`
+
+## API docs (beta - subject to change!)
+
+1. Run application
+1. `/api-docs` for documentation and `/api-json` for schema
 
 ## Related projects:
 
