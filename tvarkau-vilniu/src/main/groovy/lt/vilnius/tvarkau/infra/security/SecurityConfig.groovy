@@ -36,6 +36,8 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers('/api-json/**').anonymous()
+                .antMatchers('/api-docs/**').anonymous()
                 .antMatchers(GET, '/token').anonymous()
                 .antMatchers(POST, '/users').anonymous()
                 .anyRequest().authenticated()

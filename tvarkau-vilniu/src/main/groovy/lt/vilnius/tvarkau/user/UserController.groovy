@@ -1,5 +1,6 @@
 package lt.vilnius.tvarkau.user
 
+import io.swagger.annotations.Api
 import lt.vilnius.tvarkau.token.TokenResource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.hateoas.ExposesResourceFor
@@ -13,6 +14,7 @@ import static org.springframework.http.ResponseEntity.created
 import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.POST
 
+@Api(description = "User resources")
 @RestController
 @ExposesResourceFor(User)
 @RequestMapping(path = '/users')

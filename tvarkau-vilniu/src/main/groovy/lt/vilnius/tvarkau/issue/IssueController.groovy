@@ -1,5 +1,6 @@
 package lt.vilnius.tvarkau.issue
 
+import io.swagger.annotations.Api
 import lt.vilnius.tvarkau.user.AuthenticatedUser
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.hateoas.ExposesResourceFor
@@ -15,6 +16,7 @@ import static org.springframework.http.ResponseEntity.created
 import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.POST
 
+@Api(description = "Issue resources")
 @RestController
 @ExposesResourceFor(Issue)
 @RequestMapping(value = '/issues')
