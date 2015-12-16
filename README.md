@@ -11,6 +11,10 @@ Manages problems reported by Vilnius citizens. Used by both - mobile apps and vi
 - Build: `./gradlew build`
 - Run: `./gradlew run`
 
+## Docker instructions:
+
+- Run `docker run -d -p 8080:8080 --name tvarkau-vilniu-ms vilnius/tvarkau-vilniu-ms`
+
 ## API docs (beta - subject to change!)
 
 1. Run application
