@@ -1,5 +1,7 @@
 package lt.vilnius.tvarkau.token
 
-class TokenResource {
+import lt.vilnius.commons.hypermedia.Resource
+
+class TokenResource extends Resource {
     UUID token
 }

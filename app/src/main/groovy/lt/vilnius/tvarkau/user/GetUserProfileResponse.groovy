@@ -1,5 +1,7 @@
 package lt.vilnius.tvarkau.user
 
-class GetUserProfileResponse {
+import lt.vilnius.commons.hypermedia.Resource
+
+class GetUserProfileResponse extends Resource {
     UUID token
 }
