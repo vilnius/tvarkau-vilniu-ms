@@ -1,5 +1,6 @@
 package lt.vilnius.tvarkau.issue
 
+import lt.vilnius.commons.hypermedia.CollectionResource
 import lt.vilnius.tvarkau.Config
 import spark.Request
 import spark.Response
@@ -20,14 +21,14 @@ class IssueController {
         res.status(201)
     }
 
-    List<IssueResource> listIssues(Request req, Response res) {
-        [
+    CollectionResource<IssueResource> listIssues(Request req, Response res) {
+        new CollectionResource<IssueResource>([
             new IssueResource(
                 referenceNumber: 'FOO#1',
                 status: IssueStatus.REGISTERED,
                 type: IssueType.ANIMAL_RULES_VIOLATION,
                 description: 'We have an issue')
-        ]
+        ])
     }
 
     IssueResource showIssue(Request req, Response res) {
