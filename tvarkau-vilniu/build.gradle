@@ -11,7 +11,7 @@ project(':tvarkau-vilniu') {
         compile 'org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE'
         compile 'com.h2database:h2:1.4.190'
 
-        compile 'io.springfox:springfox-swagger2:2.3.0'
+        compile 'io.springfox:springfox-swagger2:2.6.1'
         compile 'org.webjars:swagger-ui:2.1.3'
 
         testCompile "org.springframework:spring-test:$spring_version"

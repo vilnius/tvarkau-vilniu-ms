@@ -2,16 +2,15 @@ package lt.vilnius.tvarkau.issue
 
 import lt.vilnius.tvarkau.Application
 import lt.vilnius.tvarkau.test.MockMvcSpecification
-import org.springframework.boot.test.SpringApplicationContextLoader
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.web.WebAppConfiguration
 
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
-@ContextConfiguration(loader = SpringApplicationContextLoader, classes = Application)
-@WebAppConfiguration
+@ContextConfiguration
+@SpringBootTest(classes = Application)
 class IssueResourceSpec extends MockMvcSpecification {
 
     def 'should create a new issue resource'() {

@@ -1,0 +1,13 @@
+compileGroovy {
+    configure(groovyOptions) {
+        configurationScript = file("$rootDir/compiler-config.groovy")
+    }
+}
+
+def sparkVersion = '2.5.4'
+dependencies {
+    compile "com.sparkjava:spark-core:${sparkVersion}"
+    compile 'org.slf4j:slf4j-api:1.7.22'
+    compile 'ch.qos.logback:logback-classic:1.1.8'
+    compile 'com.google.code.gson:gson:2.8.0'
+}
