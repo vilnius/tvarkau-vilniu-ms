@@ -2,16 +2,15 @@ package lt.vilnius.tvarkau.user
 
 import lt.vilnius.tvarkau.Application
 import lt.vilnius.tvarkau.test.MockMvcSpecification
-import org.springframework.boot.test.SpringApplicationContextLoader
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.web.WebAppConfiguration
 
 import static org.springframework.http.HttpStatus.*
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 
-@ContextConfiguration(loader = SpringApplicationContextLoader, classes = [Application])
-@WebAppConfiguration
+@ContextConfiguration
+@SpringBootTest(classes = Application)
 class UserResourceSpec extends MockMvcSpecification {
 
     def 'should allow to create one user with a token'() {
