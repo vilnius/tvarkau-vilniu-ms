@@ -10,10 +10,20 @@ import static spark.Spark.post
 
 class IssueController {
 
+    private static final List<CategoryResource> MOCK_CATEGORIES = [
+        new CategoryResource(id: 1, name: 'Animal safety'),
+        new CategoryResource(id: 3, name: 'Noise prevention')
+    ]
+
     IssueController() {
+        get('/categories', this.&listCategories, Config.JSON)
         post('/issues', this.&reportIssue)
         get('/issues', this.&listIssues, Config.JSON)
         get('/issues/:issueId', this.&showIssue, Config.JSON)
+    }
+
+    CollectionResource<CategoryResource> listCategories(Request req, Response res) {
+        new CollectionResource<CategoryResource>(MOCK_CATEGORIES)
     }
 
     void reportIssue(Request req, Response res) {
@@ -26,7 +36,8 @@ class IssueController {
             new IssueResource(
                 referenceNumber: 'FOO#1',
                 status: IssueStatus.REGISTERED,
-                type: IssueType.ANIMAL_RULES_VIOLATION,
+                categoryId: 1,
+                categoryName: MOCK_CATEGORIES.find { it.id == 1 }.name,
                 description: 'We have an issue')
         ])
     }
@@ -35,7 +46,8 @@ class IssueController {
         new IssueResource(
             referenceNumber: 'FOO#1',
             status: IssueStatus.REGISTERED,
-            type: IssueType.ANIMAL_RULES_VIOLATION,
+            categoryId: 3,
+            categoryName: MOCK_CATEGORIES.find { it.id == 3 }.name,
             description: 'We have an issue'
         )
     }
