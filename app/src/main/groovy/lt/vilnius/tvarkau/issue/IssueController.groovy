@@ -38,7 +38,10 @@ class IssueController {
                 status: IssueStatus.REGISTERED,
                 categoryId: 1,
                 categoryName: MOCK_CATEGORIES.find { it.id == 1 }.name,
-                description: 'We have an issue')
+                description: 'I am scared of the big dogs in the neighbourhood',
+                address: 'Ozo parkas',
+                lat: 54.718662,
+                lon: 25.280228)
         ])
     }
 
@@ -48,7 +51,10 @@ class IssueController {
             status: IssueStatus.REGISTERED,
             categoryId: 3,
             categoryName: MOCK_CATEGORIES.find { it.id == 3 }.name,
-            description: 'We have an issue'
+            description: 'Somebody is screaming all night long',
+            address: 'Ozo parkas',
+            lat: 54.718662,
+            lon: 25.280228
         )
     }
 

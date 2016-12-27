@@ -8,4 +8,6 @@ class IssueResource extends Resource {
     String categoryName
     String description
     IssueStatus status
+    String address
+    float lat, lon
 }
