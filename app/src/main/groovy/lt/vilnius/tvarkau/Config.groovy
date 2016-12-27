@@ -9,7 +9,8 @@ import spark.Route
 
 class Config {
 
-    static final ResponseTransformer JSON = new Gson().&toJson as ResponseTransformer
+    static final Gson GSON = new Gson()
+    static final ResponseTransformer JSON = GSON.&toJson as ResponseTransformer
 
     static Filter defaultContentTypeFilter() {
         { Request req, Response res ->
