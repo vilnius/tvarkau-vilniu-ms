@@ -5,20 +5,11 @@
 
 Manages problems reported by Vilnius citizens. Used by both - mobile apps and vilnius.lt - microservice is designed to replace the old backend.
 
-## Instructions:
+## Getting started
 
-- Pre-requisite: latest JDK8
-- Build: `./gradlew build`
-- Run: `./gradlew run`
-
-## Docker instructions:
-
-- Run `docker run -d -p 8080:8080 --name tvarkau-vilniu-ms vilnius/tvarkau-vilniu-ms`
-
-## API docs (beta - subject to change!)
-
-1. Run application
-1. `/api-docs` for documentation and `/api-json` for schema
+- Pre-requisites: latest JDK8, docker, docker-compose
+- Build: `./gradlew assemble`
+- Run: `docker-compose up --build`
 
 ## Related projects:
 
@@ -27,8 +18,8 @@ Manages problems reported by Vilnius citizens. Used by both - mobile apps and vi
 
 ## Contribute
 
-- Join us on Slack: https://codeforvilnius.slack.com #tvarkau-vilniu
-- Submit PRs and issues
+- Join us on Slack `#tvarkau-vilniu`! To join you will need to request an invitation at http://codeforvilnius.lt/ or by creating an issue here.
+- Feel free to create pull requests or issues
 - Contribution guide coming soon ;)
 
 **Note: This is a work in-progress**
