@@ -12,6 +12,8 @@ class App {
         new DeviceController()
         new UserController()
         new IssueController()
+
+        Spark.exception(Exception, Config.rootExceptionHandler())
         Spark.get('/*', Config.route404())
     }
 }
