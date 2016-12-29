@@ -20,7 +20,8 @@ class DeviceController {
     }
 
     static UUID deviceUuid(Request req) {
-        UUID.fromString(req.attribute(DEVICE_UUID_HEADER) as String)
+        def header = req.attribute(DEVICE_UUID_HEADER) as String
+        return header?.with(UUID.&fromString) as UUID
     }
 
 }
