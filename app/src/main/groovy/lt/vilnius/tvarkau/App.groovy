@@ -4,6 +4,7 @@ import groovy.util.logging.Slf4j
 import lt.vilnius.tvarkau.device.DeviceController
 import lt.vilnius.tvarkau.issue.IssueController
 import lt.vilnius.tvarkau.support.DataSourceSupport
+import lt.vilnius.tvarkau.support.LiquibaseSupport
 import lt.vilnius.tvarkau.user.UserController
 import spark.Spark
 
@@ -16,7 +17,8 @@ class App {
     }
 
     private static DataSourceSupport configure() {
-        new DataSourceSupport()
+        DataSourceSupport.init()
+        LiquibaseSupport.run()
     }
 
     private static void startWebServer() {

@@ -8,9 +8,9 @@ import java.sql.Connection
 
 class DataSourceSupport {
 
-    static DataSource dataSource
+    private static DataSource dataSource
 
-    static {
+    static void init() {
         def hikariPoolConfig = new HikariConfig()
         hikariPoolConfig.with {
             jdbcUrl = Environment.datasourceUrl()
