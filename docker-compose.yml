@@ -18,7 +18,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - postgresql-data:/var/lib/postgresql/tvarkauvilniu
+      - postgresql-data:/var/lib/postgresql/data
     mem_limit: 300m
     environment:
       LC_ALL: C.UTF-8
