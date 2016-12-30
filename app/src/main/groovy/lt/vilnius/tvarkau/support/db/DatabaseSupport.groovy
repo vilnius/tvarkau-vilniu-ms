@@ -2,7 +2,6 @@ package lt.vilnius.tvarkau.support.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import groovy.util.logging.Slf4j
 import lt.vilnius.tvarkau.support.Environment
 import org.dalesbred.Database
 import org.dalesbred.connection.DataSourceConnectionProvider
@@ -12,7 +11,6 @@ import org.postgresql.ds.PGSimpleDataSource
 import javax.sql.DataSource
 import java.sql.Connection
 
-@Slf4j
 class DatabaseSupport {
 
     static final DataSource dataSource

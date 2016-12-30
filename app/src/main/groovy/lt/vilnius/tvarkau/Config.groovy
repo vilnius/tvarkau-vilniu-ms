@@ -2,13 +2,11 @@ package lt.vilnius.tvarkau
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import groovy.util.logging.Slf4j
 import lt.vilnius.tvarkau.util.LocalDateGsonAdapter
 import spark.*
 
 import java.time.LocalDate
 
-@Slf4j
 class Config {
 
     static final Gson GSON = new GsonBuilder()
