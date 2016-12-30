@@ -12,8 +12,13 @@ import spark.Spark
 class App {
 
     static void main(String[] args) {
+        printBanner()
         configure()
         startWebServer()
+    }
+
+    private static void printBanner() {
+        App.getResourceAsStream('/banner.txt').eachLine { println it }
     }
 
     private static void configure() {
