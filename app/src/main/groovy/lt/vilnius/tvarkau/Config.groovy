@@ -3,7 +3,10 @@ package lt.vilnius.tvarkau
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import lt.vilnius.tvarkau.util.LocalDateGsonAdapter
-import spark.*
+import spark.Filter
+import spark.Request
+import spark.Response
+import spark.ResponseTransformer
 
 import java.time.LocalDate
 
@@ -20,13 +23,6 @@ class Config {
         { Request req, Response res ->
             res.type('application/json')
         } as Filter
-    }
-
-    static Route route404() {
-        { Request req, Response res ->
-            res.body('{}')
-            res.status(404)
-        } as Route
     }
 
 }

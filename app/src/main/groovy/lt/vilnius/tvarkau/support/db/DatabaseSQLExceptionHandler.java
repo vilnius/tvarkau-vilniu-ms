@@ -1,13 +1,13 @@
 package lt.vilnius.tvarkau.support.db;
 
-import lt.vilnius.tvarkau.support.sparkext.SmartExceptionHandler;
+import lt.vilnius.tvarkau.support.sparkext.HonestExceptionHandler;
 import org.dalesbred.DatabaseSQLException;
 import spark.Request;
 import spark.Response;
 
 import java.sql.SQLException;
 
-public class DatabaseSQLExceptionHandler implements SmartExceptionHandler {
+public class DatabaseSQLExceptionHandler implements HonestExceptionHandler {
 
     private static final String SQLCLIENT_UNABLE_TO_ESTABLISH_SQLCONNECTION = "08001";
 

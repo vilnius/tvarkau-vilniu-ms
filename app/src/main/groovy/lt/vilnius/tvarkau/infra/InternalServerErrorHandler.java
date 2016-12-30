@@ -1,10 +1,10 @@
 package lt.vilnius.tvarkau.infra;
 
-import lt.vilnius.tvarkau.support.sparkext.SmartExceptionHandler;
+import lt.vilnius.tvarkau.support.sparkext.HonestExceptionHandler;
 import spark.Request;
 import spark.Response;
 
-class FallbackExceptionHandler implements SmartExceptionHandler {
+class InternalServerErrorHandler implements HonestExceptionHandler {
 
     @Override
     public boolean canHandle(Exception ex) {

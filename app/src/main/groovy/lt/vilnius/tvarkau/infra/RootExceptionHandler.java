@@ -1,7 +1,7 @@
 package lt.vilnius.tvarkau.infra;
 
 import lt.vilnius.tvarkau.support.db.DatabaseSQLExceptionHandler;
-import lt.vilnius.tvarkau.support.sparkext.SmartExceptionHandler;
+import lt.vilnius.tvarkau.support.sparkext.HonestExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.ExceptionHandler;
@@ -14,8 +14,8 @@ import java.util.List;
 public class RootExceptionHandler implements ExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(RootExceptionHandler.class);
-    private static final SmartExceptionHandler FALLBACK_HANDLER = new FallbackExceptionHandler();
-    private final List<SmartExceptionHandler> delegates = new ArrayList<>();
+    private static final HonestExceptionHandler FALLBACK_HANDLER = new InternalServerErrorHandler();
+    private final List<HonestExceptionHandler> delegates = new ArrayList<>();
 
     {
         delegates.add(new DatabaseSQLExceptionHandler());
