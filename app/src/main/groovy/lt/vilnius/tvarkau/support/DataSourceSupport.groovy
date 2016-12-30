@@ -2,11 +2,16 @@ package lt.vilnius.tvarkau.support
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import groovy.util.logging.Slf4j
 import org.dalesbred.Database
+import org.dalesbred.connection.DataSourceConnectionProvider
+import org.dalesbred.dialect.PostgreSQLDialect
+import org.postgresql.ds.PGSimpleDataSource
 
 import javax.sql.DataSource
 import java.sql.Connection
 
+@Slf4j
 class DataSourceSupport {
 
     static final DataSource dataSource
@@ -15,13 +20,17 @@ class DataSourceSupport {
     static {
         def hikariPoolConfig = new HikariConfig()
         hikariPoolConfig.with {
-            jdbcUrl = Environment.datasourceUrl()
-            username = Environment.datasourceUsername()
-            password = Environment.datasourcePassword()
+            dataSourceClassName = PGSimpleDataSource.class.name
+            dataSourceProperties.setProperty('user', Environment.dbUsername())
+            dataSourceProperties.setProperty('password', Environment.dbPassword())
+            dataSourceProperties.setProperty('serverName', Environment.dbHost())
+            dataSourceProperties.setProperty('portNumber', Environment.dbPort())
+            dataSourceProperties.setProperty('databaseName', Environment.dbName())
             registerMbeans = true
+            initializationFailFast = false
         }
         dataSource = new HikariDataSource(hikariPoolConfig)
-        database = Database.forDataSource(dataSource)
+        database = new Database(new DataSourceConnectionProvider(dataSource), new PostgreSQLDialect())
     }
 
     static Connection getConnection() {

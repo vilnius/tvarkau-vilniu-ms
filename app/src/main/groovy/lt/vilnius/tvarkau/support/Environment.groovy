@@ -2,16 +2,24 @@ package lt.vilnius.tvarkau.support
 
 class Environment {
 
-    static String datasourceUrl() {
-        System.getProperty('DS_URL') ?: 'jdbc:postgresql://localhost:5432/tvarkauvilniu'
+    static String dbHost() {
+        System.getenv('DB_HOST') ?: 'localhost'
     }
 
-    static String datasourceUsername() {
-        System.getProperty('DS_USERNAME') ?: 'tvarkauvilniu'
+    static String dbPort() {
+        System.getenv('DB_PORT') ?: '5432'
     }
 
-    static String datasourcePassword() {
-        System.getProperty('DS_PASSWORD') ?: 'tvarkauvilniu'
+    static String dbName() {
+        System.getenv('DB_NAME') ?: 'tvarkauvilniu'
+    }
+
+    static String dbUsername() {
+        System.getenv('DB_USERNAME') ?: 'tvarkauvilniu'
+    }
+
+    static String dbPassword() {
+        System.getenv('DB_PASSWORD') ?: 'tvarkauvilniu'
     }
 
 }
