@@ -1,24 +1,30 @@
-app:
-  build: .
-  ports:
-    - 8080:8080
-  links:
-    - db
-  environment:
-    JAVA_OPTS: -Xmx128m
-db:
-  image: postgres:9.5.5
-  ports:
-    - 5432:5432
-  volumes_from:
-    - dbdata
-  mem_limit: 300m
-  environment:
-    LC_ALL: C.UTF-8
-    POSTGRES_USER: tvarkauvilniu
-    POSTGRES_PASSWORD: tvarkauvilniu
-    POSTGRES_DB: tvarkauvilniu
-dbdata:
-  image: busybox
-  volumes:
-  - /var/lib/postgresql
+version: '2'
+
+services:
+  app:
+    build: .
+    ports:
+      - 8080:8080
+      - 5005:5005
+    links:
+      - db
+    environment:
+      JAVA_OPTS: -Xmx128m
+      DEBUG_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,address=5005,suspend=n
+      DB_HOST: db
+      DB_PORT: 5432
+  db:
+    image: postgres:9.5.5
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresql-data:/var/lib/postgresql/tvarkauvilniu
+    mem_limit: 300m
+    environment:
+      LC_ALL: C.UTF-8
+      POSTGRES_USER: tvarkauvilniu
+      POSTGRES_PASSWORD: tvarkauvilniu
+      POSTGRES_DB: tvarkauvilniu
+volumes:
+  postgresql-data:
+    driver: local
