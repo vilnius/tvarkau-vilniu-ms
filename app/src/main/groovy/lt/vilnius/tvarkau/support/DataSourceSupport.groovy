@@ -26,6 +26,7 @@ class DataSourceSupport {
             dataSourceProperties.setProperty('serverName', Environment.dbHost())
             dataSourceProperties.setProperty('portNumber', Environment.dbPort())
             dataSourceProperties.setProperty('databaseName', Environment.dbName())
+            connectionTimeout = 5000
             registerMbeans = true
             initializationFailFast = false
         }
