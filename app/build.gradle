@@ -31,5 +31,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'org.postgresql:postgresql:9.4.1212'
     compile 'com.zaxxer:HikariCP:2.5.1'
+    compile 'org.dalesbred:dalesbred:1.2.3'
     compile 'org.liquibase:liquibase-core:3.5.3'
 }

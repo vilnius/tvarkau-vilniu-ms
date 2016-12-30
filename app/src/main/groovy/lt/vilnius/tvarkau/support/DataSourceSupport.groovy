@@ -2,15 +2,17 @@ package lt.vilnius.tvarkau.support
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import org.dalesbred.Database
 
 import javax.sql.DataSource
 import java.sql.Connection
 
 class DataSourceSupport {
 
-    private static DataSource dataSource
+    static final DataSource dataSource
+    static final Database database
 
-    static void init() {
+    static {
         def hikariPoolConfig = new HikariConfig()
         hikariPoolConfig.with {
             jdbcUrl = Environment.datasourceUrl()
@@ -19,6 +21,7 @@ class DataSourceSupport {
             registerMbeans = true
         }
         dataSource = new HikariDataSource(hikariPoolConfig)
+        database = Database.forDataSource(dataSource)
     }
 
     static Connection getConnection() {

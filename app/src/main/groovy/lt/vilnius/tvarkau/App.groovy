@@ -16,8 +16,8 @@ class App {
         startWebServer()
     }
 
-    private static DataSourceSupport configure() {
-        DataSourceSupport.init()
+    private static void configure() {
+        new DataSourceSupport()
         LiquibaseSupport.run()
     }
 
