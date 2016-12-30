@@ -2,6 +2,7 @@ package lt.vilnius.tvarkau
 
 import groovy.util.logging.Slf4j
 import lt.vilnius.tvarkau.device.DeviceController
+import lt.vilnius.tvarkau.infra.RootExceptionHandler
 import lt.vilnius.tvarkau.issue.IssueController
 import lt.vilnius.tvarkau.support.db.DatabaseSupport
 import lt.vilnius.tvarkau.support.db.LiquibaseSupport
@@ -33,7 +34,7 @@ class App {
         new UserController()
         new IssueController()
 
-        Spark.exception(Exception, Config.rootExceptionHandler())
+        Spark.exception(Exception, new RootExceptionHandler())
         Spark.get('/*', Config.route404())
     }
 }

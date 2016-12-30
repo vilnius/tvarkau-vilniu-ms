@@ -31,11 +31,4 @@ class Config {
         } as Route
     }
 
-    static ExceptionHandler rootExceptionHandler() {
-        { Exception ex, Request req, Response res ->
-            log.error(ex.message, ex)
-            res.body('{}')
-            res.status(500)
-        } as ExceptionHandler
-    }
 }
