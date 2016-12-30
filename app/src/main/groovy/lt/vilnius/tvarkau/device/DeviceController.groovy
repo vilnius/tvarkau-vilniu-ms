@@ -1,7 +1,7 @@
 package lt.vilnius.tvarkau.device
 
 import lt.vilnius.tvarkau.Config
-import lt.vilnius.tvarkau.support.DataSourceSupport
+import lt.vilnius.tvarkau.support.db.DatabaseSupport
 import spark.Request
 import spark.Response
 
@@ -13,7 +13,7 @@ class DeviceController {
     private final DeviceDao dao
 
     DeviceController() {
-        dao = new DeviceDao(DataSourceSupport.database)
+        dao = new DeviceDao(DatabaseSupport.database)
         put('/device', this.&registerDevice, Config.JSON)
     }
 

@@ -3,8 +3,8 @@ package lt.vilnius.tvarkau
 import groovy.util.logging.Slf4j
 import lt.vilnius.tvarkau.device.DeviceController
 import lt.vilnius.tvarkau.issue.IssueController
-import lt.vilnius.tvarkau.support.DataSourceSupport
-import lt.vilnius.tvarkau.support.LiquibaseSupport
+import lt.vilnius.tvarkau.support.db.DatabaseSupport
+import lt.vilnius.tvarkau.support.db.LiquibaseSupport
 import lt.vilnius.tvarkau.user.UserController
 import spark.Spark
 
@@ -17,7 +17,7 @@ class App {
     }
 
     private static void configure() {
-        new DataSourceSupport()
+        new DatabaseSupport()
         LiquibaseSupport.run()
     }
 
