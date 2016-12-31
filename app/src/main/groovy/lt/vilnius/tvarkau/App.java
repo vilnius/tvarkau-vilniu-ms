@@ -30,7 +30,7 @@ class App {
 
     private static void startWebServer() {
         port(8080);
-        after(Config.defaultContentTypeFilter());
+        after((req, res) -> res.type("application/json"));
         exception(Exception.class, appContext.rootExceptionHandler());
         appContext.controllers().forEach(SelfRegisteringController::register);
         notFound((req, res) -> "");
