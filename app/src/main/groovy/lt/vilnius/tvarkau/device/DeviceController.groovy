@@ -1,19 +1,28 @@
 package lt.vilnius.tvarkau.device
 
 import lt.vilnius.tvarkau.Config
-import lt.vilnius.tvarkau.support.db.DatabaseSupport
+import lt.vilnius.tvarkau.support.sparkext.SelfRegisteringController
 import spark.Request
 import spark.Response
 
+import javax.inject.Inject
+import javax.inject.Singleton
+
 import static spark.Spark.put
 
-class DeviceController {
+@Singleton
+class DeviceController implements SelfRegisteringController {
 
     public static final String DEVICE_UUID_HEADER = 'x-device-uuid'
     private final DeviceDao dao
 
-    DeviceController() {
-        dao = new DeviceDao(DatabaseSupport.database)
+    @Inject
+    DeviceController(DeviceDao dao) {
+        this.dao = dao
+    }
+
+    @Override
+    void register() {
         put('/device', this.&registerDevice, Config.JSON)
     }
 

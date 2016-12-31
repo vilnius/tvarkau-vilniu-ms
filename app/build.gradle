@@ -1,12 +1,19 @@
 plugins {
     id 'application'
     id 'com.github.johnrengelman.shadow' version '1.2.4'
+    id 'net.ltgt.apt' version '0.9'
+    id 'idea'
+}
+
+idea {
+    module {
+        sourceDirs += file(project.buildDir.absolutePath + '/generated/source/apt/main')
+    }
 }
 
 compileGroovy {
-    configure(groovyOptions) {
-        configurationScript = file("$rootDir/compiler-config.groovy")
-    }
+    groovyOptions.configurationScript = file("$rootDir/compiler-config.groovy")
+    groovyOptions.javaAnnotationProcessing = true
 }
 
 mainClassName = 'lt.vilnius.tvarkau.App'
@@ -32,5 +39,8 @@ dependencies {
     compile 'org.postgresql:postgresql:9.4.1212'
     compile 'com.zaxxer:HikariCP:2.5.1'
     compile 'org.dalesbred:dalesbred:1.2.3'
+    compile 'org.jetbrains:annotations:15.0'
     compile 'org.liquibase:liquibase-core:3.5.3'
+    compile 'com.google.dagger:dagger:2.8'
+    apt 'com.google.dagger:dagger-compiler:2.8'
 }

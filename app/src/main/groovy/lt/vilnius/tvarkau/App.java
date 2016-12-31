@@ -1,11 +1,6 @@
 package lt.vilnius.tvarkau;
 
-import lt.vilnius.tvarkau.device.DeviceController;
-import lt.vilnius.tvarkau.infra.RootExceptionHandler;
-import lt.vilnius.tvarkau.issue.IssueController;
-import lt.vilnius.tvarkau.support.db.DatabaseSupport;
-import lt.vilnius.tvarkau.support.db.LiquibaseSupport;
-import lt.vilnius.tvarkau.user.UserController;
+import lt.vilnius.tvarkau.support.sparkext.SelfRegisteringController;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,7 +9,9 @@ import static spark.Spark.*;
 
 class App {
 
-    static void main(String[] args) {
+    private static ContextComponent appContext;
+
+    public static void main(String[] args) {
         printBanner();
         configure();
         startWebServer();
@@ -27,21 +24,16 @@ class App {
     }
 
     private static void configure() {
-        new DatabaseSupport();
-        LiquibaseSupport.run();
+        appContext = DaggerContextComponent.create();
+        appContext.liquibaseRunner().run();
     }
 
     private static void startWebServer() {
         port(8080);
         after(Config.defaultContentTypeFilter());
-        registerControllers();
-        exception(Exception.class, new RootExceptionHandler());
+        exception(Exception.class, appContext.rootExceptionHandler());
+        appContext.controllers().forEach(SelfRegisteringController::register);
         notFound((req, res) -> "");
     }
 
-    private static void registerControllers() {
-        new DeviceController();
-        new UserController();
-        new IssueController();
-    }
 }
