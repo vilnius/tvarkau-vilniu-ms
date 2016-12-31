@@ -2,21 +2,31 @@ package lt.vilnius.tvarkau.support.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import dagger.Module
+import dagger.Provides
+import dagger.multibindings.IntoSet
 import lt.vilnius.tvarkau.support.Environment
+import lt.vilnius.tvarkau.support.sparkext.ConditionalExceptionHandler
 import org.dalesbred.Database
 import org.dalesbred.connection.DataSourceConnectionProvider
 import org.dalesbred.dialect.PostgreSQLDialect
 import org.postgresql.ds.PGSimpleDataSource
 
+import javax.inject.Singleton
 import javax.sql.DataSource
-import java.sql.Connection
 
-class DatabaseSupport {
+@Module
+class DatabaseModule {
 
-    static final DataSource dataSource
-    static final Database database
+    @Provides
+    @Singleton
+    static Database provideDatabase(DataSource dataSource) {
+        return new Database(new DataSourceConnectionProvider(dataSource), new PostgreSQLDialect())
+    }
 
-    static {
+    @Provides
+    @Singleton
+    static DataSource provideDataSource() {
         def hikariPoolConfig = new HikariConfig()
         hikariPoolConfig.with {
             dataSourceClassName = PGSimpleDataSource.class.name
@@ -29,12 +39,13 @@ class DatabaseSupport {
             registerMbeans = true
             initializationFailFast = false
         }
-        dataSource = new HikariDataSource(hikariPoolConfig)
-        database = new Database(new DataSourceConnectionProvider(dataSource), new PostgreSQLDialect())
+        return new HikariDataSource(hikariPoolConfig)
     }
 
-    static Connection getConnection() {
-        return dataSource.getConnection()
+    @Provides
+    @IntoSet
+    static ConditionalExceptionHandler databaseSqlExceptionHandler() {
+        return new DatabaseSQLExceptionHandler()
     }
 
 }

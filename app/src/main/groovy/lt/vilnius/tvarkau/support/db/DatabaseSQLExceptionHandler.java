@@ -1,13 +1,15 @@
 package lt.vilnius.tvarkau.support.db;
 
-import lt.vilnius.tvarkau.support.sparkext.HonestExceptionHandler;
+import lt.vilnius.tvarkau.support.sparkext.ConditionalExceptionHandler;
 import org.dalesbred.DatabaseSQLException;
 import spark.Request;
 import spark.Response;
 
+import javax.inject.Singleton;
 import java.sql.SQLException;
 
-public class DatabaseSQLExceptionHandler implements HonestExceptionHandler {
+@Singleton
+public class DatabaseSQLExceptionHandler implements ConditionalExceptionHandler {
 
     private static final String SQLCLIENT_UNABLE_TO_ESTABLISH_SQLCONNECTION = "08001";
 

@@ -2,20 +2,25 @@ package lt.vilnius.tvarkau.issue
 
 import lt.vilnius.commons.hypermedia.CollectionResource
 import lt.vilnius.tvarkau.Config
+import lt.vilnius.tvarkau.support.sparkext.SelfRegisteringController
 import spark.Request
 import spark.Response
+
+import javax.inject.Singleton
 
 import static spark.Spark.get
 import static spark.Spark.post
 
-class IssueController {
+@Singleton
+class IssueController implements SelfRegisteringController {
 
     private static final List<CategoryResource> MOCK_CATEGORIES = [
         new CategoryResource(id: 1, name: 'Animal safety'),
         new CategoryResource(id: 3, name: 'Noise prevention')
     ]
 
-    IssueController() {
+    @Override
+    void register() {
         get('/categories', this.&listCategories, Config.JSON)
         post('/issues', this.&reportIssue)
         get('/issues', this.&listIssues, Config.JSON)

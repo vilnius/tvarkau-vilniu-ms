@@ -1,17 +1,21 @@
 package lt.vilnius.tvarkau.user
 
 import lt.vilnius.tvarkau.Config
+import lt.vilnius.tvarkau.support.sparkext.SelfRegisteringController
 import spark.Request
 import spark.Response
 
+import javax.inject.Singleton
 import java.time.LocalDate
 
 import static spark.Spark.get
 import static spark.Spark.put
 
-class UserController {
+@Singleton
+class UserController implements SelfRegisteringController {
 
-    UserController() {
+    @Override
+    void register() {
         put('/user', this.&updateUserProfile, Config.JSON)
         get('/user', this.&showUserProfile, Config.JSON)
     }

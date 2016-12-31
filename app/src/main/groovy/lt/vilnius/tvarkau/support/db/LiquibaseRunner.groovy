@@ -6,14 +6,25 @@ import liquibase.database.DatabaseFactory
 import liquibase.database.jvm.JdbcConnection
 import liquibase.resource.ClassLoaderResourceAccessor
 
+import javax.inject.Inject
+import javax.inject.Singleton
+import javax.sql.DataSource
 import java.sql.Connection
 
-class LiquibaseSupport {
+@Singleton
+class LiquibaseRunner {
 
-    static void run() {
+    private final DataSource dataSource
+
+    @Inject
+    LiquibaseRunner(DataSource dataSource) {
+        this.dataSource = dataSource
+    }
+
+    void run() {
         Connection conn
         try {
-            conn = DatabaseSupport.getConnection()
+            conn = dataSource.connection
             def database = DatabaseFactory.instance.findCorrectDatabaseImplementation(new JdbcConnection(conn))
             Liquibase liquibase = new Liquibase('db/changelog.xml', new ClassLoaderResourceAccessor(), database)
             liquibase.update(new Contexts())

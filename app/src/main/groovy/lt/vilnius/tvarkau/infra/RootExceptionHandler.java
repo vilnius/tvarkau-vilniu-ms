@@ -1,24 +1,27 @@
 package lt.vilnius.tvarkau.infra;
 
-import lt.vilnius.tvarkau.support.db.DatabaseSQLExceptionHandler;
-import lt.vilnius.tvarkau.support.sparkext.HonestExceptionHandler;
+import lt.vilnius.tvarkau.support.sparkext.ConditionalExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.ExceptionHandler;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.Set;
 
+@Singleton
 public class RootExceptionHandler implements ExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(RootExceptionHandler.class);
-    private static final HonestExceptionHandler FALLBACK_HANDLER = new InternalServerErrorHandler();
-    private final List<HonestExceptionHandler> delegates = new ArrayList<>();
+    private final Set<ConditionalExceptionHandler> delegates;
+    private final InternalServerErrorHandler fallbackHandler;
 
-    {
-        delegates.add(new DatabaseSQLExceptionHandler());
+    @Inject
+    public RootExceptionHandler(Set<ConditionalExceptionHandler> delegates, InternalServerErrorHandler fallbackHandler) {
+        this.delegates = delegates;
+        this.fallbackHandler = fallbackHandler;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class RootExceptionHandler implements ExceptionHandler {
         delegates.stream()
             .filter(h -> h.canHandle(exception))
             .findAny()
-            .orElse(FALLBACK_HANDLER)
+            .orElse(fallbackHandler)
             .handle(exception, request, response);
     }
 
