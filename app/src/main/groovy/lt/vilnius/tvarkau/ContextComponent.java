@@ -2,6 +2,7 @@ package lt.vilnius.tvarkau;
 
 import dagger.Component;
 import lt.vilnius.tvarkau.device.DeviceModule;
+import lt.vilnius.tvarkau.infra.InfrastructureModule;
 import lt.vilnius.tvarkau.infra.RootExceptionHandler;
 import lt.vilnius.tvarkau.issue.IssueModule;
 import lt.vilnius.tvarkau.support.db.DatabaseModule;
@@ -17,7 +18,8 @@ import java.util.Set;
     DatabaseModule.class,
     DeviceModule.class,
     IssueModule.class,
-    UserModule.class
+    UserModule.class,
+    InfrastructureModule.class
 })
 interface ContextComponent {
 
