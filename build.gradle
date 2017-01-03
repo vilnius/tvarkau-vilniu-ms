@@ -1,9 +1,18 @@
-apply plugin: 'idea'
+plugins {
+    id 'idea'
+    id 'com.avast.gradle.docker-compose' version '0.3.17'
+}
 idea {
     project {
         jdkName = 1.8
         languageLevel = 1.8
     }
+}
+dockerCompose {
+    useComposeFiles = ['docker-compose.yml', 'docker-compose.test.yml']
+}
+afterEvaluate {
+    composeUp.dependsOn project(':app').assemble
 }
 
 allprojects {

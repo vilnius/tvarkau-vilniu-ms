@@ -2,7 +2,7 @@ version: '2'
 
 services:
   app:
-    build: .
+    build: app
     links:
       - db
     environment:

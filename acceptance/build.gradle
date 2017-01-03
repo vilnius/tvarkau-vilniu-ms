@@ -1,15 +1,7 @@
-plugins {
-    id 'com.avast.gradle.docker-compose' version '0.3.17'
-}
-
-composeUp.dependsOn project(':app').assemble
-dockerCompose.isRequiredBy(test)
-dockerCompose {
-    useComposeFiles = ['../docker-compose.yml', '../docker-compose.test.yml']
-}
+rootProject.dockerCompose.isRequiredBy(test)
 
 test.doFirst {
-    dockerCompose.exposeAsEnvironment(test)
+    rootProject.dockerCompose.exposeAsEnvironment(test)
 }
 
 dependencies {
