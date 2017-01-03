@@ -3,6 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '1.2.4'
     id 'net.ltgt.apt' version '0.9'
     id 'idea'
+    id 'com.ofg.uptodate' version '1.6.2'
 }
 
 idea {
