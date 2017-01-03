@@ -8,7 +8,7 @@ Manages problems reported by Vilnius citizens. Used by both - mobile apps and vi
 ## Getting started
 
 - Pre-requisites: latest JDK8, docker, docker-compose
-- Build: `./gradlew assemble`
+- Build: `./gradlew build`
 - Run: `docker-compose up --build`
 
 ## Related projects:
