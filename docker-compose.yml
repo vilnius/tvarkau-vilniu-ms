@@ -3,9 +3,6 @@ version: '2'
 services:
   app:
     build: .
-    ports:
-      - 8080:8080
-      - 5005:5005
     links:
       - db
     environment:
@@ -15,8 +12,6 @@ services:
       DB_PORT: 5432
   db:
     image: postgres:9.5.5
-    ports:
-      - 5432:5432
     volumes:
       - postgresql-data:/var/lib/postgresql/data
     mem_limit: 300m

@@ -4,6 +4,9 @@ plugins {
 
 composeUp.dependsOn project(':app').assemble
 dockerCompose.isRequiredBy(test)
+dockerCompose {
+    useComposeFiles = ['../docker-compose.yml', '../docker-compose.test.yml']
+}
 
 test.doFirst {
     dockerCompose.exposeAsEnvironment(test)
