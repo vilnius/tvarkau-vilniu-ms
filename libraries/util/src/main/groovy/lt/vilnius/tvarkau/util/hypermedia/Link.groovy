@@ -1,4 +1,4 @@
-package lt.vilnius.commons.hypermedia
+package lt.vilnius.tvarkau.util.hypermedia
 
 import groovy.transform.builder.Builder
 import groovy.transform.builder.SimpleStrategy

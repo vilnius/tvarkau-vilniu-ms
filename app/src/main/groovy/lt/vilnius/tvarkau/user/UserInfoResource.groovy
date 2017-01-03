@@ -1,6 +1,6 @@
 package lt.vilnius.tvarkau.user
 
-import lt.vilnius.commons.hypermedia.Resource
+import lt.vilnius.tvarkau.util.hypermedia.Resource
 
 import java.time.LocalDate
 

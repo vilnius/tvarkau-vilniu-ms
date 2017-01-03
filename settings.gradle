@@ -2,7 +2,6 @@ rootProject.name = 'tvarkau-vilniu-root'
 
 include(
     'libraries:util',
-    'libraries:hypermedia',
     'app',
     'acceptance'
 )

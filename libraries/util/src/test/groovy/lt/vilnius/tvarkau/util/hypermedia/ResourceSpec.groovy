@@ -1,4 +1,4 @@
-package lt.vilnius.commons.hypermedia
+package lt.vilnius.tvarkau.util.hypermedia
 
 import com.google.gson.Gson
 import groovy.json.JsonSlurper

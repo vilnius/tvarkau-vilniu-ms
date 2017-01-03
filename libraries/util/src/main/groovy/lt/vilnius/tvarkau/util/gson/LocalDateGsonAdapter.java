@@ -1,4 +1,4 @@
-package lt.vilnius.tvarkau.util;
+package lt.vilnius.tvarkau.util.gson;
 
 import com.google.gson.*;
 

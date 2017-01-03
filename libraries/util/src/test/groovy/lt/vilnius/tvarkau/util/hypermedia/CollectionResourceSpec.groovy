@@ -1,4 +1,4 @@
-package lt.vilnius.commons.hypermedia
+package lt.vilnius.tvarkau.util.hypermedia
 
 import spock.lang.Specification
 

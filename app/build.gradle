@@ -31,7 +31,6 @@ assemble.dependsOn shadowJar
 def sparkVersion = '2.5.4'
 dependencies {
     compile project(':libraries:util')
-    compile project(':libraries:hypermedia')
     compile "com.sparkjava:spark-core:${sparkVersion}"
     compile 'org.slf4j:slf4j-api:1.7.22'
     compile 'ch.qos.logback:logback-classic:1.1.8'
