@@ -18,7 +18,7 @@ Manages problems reported by Vilnius citizens. Used by both - mobile apps and vi
 
 ## Contribute
 
-- Join us on Slack `#tvarkau-vilniu`! To join you will need to request an invitation at http://codeforvilnius.lt/ or by creating an issue here.
+- Join us on Slack `#tvarkau-vilniu`! For an automated invitation click the big Slack button at http://codeforvilnius.lt
 - Feel free to create pull requests or issues
 - Contribution guide coming soon ;)
 
