@@ -3,7 +3,7 @@ FROM java:8-jre-alpine
 RUN apk add --no-cache \
 curl
 
-ADD app/build/libs/*.jar /opt/tvarkau-vilniu/app.jar
+ADD build/libs/*.jar /opt/tvarkau-vilniu/app.jar
 WORKDIR /opt/tvarkau-vilniu
 
 EXPOSE 8080
