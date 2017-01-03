@@ -1,5 +1,0 @@
-logging:
-  level:
-    org.springframework: INFO
-    io.swagger.models.parameters.AbstractSerializableParameter: ERROR
-springfox.documentation.swagger.v2.path: "/api-json"

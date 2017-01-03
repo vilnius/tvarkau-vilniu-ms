@@ -1,6 +1,6 @@
 package lt.vilnius.tvarkau.issue
 
-import lt.vilnius.commons.hypermedia.CollectionResource
+import lt.vilnius.tvarkau.util.hypermedia.CollectionResource
 import lt.vilnius.tvarkau.Config
 import lt.vilnius.tvarkau.support.sparkext.SelfRegisteringController
 import spark.Request
