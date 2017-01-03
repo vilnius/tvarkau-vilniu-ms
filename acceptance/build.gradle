@@ -1,0 +1,14 @@
+plugins {
+    id 'com.avast.gradle.docker-compose' version '0.3.17'
+}
+
+composeUp.dependsOn project(':app').assemble
+dockerCompose.isRequiredBy(test)
+
+test.doFirst {
+    dockerCompose.exposeAsEnvironment(test)
+}
+
+dependencies {
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+}
