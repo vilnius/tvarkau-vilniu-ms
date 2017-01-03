@@ -1,0 +1,12 @@
+version: '2'
+
+# Use fixed port bindings for development (default)
+
+services:
+  app:
+    ports:
+      - 8080:8080
+      - 5005:5005
+  db:
+    ports:
+      - 5432:5432
