@@ -7,3 +7,6 @@ build
 *.ipr
 *.iws
 out
+
+node_modules
+ui-react/dist
