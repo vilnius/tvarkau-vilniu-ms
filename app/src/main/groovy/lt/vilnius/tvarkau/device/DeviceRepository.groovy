@@ -8,16 +8,16 @@ import javax.inject.Singleton
 import static org.dalesbred.query.SqlQuery.namedQuery
 
 @Singleton
-class DeviceDao {
+class DeviceRepository {
 
     private final Database db
 
     @Inject
-    DeviceDao(Database db) {
+    DeviceRepository(Database db) {
         this.db = db
     }
 
-    boolean exists(UUID uuid) {
+    boolean exists(String uuid) {
         return db.findUniqueInt(
             'SELECT COUNT (1) FROM devices WHERE uuid = ?', uuid.toString()
         ) > 0

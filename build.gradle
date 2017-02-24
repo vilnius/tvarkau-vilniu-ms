@@ -1,6 +1,6 @@
 plugins {
     id 'idea'
-    id 'com.avast.gradle.docker-compose' version '0.3.17'
+    id 'com.avast.gradle.docker-compose' version '0.3.20'
 }
 idea {
     project {
@@ -28,11 +28,11 @@ allprojects {
     }
 
     dependencies {
-        compile 'org.codehaus.groovy:groovy-all:2.4.7'
+        compile 'org.codehaus.groovy:groovy-all:2.4.8'
     }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.3'
-    distributionUrl = 'http://services.gradle.org/distributions/gradle-3.3-bin.zip'
+    gradleVersion = '3.4'
+    distributionUrl = 'http://services.gradle.org/distributions/gradle-3.4-bin.zip'
 }

@@ -10,7 +10,7 @@ public class DeviceModule {
 
     @Provides
     @IntoSet
-    static SelfRegisteringController deviceController(DeviceDao dao) {
+    static SelfRegisteringController deviceController(DeviceRepository dao) {
         return new DeviceController(dao);
     }
 

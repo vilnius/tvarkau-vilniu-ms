@@ -1,4 +1,4 @@
-package lt.vilnius.tvarkau;
+package lt.vilnius.tvarkau.test
 
 import groovy.transform.CompileStatic
 
@@ -20,6 +20,10 @@ class TestEnvironment {
 
     static String testProperty(String key) {
         return PROPERTIES.getProperty(key)
+    }
+
+    static apiUrl(String path) {
+        return "${BASE_URL}/${path}"
     }
 
 }

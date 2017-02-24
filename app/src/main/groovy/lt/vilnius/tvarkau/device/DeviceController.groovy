@@ -14,11 +14,11 @@ import static spark.Spark.put
 class DeviceController implements SelfRegisteringController {
 
     public static final String DEVICE_UUID_HEADER = 'x-device-uuid'
-    private final DeviceDao dao
+    private final DeviceRepository repository
 
     @Inject
-    DeviceController(DeviceDao dao) {
-        this.dao = dao
+    DeviceController(DeviceRepository repository) {
+        this.repository = repository
     }
 
     @Override
@@ -26,18 +26,15 @@ class DeviceController implements SelfRegisteringController {
         put('/device', this.&registerDevice, Config.JSON)
     }
 
-    DeviceResource registerDevice(Request req, Response res) {
-        UUID deviceUuid = deviceUuid(req) ?: UUID.randomUUID()
-        if (!dao.exists(deviceUuid)) {
-            def device = dao.insert(new Device(uuid: deviceUuid.toString()))
-            return new DeviceResource(uuid: UUID.fromString(device.uuid))
-        }
-        return new DeviceResource(uuid: deviceUuid ?: UUID.randomUUID())
+    Device registerDevice(Request req, Response res) {
+        def device = new Device(uuid: deviceUuidFromHeader(req) as String)
+        return repository.exists(device.uuid) ?
+            device : repository.insert(device)
     }
 
-    static UUID deviceUuid(Request req) {
+    static UUID deviceUuidFromHeader(Request req) {
         def header = req.headers(DEVICE_UUID_HEADER) as String
-        return header?.with(UUID.&fromString) as UUID
+        return header?.with(UUID.&fromString) as UUID ?: UUID.randomUUID()
     }
 
 }
