@@ -2,7 +2,7 @@ package lt.vilnius.tvarkau.issue
 
 import lt.vilnius.tvarkau.util.hypermedia.Resource
 
-class IssueResource extends Resource {
+class IssueResource implements Resource {
     String referenceNumber
     long categoryId
     String categoryName
