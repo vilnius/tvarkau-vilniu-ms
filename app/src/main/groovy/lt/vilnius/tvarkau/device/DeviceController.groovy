@@ -26,18 +26,15 @@ class DeviceController implements SelfRegisteringController {
         put('/device', this.&registerDevice, Config.JSON)
     }
 
-    DeviceResource registerDevice(Request req, Response res) {
-        UUID deviceUuid = deviceUuid(req) ?: UUID.randomUUID()
-        if (!repository.exists(deviceUuid)) {
-            def device = repository.insert(new Device(uuid: deviceUuid.toString()))
-            return new DeviceResource(uuid: UUID.fromString(device.uuid))
-        }
-        return new DeviceResource(uuid: deviceUuid ?: UUID.randomUUID())
+    Device registerDevice(Request req, Response res) {
+        def device = new Device(uuid: deviceUuidFromHeader(req) as String)
+        return repository.exists(device.uuid) ?
+            device : repository.insert(device)
     }
 
-    static UUID deviceUuid(Request req) {
+    static UUID deviceUuidFromHeader(Request req) {
         def header = req.headers(DEVICE_UUID_HEADER) as String
-        return header?.with(UUID.&fromString) as UUID
+        return header?.with(UUID.&fromString) as UUID ?: UUID.randomUUID()
     }
 
 }

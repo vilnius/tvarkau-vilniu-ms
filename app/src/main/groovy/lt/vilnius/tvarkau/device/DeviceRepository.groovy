@@ -17,7 +17,7 @@ class DeviceRepository {
         this.db = db
     }
 
-    boolean exists(UUID uuid) {
+    boolean exists(String uuid) {
         return db.findUniqueInt(
             'SELECT COUNT (1) FROM devices WHERE uuid = ?', uuid.toString()
         ) > 0
