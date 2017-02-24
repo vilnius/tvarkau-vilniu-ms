@@ -8,12 +8,12 @@ import javax.inject.Singleton
 import static org.dalesbred.query.SqlQuery.namedQuery
 
 @Singleton
-class DeviceDao {
+class DeviceRepository {
 
     private final Database db
 
     @Inject
-    DeviceDao(Database db) {
+    DeviceRepository(Database db) {
         this.db = db
     }
 
