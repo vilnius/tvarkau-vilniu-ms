@@ -3,8 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '1.2.4'
     id 'net.ltgt.apt' version '0.9'
     id 'idea'
-    // Intentionally disabled to avoid deprecation warnings. Enable on-demand.
-    // id 'com.ofg.uptodate' version '1.6.2'
+    id 'com.github.ben-manes.versions' version '0.14.0'
 }
 
 idea {
