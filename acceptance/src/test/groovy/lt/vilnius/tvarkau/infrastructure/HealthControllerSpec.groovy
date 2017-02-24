@@ -1,6 +1,6 @@
 package lt.vilnius.tvarkau.infrastructure
 
-import lt.vilnius.tvarkau.TestEnvironment
+import lt.vilnius.tvarkau.test.TestEnvironment
 import spock.lang.Specification
 
 class HealthControllerSpec extends Specification {

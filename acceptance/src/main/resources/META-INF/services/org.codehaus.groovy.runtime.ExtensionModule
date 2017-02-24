@@ -1,0 +1,3 @@
+moduleName=Test extensions
+moduleVersion=1.0
+extensionClasses=lt.vilnius.tvarkau.test.UnirestJsonExtensions
