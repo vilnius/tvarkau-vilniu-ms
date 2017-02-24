@@ -1,0 +1,34 @@
+project(':ui-react') {
+    apply plugin: 'java'
+
+    sourceSets.main {
+        resources {
+            srcDir 'dist'
+        }
+    }
+
+    boolean isWindows = System.getProperty('os.name').toLowerCase(Locale.ENGLISH) ==~ /win.*/
+    def npmExec = isWindows ? 'npm.cmd' : 'npm'
+
+    task npmInstall(type: Exec) {
+        commandLine = [npmExec, 'install']
+        inputs.files 'package.json'
+        inputs.dir 'src'
+    }
+
+    task execWebpack(type: Exec) {
+        commandLine = [npmExec, 'run', 'wpack'] //avoid OS check for webpack, run through NPM
+        inputs.files 'webpack.config.js'
+        inputs.dir 'node_modules'
+        inputs.dir 'src'
+    }
+
+    processResources.dependsOn npmInstall, execWebpack
+    execWebpack.mustRunAfter npmInstall
+
+    task cleanDist(type: Delete) {
+        delete 'dist'
+    }
+
+    clean.dependsOn cleanDist
+}

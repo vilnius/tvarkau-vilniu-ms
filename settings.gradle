@@ -3,5 +3,6 @@ rootProject.name = 'tvarkau-vilniu-root'
 include(
     'libraries:util',
     'app',
-    'acceptance'
+    'acceptance',
+    'ui-react'
 )
