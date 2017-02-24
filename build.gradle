@@ -33,6 +33,6 @@ allprojects {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.3'
-    distributionUrl = 'http://services.gradle.org/distributions/gradle-3.3-bin.zip'
+    gradleVersion = '3.4'
+    distributionUrl = 'http://services.gradle.org/distributions/gradle-3.4-bin.zip'
 }
