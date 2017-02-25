@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224201725) do
+ActiveRecord::Schema.define(version: 20170225094828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "report_types", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "reports", force: :cascade do |t|
     t.string   "ref_no"
@@ -23,10 +29,12 @@ ActiveRecord::Schema.define(version: 20170224201725) do
     t.decimal  "lat"
     t.decimal  "lng"
     t.datetime "report_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "report_types_id", null: false
   end
 
   add_index "reports", ["ref_no"], name: "index_reports_on_ref_no", unique: true, using: :btree
+  add_index "reports", ["report_types_id"], name: "index_reports_on_report_types_id", using: :btree
 
 end

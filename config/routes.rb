@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api, constraints: { format: 'json' } do
     resources :reports
+    resources :report_types, only: [:index]
   end
 
   # Example of regular route:
