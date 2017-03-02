@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe ReportTypesController, type: :controller do
+RSpec.describe Api::ReportTypesController, type: :controller do
 
 end

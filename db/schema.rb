@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 20170225094828) do
     t.decimal  "lat"
     t.decimal  "lng"
     t.datetime "report_date"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "report_types_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "report_type_id", null: false
   end
 
   add_index "reports", ["ref_no"], name: "index_reports_on_ref_no", unique: true, using: :btree
-  add_index "reports", ["report_types_id"], name: "index_reports_on_report_types_id", using: :btree
+  add_index "reports", ["report_type_id"], name: "index_reports_on_report_type_id", using: :btree
 
 end

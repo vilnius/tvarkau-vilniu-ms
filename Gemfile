@@ -41,6 +41,9 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-nav'
   gem 'rspec-rails'
+  gem 'rspec-its'
+  gem 'rspec-collection_matchers'
+  gem 'database_cleaner'
 end
 
 group :development do
