@@ -6,6 +6,10 @@ ActiveRecord::Migration.maintain_test_schema!
 require 'create_without_validation_strategy'
 FactoryGirl.register_strategy(:create_without_validation, CreateWithoutValidationStrategy)
 
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
@@ -15,7 +19,10 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
+  config.infer_spec_type_from_file_location!
+
   config.include(FactoryGirl::Syntax::Methods)
+  config.include(ApiSpecHelper)
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

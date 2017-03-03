@@ -7,7 +7,7 @@ class Report < ActiveRecord::Base
 
   validate :report_type_validation
 
-  has_one :report_type
+  belongs_to :report_type
 
   private
 
