@@ -7,25 +7,31 @@ Backend of Tvarkau Vilnių apps. Manages problems reported by Vilnius citizens.
 
 ## Getting started
 
-### Environment setup (OSX)
+### Running app (using docker)
 
-- Setup [Homebew](https://brew.sh/)
-- Using `brew`, setup `rbenv`: [Guide](https://github.com/rbenv/rbenv#homebrew-on-mac-os-x)
-- Using `rbenv`, setup `Rails 2.3.1`
-- Using `brew`, setup `PostgreSQL`: [Guide](http://exponential.io/blog/2015/02/21/install-postgresql-on-mac-os-x-via-brew/)
-- In project directory, run `bundle install` 
+```
+$ docker-compose up
+```
 
-### Running app
+### Running app (using native ruby)
 
+Pre-requisites:
+
+- Install [Homebrew](https://brew.sh/)
+- Install [rbenv](https://github.com/rbenv/rbenv#homebrew-on-mac-os-x) 
+- Install [rails 2.3.1](https://gorails.com/setup/osx/10.12-sierra) 
+- Run DB `docker-compose up -d db`
+- `bundle install`
 - Ensure database migrations are up to date
-    - If this is your first run: `rake db:setup` then `rake db:migrate` then `rake db:seed`
+    - If this is your first run: `rake db:setup`
     - Every other time `rake db:migrate`
 - Start server using `rails s`
-- Open `localhost:3000/api/reports` to get latest reports
+
+Open `http://localhost:3000/api/reports` to get latest reports
 
 ### Running tests
 
-- `bundle exec rspec spec`
+- `bundle exec rspec spec` or `./run-tests-in-docker.sh`
 
 ## Related projects:
 
@@ -39,4 +45,3 @@ Backend of Tvarkau Vilnių apps. Manages problems reported by Vilnius citizens.
 - Contribution guide coming soon
 
 **Note: This is a work in-progress**
-

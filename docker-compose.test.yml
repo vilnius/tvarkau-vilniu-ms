@@ -1,0 +1,19 @@
+version: '2'
+
+# Test configuration with dynamic port bindings for parallel execution
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000"
+    links:
+      - db
+    environment:
+      RAILS_ENV: test
+    entrypoint: ./wait-for-it.sh db:5432 -- ./docker-entrypoint-test.sh
+  db:
+    ports:
+      - "5432"
+    environment:
+      POSTGRES_DB: tvarkau_vilniu_rails_test
