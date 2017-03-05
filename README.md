@@ -1,9 +1,9 @@
 # Tvarkau Vilnių backend
 
 [![Build Status](https://travis-ci.org/vilnius/tvarkau-vilniu-ms.svg)](https://travis-ci.org/vilnius/tvarkau-vilniu-ms)
-[![Join us on Slack](https://img.shields.io/badge/slack-codeforvilnius%20%23tvarkau--vilniu-blue.svg)](https://codeforvilnius.slack.com)
+[![Join us on Slack](http://c4v.herokuapp.com/badge.svg)](http://c4v.herokuapp.com/)
 
-Backend of Tvarkau Vilnių apps. Manages problems reported by Vilnius citizens.
+API for Tvarkau Vilnių apps. Manages problems reported by Vilnius citizens.
 
 ## Getting started
 
@@ -43,5 +43,6 @@ Open `http://localhost:3000/api/reports` to get latest reports
 - Join us on Slack `#tvarkau-vilniu`! For an automated invitation click the big Slack button at http://codeforvilnius.lt
 - Feel free to create pull requests or issues
 - Contribution guide coming soon
+- Check out for more at http://codeforvilnius.lt/
 
 **Note: This is a work in-progress**
