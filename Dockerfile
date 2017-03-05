@@ -13,7 +13,7 @@ RUN gem install bundler
 ENV APP_HOME /opt/tvarkau-vilniu
 WORKDIR $APP_HOME
 
-ADD Gemfile $APP_HOME/
+ADD Gemfile* $APP_HOME/
 RUN bundle install
 
 ADD . $APP_HOME
