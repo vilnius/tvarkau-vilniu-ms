@@ -1,4 +1,9 @@
 class Report < ActiveRecord::Base
+  STATUS_CREATED = 10
+  STATUS_REGISTERED = 20
+  STATUS_IN_PROGRESS = 30
+  STATUS_POSTPONED = 40
+  STATUS_SOLVED = 50
 
   validates :description,
             :address,
@@ -9,7 +14,13 @@ class Report < ActiveRecord::Base
 
   belongs_to :report_type
 
+  after_initialize :defaults, unless: :persisted?
+
   private
+
+  def defaults
+    self.status = STATUS_CREATED
+  end
 
   def report_type_validation
     #avoid double errors and back out early. Presence validator will validate nil
