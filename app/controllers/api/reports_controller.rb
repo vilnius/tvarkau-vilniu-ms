@@ -12,7 +12,7 @@ class Api::ReportsController < Api::BaseController
   end
 
   def create
-    report = ::Reports::Create.for(Report.new, params)
+    report = ::Reports::Create.for(Report.new, report_params)
     return render_record_validation_error(report) if report.errors.any?
 
     { :report => report }

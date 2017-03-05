@@ -22,7 +22,13 @@ RSpec.describe Api::ReportsController do
 
   describe '#create' do
     subject { api_post :create, params}
-    let(:params) { {} }
+    let(:params) do
+      {
+        report: {
+          description: 'Description'
+        }
+      }
+    end
     let(:report) { create(:report) }
 
     before do
