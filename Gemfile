@@ -47,6 +47,7 @@ group :development, :test do
   gem 'rspec-its'
   gem 'rspec-collection_matchers'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end
 
 group :development do
