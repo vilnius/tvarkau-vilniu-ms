@@ -1,9 +1,9 @@
-.gradle
-build
-!gradle-wrapper.jar
+.idea/
 
-.idea
-*.iml
-*.ipr
-*.iws
-out
+# Ignore bundler config
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp

@@ -1,7 +1,4 @@
 sudo: required
-language: groovy
-jdk:
-  - oraclejdk8
 services:
   - docker
 env:
@@ -10,4 +7,6 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - chmod +x gradlew
+  - chmod +x run-tests-in-docker.sh
+install: true
+script: ./run-tests-in-docker.sh

@@ -1,12 +1,25 @@
 version: '2'
 
-# Use fixed port bindings for development (default)
+# Default override (for development) using fixed port bindings
 
 services:
   app:
+    build: .
     ports:
-      - 8080:8080
-      - 5005:5005
+      - "3000:3000"
+    links:
+      - db
+    environment:
+      RAILS_ENV: development
+    entrypoint: ./wait-for-it.sh db:5432 -- ./docker-entrypoint.sh
   db:
     ports:
-      - 5432:5432
+      - "5432:5432"
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: tvarkau_vilniu_rails_development
+
+volumes:
+  postgresql-data:
+    driver: local

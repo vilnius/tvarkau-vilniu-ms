@@ -2,24 +2,16 @@ version: '2'
 
 services:
   app:
-    build: app
+    build: .
     links:
       - db
     environment:
-      JAVA_OPTS: -Xmx128m
-      DEBUG_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,address=5005,suspend=n
-      DB_HOST: db
-      DB_PORT: 5432
+      TVARKAU_VILNIU_RAILS_DB_HOST: db
+      TVARKAU_VILNIU_RAILS_DB_PORT: 5432
   db:
-    image: postgres:9.5.5
-    volumes:
-      - postgresql-data:/var/lib/postgresql/data
+    image: postgres:9.5.6
     mem_limit: 300m
     environment:
       LC_ALL: C.UTF-8
-      POSTGRES_USER: tvarkauvilniu
-      POSTGRES_PASSWORD: tvarkauvilniu
-      POSTGRES_DB: tvarkauvilniu
-volumes:
-  postgresql-data:
-    driver: local
+      POSTGRES_USER: vilnius
+      POSTGRES_PASSWORD: vilnius
