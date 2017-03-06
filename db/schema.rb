@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305081145) do
+ActiveRecord::Schema.define(version: 20170306205918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170305081145) do
     t.datetime "updated_at",     null: false
     t.integer  "report_type_id", null: false
     t.integer  "status",         null: false
+    t.datetime "complete_date"
+    t.string   "answer"
   end
 
   add_index "reports", ["ref_no"], name: "index_reports_on_ref_no", unique: true, using: :btree
