@@ -6,7 +6,7 @@ RSpec.describe Api::ReportsController do
 
     it 'returns report' do
       expect(subject).to have_http_status(:ok)
-      expect(response_json['report']['ref_no']).to eq 'ref-no'
+      expect(response_json['ref_no']).to include 'ref-no'
     end
   end
 
@@ -14,9 +14,14 @@ RSpec.describe Api::ReportsController do
     subject { api_get :index, params }
     let(:params) { {} }
 
+    before do
+      create(:report)
+      create(:report)
+    end
+
     it 'returns reports' do
       expect(subject).to have_http_status(:ok)
-      expect(response_json).to include('entries')
+      expect(response_json.size).to eq 2
     end
   end
 
@@ -37,7 +42,7 @@ RSpec.describe Api::ReportsController do
 
     it 'returns reports' do
       expect(subject).to have_http_status(:ok)
-      expect(response_json['report']['ref_no']).to eq 'ref-no'
+      expect(response_json['ref_no']).to include 'ref-no'
     end
 
     context 'when report has validation errors' do

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :report do
-    ref_no 'ref-no'
+    ref_no { "ref-no-#{rand(0..10000)}" }
     description 'Description'
     address 'Gedimino pr 9.'
     lat '9.99'

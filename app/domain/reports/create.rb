@@ -36,11 +36,11 @@ class Reports::Create
   end
 
   def latitude
-    params[:latitude]
+    params[:lat]
   end
 
   def longitude
-    params[:longitude]
+    params[:lng]
   end
 
   def report_type_id
