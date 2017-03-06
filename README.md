@@ -23,7 +23,7 @@ Pre-requisites:
 - Run DB `docker-compose up -d db`
 - `bundle install`
 - Ensure database migrations are up to date
-    - If this is your first run: `rake db:setup`
+    - If this is your first run: `rake db:setup`, `rake db:seed`
     - Every other time `rake db:migrate`
 - Start server using `rails s`
 
