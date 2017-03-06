@@ -21,7 +21,7 @@ RSpec.describe Api::ReportsController do
 
     it 'returns reports' do
       expect(subject).to have_http_status(:ok)
-      expect(response_json.size).to eq 2
+      expect(response_json).to include('entries')
     end
   end
 

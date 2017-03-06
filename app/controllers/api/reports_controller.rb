@@ -1,7 +1,7 @@
 class Api::ReportsController < Api::BaseController
 
   def index
-    Report.all
+    { :entries => Report.all }
   end
 
   def show
