@@ -1,12 +1,12 @@
 FROM ruby:2.3.1
 
 RUN apt-get update -qq
-# for postgres
-RUN apt-get install -y libpq-dev
-# for nokogiri
-RUN apt-get install -y libxml2-dev libxslt1-dev
-# js runtime
-RUN apt-get install -y nodejs
+RUN apt-get install -y \
+  libpq-dev \
+  libxml2-dev \
+  libxslt1-dev \
+  nodejs \
+  cmake
 
 RUN gem install bundler
 
