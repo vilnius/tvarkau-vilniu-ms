@@ -1,7 +1,7 @@
 class Api::ReportsController < Api::BaseController
 
   def index
-    { :entries => Report.all }
+    { :entries => ::Reports::Filter.for(filter_params) }
   end
 
   def show
@@ -22,5 +22,9 @@ class Api::ReportsController < Api::BaseController
 
   def report_params
     params.require(:report)
+  end
+
+  def filter_params
+    params.permit(:start, :limit, :type, :status)
   end
 end

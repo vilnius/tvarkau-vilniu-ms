@@ -30,6 +30,9 @@ class Report < ActiveRecord::Base
 
   after_initialize :defaults, unless: :persisted?
 
+  scope :filtered_status, -> (statuses) { where('status in (?)', statuses) if statuses.present? && statuses.any? }
+  scope :filtered_type, -> (types) { where('report_type_id in (?)', types) if types.present? && types.any? }
+
   private
 
   def defaults
