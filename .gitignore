@@ -7,3 +7,6 @@
 /log/*
 !/log/.keep
 /tmp
+*.log
+
+.vagrant/
