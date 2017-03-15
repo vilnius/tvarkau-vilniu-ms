@@ -7,19 +7,48 @@ API for Tvarkau Vilnių apps. Manages problems reported by Vilnius citizens.
 
 ## Getting started
 
-### Running app (using docker)
+### Setting up development environment
+
+#### Option 1: vagrant
+
+_This automatically creates and provisions ubuntu 16.04 based box with needed dev tools. Tested on: OSX Sierra and Windows 10._
+
+Pre-requisites:
+
+- Vagrant
+- VirtualBox 5.1.14
+
+(_Note: at the moment of writing, latest (5.1.16) has a [regression issue](https://www.virtualbox.org/ticket/14651)_)
+
+```
+$ vagrant plugin install vagrant-vbguest
+$ vagrant up
+```
+
+Login into the dev box:
+
+```
+$ vagrant ssh
+```
+
+#### Option 2: native (OSX)
+
+- Install docker
+- Install docker-compose
+- Install [Homebrew](https://brew.sh/)
+- Install [rbenv](https://github.com/rbenv/rbenv#homebrew-on-mac-os-x) 
+- Install [rails 2.3.1](https://gorails.com/setup/osx/10.12-sierra) 
+
+### Running app
+
+Using docker:
 
 ```
 $ docker-compose up
 ```
 
-### Running app (using native ruby)
+Or manually:
 
-Pre-requisites:
-
-- Install [Homebrew](https://brew.sh/)
-- Install [rbenv](https://github.com/rbenv/rbenv#homebrew-on-mac-os-x) 
-- Install [rails 2.3.1](https://gorails.com/setup/osx/10.12-sierra) 
 - Run DB `docker-compose up -d db`
 - `bundle install`
 - Ensure database migrations are up to date
