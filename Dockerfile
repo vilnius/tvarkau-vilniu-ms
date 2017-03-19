@@ -22,3 +22,5 @@ RUN chmod +x $APP_HOME/docker-entrypoint-test.sh
 RUN chmod +x $APP_HOME/wait-for-it.sh
 
 EXPOSE 3000
+
+ENTRYPOINT ./wait-for-it.sh db:5432 -- ./docker-entrypoint.sh
