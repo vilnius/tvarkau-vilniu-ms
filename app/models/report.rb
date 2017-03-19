@@ -25,13 +25,18 @@ class Report < ActiveRecord::Base
             }
 
   validate :report_type_validation
+  validate :plate_number_validation
 
   belongs_to :report_type
 
   after_initialize :defaults, unless: :persisted?
 
-  scope :filtered_status, -> (statuses) { where('status in (?)', statuses) if statuses.present? && statuses.any? }
-  scope :filtered_type, -> (types) { where('report_type_id in (?)', types) if types.present? && types.any? }
+  scope :filtered_status, lambda { |statuses|
+    where('status in (?)', statuses) if statuses.present? && statuses.any?
+  }
+  scope :filtered_type, lambda { |types|
+    where('report_type_id in (?)', types) if types.present? && types.any?
+  }
 
   private
 
@@ -40,11 +45,16 @@ class Report < ActiveRecord::Base
   end
 
   def report_type_validation
-    #avoid double errors and back out early. Presence validator will validate nil
+    # Avoid double errors and back out early. Presence validator will validate nil
     return if report_type_id.nil?
 
-    if ReportType.find_by_id(report_type_id).nil?
-      errors.add(:report_type, I18n.t('error.report_type.non_existing'))
-    end
+    errors.add(:report_type, I18n.t('error.report_type.non_existing')) if report_type.nil?
+  end
+
+  def plate_number_validation
+    return unless report_type(&:validate_plate)
+    return unless plate_number.blank?
+
+    errors.add(:plate_number, I18n.t('error.report.validation.plate_number.blank'))
   end
 end
