@@ -1,0 +1,41 @@
+version: '1.0'
+steps:
+  step_build_image:
+    title: Building Docker Image
+    type: build
+    image_name: vilnius/tvarkau-vilniu-ms
+    working_directory: ./
+    dockerfile: Dockerfile
+  step_unit_tests:
+    title: Running Unit Tests
+    type: composition
+    composition: docker-compose.test.yml
+    composition_candidates:
+      app:
+        image: '${{step_build_image}}'
+        entrypoint: ./docker-entrypoint-test.sh
+    on_success:
+      metadata:
+        set:
+          - '${{step_build_image.imageId}}':
+            - CF_QUALITY: true
+    on_fail:
+      metadata:
+        set:
+          - '${{step_build_image.imageId}}':
+            - CF_QUALITY: false
+  step_checkstyle:
+    title: Running checkstyle
+    image: '${{step_build_image}}'
+    working_directory: ${{step_build_image}}
+    commands:
+      - chmod +x ./codefresh-checkstyle.sh
+      - ./codefresh-checkstyle.sh
+    environment:
+      - CF_REVISION=${{CF_REVISION}}
+      - GITHUB_ACCESS_TOKEN=${{GITHUB_ACCESS_TOKEN}}
+    fail_fast: false
+    when:
+      branch:
+        ignore:
+          - master
