@@ -1,6 +1,10 @@
 version: '2'
 
-# Test configuration with dynamic port bindings for parallel execution
+# Test configuration
+# with dynamic port bindings for parallel execution
+# and a custom entry point
+#
+# docker-compose -f docker-compose.test.yml up
 
 services:
   app:
@@ -11,9 +15,16 @@ services:
       - db
     environment:
       RAILS_ENV: test
+      TVARKAU_VILNIU_RAILS_DB_HOST: db
+      TVARKAU_VILNIU_RAILS_DB_PORT: 5432
     entrypoint: ./wait-for-it.sh db:5432 -- ./docker-entrypoint-test.sh
   db:
+    image: postgres:9.5.6
+    mem_limit: 300m
     ports:
       - "5432"
     environment:
+      LC_ALL: C.UTF-8
       POSTGRES_DB: tvarkau_vilniu_rails_test
+      POSTGRES_USER: vilnius
+      POSTGRES_PASSWORD: vilnius

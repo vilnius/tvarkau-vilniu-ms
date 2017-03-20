@@ -1,17 +1,34 @@
 version: '2'
 
+# Default (development) configuration
+# with dynamic port bindings for parallel execution
+#
+# docker-compose up
+
 services:
   app:
     build: .
+    ports:
+      - "3000:3000"
     links:
       - db
     environment:
+      RAILS_ENV: development
       TVARKAU_VILNIU_RAILS_DB_HOST: db
       TVARKAU_VILNIU_RAILS_DB_PORT: 5432
   db:
     image: postgres:9.5.6
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
     mem_limit: 300m
     environment:
       LC_ALL: C.UTF-8
+      POSTGRES_DB: tvarkau_vilniu_rails_development
       POSTGRES_USER: vilnius
       POSTGRES_PASSWORD: vilnius
+
+volumes:
+  postgresql-data:
+    driver: local
