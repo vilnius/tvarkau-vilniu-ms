@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :api_auth_token do
-    token "MyString"
+    token 'token'
+    last_used DateTime.current
   end
 end

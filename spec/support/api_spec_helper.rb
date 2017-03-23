@@ -19,6 +19,8 @@ module ApiSpecHelper
   def api_request(method, action, options)
     reset_response_json
 
+    options.reverse_merge!(token: token)
+
     send(method, action, options)
   end
 
@@ -28,5 +30,13 @@ module ApiSpecHelper
 
   def response_json
     @response_json ||= JSON.parse(response.body)
+  end
+
+  def token
+    api_auth_token.token
+  end
+
+  def api_auth_token
+    @api_auth_token ||= create(:api_auth_token)
   end
 end
