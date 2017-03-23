@@ -1,5 +1,6 @@
 class Api::BaseController < ApplicationController
   before_action :adjust_request_format
+  before_action :load_token
   around_action :api
 
   VALIDATION_ERROR = 10
@@ -57,5 +58,12 @@ protected
     end
 
     hash
+  end
+
+  def load_token
+    token = params[:token] ||
+      request.headers['X-AUTH-TOKEN']
+
+    token
   end
 end
