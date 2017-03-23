@@ -37,7 +37,7 @@ $ vagrant ssh
 - Install docker-compose
 - Install [Homebrew](https://brew.sh/)
 - Install [rbenv](https://github.com/rbenv/rbenv#homebrew-on-mac-os-x) 
-- Install [rails 2.3.1](https://gorails.com/setup/osx/10.12-sierra) 
+- Install [ruby 2.3.1](https://gorails.com/setup/osx/10.12-sierra) 
 
 ### Running app
 
@@ -49,6 +49,7 @@ $ docker-compose up
 
 Or manually:
 
+- `gem install bundler`
 - Run DB `docker-compose up -d db`
 - `bundle install`
 - Ensure database migrations are up to date
