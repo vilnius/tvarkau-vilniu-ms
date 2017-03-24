@@ -52,7 +52,7 @@ class Report < ActiveRecord::Base
   end
 
   def plate_number_validation
-    return unless report_type(&:validate_plate)
+    return unless report_type&.validate_plate
     return unless plate_number.blank?
 
     errors.add(:plate_number, I18n.t('error.report.validation.plate_number.blank'))
