@@ -10,6 +10,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - echo "PULL_REQUEST_ID=${TRAVIS_PULL_REQUEST}" >> .env
   - echo "PRONTO_GITHUB_ACCESS_TOKEN=${PRONTO_GITHUB_ACCESS_TOKEN}" >> .env
+  - printf "%d\n" ${#PRONTO_GITHUB_ACCESS_TOKEN}
 install:
   - git fetch origin master:master
 
