@@ -1,6 +1,6 @@
 # Tvarkau Vilnių backend
 
-[![Build status](https://g.codefresh.io/api/badges/build?repoOwner=vilnius&repoName=tvarkau-vilniu-ms&branch=master&pipelineName=app-build&accountName=tadaskay&type=cf-1)](https://g.codefresh.io/repositories/vilnius/tvarkau-vilniu-ms/builds?filter=trigger:build;branch:master;service:58ce6bb36fc4340100503895~app-build)
+[![Build Status](https://travis-ci.org/vilnius/tvarkau-vilniu-ms.svg)](https://travis-ci.org/vilnius/tvarkau-vilniu-ms)
 [![Join us on Slack](http://c4v.herokuapp.com/badge.svg)](http://c4v.herokuapp.com/)
 
 API for Tvarkau Vilnių apps. Manages problems reported by Vilnius citizens.
