@@ -1,0 +1,37 @@
+LineLength:
+  Max: 99
+
+SignalException:
+  EnforcedStyle: only_raise
+
+TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+TrailingCommaInArguments:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/NumericPredicate:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Include:
+    - '**/Rakefile'
+    - '**/*.rake'
+  Exclude:
+    - db/**/*

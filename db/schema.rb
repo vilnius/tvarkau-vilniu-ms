@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306205918) do
+ActiveRecord::Schema.define(version: 20170323134021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "report_types", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "validate_plate", default: false
   end
 
   create_table "reports", force: :cascade do |t|
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170306205918) do
     t.integer  "status",         null: false
     t.datetime "complete_date"
     t.string   "answer"
+    t.string   "plate_number"
   end
 
   add_index "reports", ["ref_no"], name: "index_reports_on_ref_no", unique: true, using: :btree

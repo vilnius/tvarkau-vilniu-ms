@@ -38,4 +38,8 @@ lt:
   error:
     report_type:
       non_existing: 'Pranešimo tipas neegzituoja'
+    report:
+      validation:
+        plate_number:
+          blank: 'Automobilio valst. nr. yra privalomas'
 
