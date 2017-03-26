@@ -17,6 +17,8 @@ services:
       RAILS_ENV: test
       TVARKAU_VILNIU_RAILS_DB_HOST: db
       TVARKAU_VILNIU_RAILS_DB_PORT: 5432
+      PULL_REQUEST_ID: ${PULL_REQUEST_ID}
+      PRONTO_GITHUB_ACCESS_TOKEN: ${PRONTO_GITHUB_ACCESS_TOKEN}
     entrypoint: ./wait-for-it.sh db:5432 -- ./docker-entrypoint-test.sh
   db:
     image: postgres:9.5.6
