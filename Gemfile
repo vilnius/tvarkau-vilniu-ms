@@ -47,11 +47,11 @@ group :development, :test do
   gem 'rspec-its'
   gem 'rspec-collection_matchers'
   gem 'database_cleaner'
-  gem 'pronto'
-  gem 'pronto-brakeman', require: false
-  gem 'pronto-flay', require: false
-  gem 'pronto-rails_schema', require: false
-  gem 'pronto-rubocop', require: false
+  gem 'pronto', '~> 0.8'
+  gem 'pronto-brakeman', '~> 0.8', require: false
+  gem 'pronto-flay', '~> 0.8', require: false
+  gem 'pronto-rails_schema', '~> 0.8', require: false
+  gem 'pronto-rubocop', '~> 0.8', require: false
   gem 'shoulda-matchers'
 end
 
