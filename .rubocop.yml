@@ -22,6 +22,9 @@ Style/MultilineMethodCallIndentation:
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/NumericPredicate:
   Enabled: false
 
