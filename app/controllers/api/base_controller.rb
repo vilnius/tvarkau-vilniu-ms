@@ -68,7 +68,11 @@ class Api::BaseController < ApplicationController
     @api_auth_token = ApiAuthToken.find_by_token(token)
 
     if @api_auth_token.nil?
-      render_api_error(INVALID_TOKEN)
+      hash = {
+        code: INVALID_TOKEN,
+      }
+
+      render_api_response(hash, status: 403)
       return false
     end
 
