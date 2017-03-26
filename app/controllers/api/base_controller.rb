@@ -9,7 +9,7 @@ class Api::BaseController < ApplicationController
   protected
 
   def render_404(exception = nil, options = { render_items: false })
-    #TODO implement logging
+    #TODO: Implement logging
     render_api_response({}, status: 404)
   end
 
@@ -44,9 +44,7 @@ class Api::BaseController < ApplicationController
   end
 
   def generate_api_message_hash(code, validation_errors = nil)
-    hash = {
-      code: code,
-    }
+    hash = hash_for_code(code)
 
     unless validation_errors.nil?
       hash[:errors] = validation_errors[:errors].messages.map do |field, message|
@@ -60,24 +58,27 @@ class Api::BaseController < ApplicationController
     hash
   end
 
-  # TODO add IP blocking capability
+  # TODO: Add IP blocking capability
   def load_token
     token = params[:token] || request.headers['X-AUTH-TOKEN']
 
     # Consider adding Rails.cache instead of hitting database each time?
-    @api_auth_token = ApiAuthToken.find_by_token(token)
+    @api_auth_token = ApiAuthToken.find_by(token: token)
 
     if @api_auth_token.nil?
-      hash = {
-        code: INVALID_TOKEN,
-      }
-
-      render_api_response(hash, status: 403)
+      render_api_response(hash_for_code(INVALID_TOKEN), status: 403)
       return false
     end
 
     @api_auth_token.update_last_used
-
     true
+  end
+
+  private
+
+  def hash_for_code(code)
+    {
+      code: code,
+    }
   end
 end

@@ -1,5 +1,4 @@
 RSpec.describe Api::BaseController do
-
   controller(Api::BaseController) do
     def index
       {}
