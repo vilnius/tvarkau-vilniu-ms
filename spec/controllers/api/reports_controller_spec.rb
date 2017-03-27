@@ -1,4 +1,6 @@
 RSpec.describe Api::ReportsController do
+  before { api_auth_token }
+
   describe '#show' do
     subject { api_get :show, params }
     let(:report) { create(:report) }
