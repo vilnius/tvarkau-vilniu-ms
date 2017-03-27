@@ -25,6 +25,19 @@ Style/AlignParameters:
 Style/NumericPredicate:
   Enabled: false
 
+Style/EndOfLine:
+  Enabled: true
+
+Style/TrailingBlankLines:
+  Enabled: true
+  EnforcedStyle: final_newline
+  SupportedStyles:
+  - final_newline
+  - final_blank_line
+
+Style/TrailingWhitespace:
+  Enabled: true
+
 Rails:
   Enabled: true
 
