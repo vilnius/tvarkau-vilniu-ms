@@ -28,7 +28,14 @@ services:
       POSTGRES_DB: tvarkau_vilniu_rails_development
       POSTGRES_USER: vilnius
       POSTGRES_PASSWORD: vilnius
-
+  storage:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    entrypoint: minio server /export
+    volumes:
+      - ./test/.minio/data:/export
+      - ./test/.minio/config:/root/.minio
 volumes:
   postgresql-data:
     driver: local

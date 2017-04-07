@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323185850) do
+ActiveRecord::Schema.define(version: 20170402082635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20170323185850) do
   end
 
   add_index "api_auth_tokens", ["token"], name: "index_api_auth_tokens_on_token", unique: true, using: :btree
+
+  create_table "report_photos", force: :cascade do |t|
+    t.string   "uuid"
+    t.string   "public_url"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "report_types", force: :cascade do |t|
     t.string   "title"

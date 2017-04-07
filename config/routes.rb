@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :reports
     resources :report_types, only: [:index]
     resources :tokens, only: [:create]
+    resources :photos, only: [:create]
   end
 
   # Example of regular route:
