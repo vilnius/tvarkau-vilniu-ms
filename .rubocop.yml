@@ -51,3 +51,6 @@ AllCops:
     - '**/*.rake'
   Exclude:
     - db/**/*
+
+Documentation:
+  Enabled: false
