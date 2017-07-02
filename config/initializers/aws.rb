@@ -1,9 +1,9 @@
 Aws.config.update(
   region: 'us-east-1',
-  endpoint: ENV['MINIO_ENDPOINT'],
+  endpoint: APP_CONFIG['storage_endpoint'],
   force_path_style: true,
   credentials: Aws::Credentials.new(
-    ENV['MINIO_ACCESS_KEY'],
-    ENV['MINIO_SECRET_KEY']
+    APP_CONFIG['storage_access_key'],
+    APP_CONFIG['storage_secret_key']
   )
 )

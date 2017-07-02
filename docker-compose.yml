@@ -12,10 +12,14 @@ services:
       - "3000:3000"
     links:
       - db
+      - storage
     environment:
       RAILS_ENV: development
       TVARKAU_VILNIU_RAILS_DB_HOST: db
       TVARKAU_VILNIU_RAILS_DB_PORT: 5432
+      STORAGE_ENDPOINT: http://storage:9000
+      STORAGE_ACCESS_KEY: development
+      STORAGE_SECRET_KEY: development
   db:
     image: postgres:9.5.6
     ports:
@@ -33,9 +37,23 @@ services:
     ports:
       - "9000:9000"
     entrypoint: minio server /export
+    environment:
+      MINIO_ACCESS_KEY: development
+      MINIO_SECRET_KEY: development
     volumes:
       - ./test/.minio/data:/export
       - ./test/.minio/config:/root/.minio
+  storage-init:
+    links:
+      - storage
+    image: minio/mc
+    entrypoint: >
+      /bin/sh -c "
+        while ! wget -q -s http://storage:9000/minio/login; do sleep 1; done;
+        mc config host add minio http://storage:9000 development development
+        mc mb minio/photos
+        exit 0
+      "
 volumes:
   postgresql-data:
     driver: local
