@@ -10,3 +10,6 @@
 *.log
 
 .vagrant/
+test/
+
+/config/app_environment_variables.rb

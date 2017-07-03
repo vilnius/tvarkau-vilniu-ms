@@ -1,4 +1,4 @@
-RSpec.describe Api::ApiTokensController do
+RSpec.describe Api::TokensController do
   describe '#create' do
     subject { api_post :create }
 

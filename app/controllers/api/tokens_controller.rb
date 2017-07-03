@@ -1,4 +1,4 @@
-class Api::ApiTokensController < Api::BaseController
+class Api::TokensController < Api::BaseController
   require 'securerandom'
 
   skip_before_action :load_token
