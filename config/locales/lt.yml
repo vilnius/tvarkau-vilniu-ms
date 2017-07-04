@@ -36,7 +36,6 @@ lt:
             lng:
               blank: 'Pranešimo koordinatės (ilguma) yra privalomos'
   error:
-    uploading_photo: 'Klaida įkeliant nuotrauką. Bandykite dar kartą.'
     report_type:
       non_existing: 'Pranešimo tipas neegzituoja'
     report:
