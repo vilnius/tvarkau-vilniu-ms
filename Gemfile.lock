@@ -42,12 +42,6 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (6.7.6)
       execjs
-    aws-sdk (2.2.24)
-      aws-sdk-resources (= 2.2.24)
-    aws-sdk-core (2.2.24)
-      jmespath (~> 1.0)
-    aws-sdk-resources (2.2.24)
-      aws-sdk-core (= 2.2.24)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.7)
@@ -94,7 +88,6 @@ GEM
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
-    jmespath (1.1.3)
     jquery-rails (4.2.2)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -268,7 +261,6 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  aws-sdk (~> 2)
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.1.0)
