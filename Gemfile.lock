@@ -113,6 +113,8 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    mysql2 (0.4.5)
+    mysql2 (0.4.5-x64-mingw32)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     nokogiri (1.7.0.1-x64-mingw32)
@@ -276,6 +278,7 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
+  mysql2
   pg (~> 0.15)
   pronto (~> 0.8)
   pronto-brakeman (~> 0.8)

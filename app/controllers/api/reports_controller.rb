@@ -1,7 +1,7 @@
 class Api::ReportsController < Api::BaseController
 
   def index
-    { :entries => ::Reports::Filter.for(filter_params) }
+    { entries: ::Reports::Filter.for(filter_params) }
   end
 
   def show
