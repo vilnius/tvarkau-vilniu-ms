@@ -2,9 +2,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  host: ENV['TVARKAU_VILNIU_DB_HOST']
-  username: ENV['TVARKAU_VILNIU_DB_USER']
-  password: ENV['TVARKAU_VILNIU_DB_PASSWORD']
+  host: <%= ENV['TVARKAU_VILNIU_DB_HOST'] %>
+  username: <%= ENV['TVARKAU_VILNIU_DB_USER'] %>
+  password: <%= ENV['TVARKAU_VILNIU_DB_PASSWORD'] %>
 
 development:
   <<: *default

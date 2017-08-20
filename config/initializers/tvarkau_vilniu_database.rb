@@ -1,1 +1,1 @@
-TVARKAU_VILNIU_DB = YAML.load_file(Rails.root.join('config', 'database_vilnius.yml'))[Rails.env.to_s]
+TVARKAU_VILNIU_DB = YAML.load(ERB.new(File.read(Rails.root.join('config', 'database_vilnius.yml'))).result)[Rails.env]
