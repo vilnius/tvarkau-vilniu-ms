@@ -1,0 +1,3 @@
+class Dto
+
+end
