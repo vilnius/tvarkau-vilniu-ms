@@ -32,28 +32,6 @@ services:
       POSTGRES_DB: tvarkau_vilniu_rails_development
       POSTGRES_USER: vilnius
       POSTGRES_PASSWORD: vilnius
-  storage:
-    image: minio/minio
-    ports:
-      - "9000:9000"
-    entrypoint: minio server /export
-    environment:
-      MINIO_ACCESS_KEY: development
-      MINIO_SECRET_KEY: development
-    volumes:
-      - ./test/.minio/data:/export
-      - ./test/.minio/config:/root/.minio
-  storage-init:
-    links:
-      - storage
-    image: minio/mc
-    entrypoint: >
-      /bin/sh -c "
-        while ! wget -q -s http://storage:9000/minio/login; do sleep 1; done;
-        mc config host add minio http://storage:9000 development development
-        mc mb minio/photos
-        exit 0
-      "
 volumes:
   postgresql-data:
     driver: local
