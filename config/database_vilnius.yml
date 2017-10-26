@@ -2,13 +2,14 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  host: <%= ENV['TVARKAU_VILNIU_DB_HOST'] %>
-  username: <%= ENV['TVARKAU_VILNIU_DB_USER'] %>
-  password: <%= ENV['TVARKAU_VILNIU_DB_PASSWORD'] %>
+  host: <%= ENV['TVARKAU_VILNIU_DB_HOST'] || localhost %>
+  port: <%= ENV['TVARKAU_VILNIU_DB_PORT'] || 3306 %>
+  username: <%= ENV['TVARKAU_VILNIU_DB_USER'] || vilnius %>
+  password: <%= ENV['TVARKAU_VILNIU_DB_PASSWORD'] vilnius %>
 
 development:
   <<: *default
-  database: tvarkau_miesta
+  database: tvarkau_miesta_development
 
 test:
   <<: *default

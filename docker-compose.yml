@@ -12,14 +12,13 @@ services:
       - "3000:3000"
     links:
       - db
-      - storage
+      - mysql
     environment:
       RAILS_ENV: development
       TVARKAU_VILNIU_RAILS_DB_HOST: db
       TVARKAU_VILNIU_RAILS_DB_PORT: 5432
-      STORAGE_ENDPOINT: http://storage:9000
-      STORAGE_ACCESS_KEY: development
-      STORAGE_SECRET_KEY: development
+      TVARKAU_VILNIU_DB_HOST: mysql
+      TVARKAU_VILNIU_DB_PORT: 3306
   db:
     image: postgres:9.5.6
     ports:
@@ -32,6 +31,12 @@ services:
       POSTGRES_DB: tvarkau_vilniu_rails_development
       POSTGRES_USER: vilnius
       POSTGRES_PASSWORD: vilnius
+  mysql:
+    image: mysql:5.7.20
+    restart: always
+    environment:
+      MYSQL_DATABASE: tvarkau_miesta_development
+      MYSQL_ROOT_PASSWORD: a
 volumes:
   postgresql-data:
     driver: local
