@@ -64,8 +64,6 @@ namespace :vilnius do
     # set config variables for custom database
     ENV['DB_STRUCTURE'] = 'db_vilnius/structure.sql'
     Rails.application.config.paths['db'] = ['db_vilnius']
-    Rails.application.config.paths['db/migrate'] = ['db_vilnius/migrate']
-    Rails.application.config.paths['db/seeds'] = ['db_vilnius/seeds.rb']
     Rails.application.config.paths['config/database'] = ['config/database_vilnius.yml']
   end
 
