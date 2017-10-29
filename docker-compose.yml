@@ -8,6 +8,8 @@ version: '2'
 services:
   app:
     build: .
+    volumes:
+      - .:/opt/tvarkau-vilniu
     ports:
       - "3000:3000"
     links:
@@ -33,10 +35,13 @@ services:
       POSTGRES_PASSWORD: vilnius
   mysql:
     image: mysql:5.7.20
-    restart: always
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: tvarkau_miesta_development
       MYSQL_ROOT_PASSWORD: a
+    volumes:
+      - ./db_vilnius:/docker-entrypoint-initdb.d
 volumes:
   postgresql-data:
     driver: local
