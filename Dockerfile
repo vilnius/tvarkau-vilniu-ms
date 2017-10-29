@@ -16,11 +16,8 @@ WORKDIR $APP_HOME
 ADD Gemfile* $APP_HOME/
 RUN bundle install
 
-ADD . $APP_HOME
-RUN chmod +x $APP_HOME/docker-entrypoint.sh
-RUN chmod +x $APP_HOME/docker-entrypoint-test.sh
-RUN chmod +x $APP_HOME/wait-for-it.sh
-
 EXPOSE 3000
 
-ENTRYPOINT ./wait-for-it.sh db:5432 -- ./docker-entrypoint.sh
+ENTRYPOINT ./wait-for-it.sh db:5432 -- ./wait-for-it.sh mysql:3306 -t 60 -- ./docker-entrypoint.sh
+
+ADD . $APP_HOME

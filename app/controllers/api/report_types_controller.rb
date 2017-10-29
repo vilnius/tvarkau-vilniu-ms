@@ -1,5 +1,5 @@
 class Api::ReportTypesController < Api::BaseController
   def index
-    { :entries => ReportType.select(:id, :title) }
+    { entries: ReportType.select(:ID, :problem_type) }
   end
 end

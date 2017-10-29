@@ -15,27 +15,12 @@ RSpec.describe Report do
     subject(:report) { build(:report, report_type_id: report_type_id) }
 
     context 'with existing report' do
-      let(:report_type) { create(:report_type) }
+      let!(:report_type) { create(:report_type) }
       let(:report_type_id) { report_type.id }
 
       it 'should have no errors on report type' do
         report.save
         expect(report.errors.keys).not_to include(:report_type)
-      end
-    end
-  end
-
-  describe 'report validations' do
-    let(:report_type_id) { -1 }
-    subject(:report) { build(:report, report_type_id: report_type_id) }
-
-    context 'with plate validation' do
-      let(:report_type) { create(:report_type, :validate_plate) }
-      let(:report_type_id) { report_type.id }
-
-      it 'should have plate validation error' do
-        report.save
-        expect(report.errors.keys).to include(:plate_number)
       end
     end
   end

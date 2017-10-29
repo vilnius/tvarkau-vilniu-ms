@@ -1,14 +1,14 @@
 class Api::ReportsController < Api::BaseController
 
   def index
-    { :entries => ::Reports::Filter.for(filter_params) }
+    { entries: ::Reports::Dto.for(::Reports::Filter.for(filter_params)) }
   end
 
   def show
     report = Report.find_by_id(params[:id])
     render_404 unless report
 
-    report
+    ::Reports::Dto.for(report)
   end
 
   def create

@@ -9,20 +9,22 @@ version: '2'
 services:
   app:
     build: .
+    volumes:
+      - .:/opt/tvarkau-vilniu
     ports:
       - "3000"
     links:
       - db
+      - mysql
     environment:
       RAILS_ENV: test
       TVARKAU_VILNIU_RAILS_DB_HOST: db
       TVARKAU_VILNIU_RAILS_DB_PORT: 5432
-      STORAGE_ENDPOINT: http://storage:9000
-      STORAGE_ACCESS_KEY: development
-      STORAGE_SECRET_KEY: development
+      TVARKAU_VILNIU_DB_HOST: mysql
+      TVARKAU_VILNIU_DB_PORT: 3306
       PULL_REQUEST_ID: ${PULL_REQUEST_ID}
       PRONTO_GITHUB_ACCESS_TOKEN: ${PRONTO_GITHUB_ACCESS_TOKEN}
-    entrypoint: ./wait-for-it.sh db:5432 -- ./docker-entrypoint-test.sh
+    entrypoint: ./wait-for-it.sh db:5432 -- ./wait-for-it.sh mysql:3306 -t 60 -- ./docker-entrypoint-test.sh
   db:
     image: postgres:9.5.6
     mem_limit: 300m
@@ -33,25 +35,13 @@ services:
       POSTGRES_DB: tvarkau_vilniu_rails_test
       POSTGRES_USER: vilnius
       POSTGRES_PASSWORD: vilnius
-  storage:
-    image: minio/minio
+  mysql:
+    image: mysql:5.7.20
     ports:
-      - "9000"
-    entrypoint: minio server /export
+      - "3306"
     environment:
-      MINIO_ACCESS_KEY: development
-      MINIO_SECRET_KEY: development
+      MYSQL_DATABASE: tvarkau_miesta_test
+      MYSQL_ROOT_PASSWORD: a
     volumes:
-      - ./test/.minio/data:/export
-      - ./test/.minio/config:/root/.minio
-  storage-init:
-    links:
-      - storage
-    image: minio/mc
-    entrypoint: >
-      /bin/sh -c "
-        while ! wget -q -s http://storage:9000/minio/login; do sleep 1; done;
-        mc config host add minio http://storage:9000 development development
-        mc mb minio/photos
-        exit 0
-      "
+      - /var/lib/mysql
+      - ./db_vilnius:/docker-entrypoint-initdb.d
