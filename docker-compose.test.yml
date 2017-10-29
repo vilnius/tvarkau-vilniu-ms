@@ -29,7 +29,7 @@ services:
     image: postgres:9.5.6
     mem_limit: 300m
     ports:
-      - "5432:5432"
+      - "5432"
     environment:
       LC_ALL: C.UTF-8
       POSTGRES_DB: tvarkau_vilniu_rails_test
@@ -38,7 +38,7 @@ services:
   mysql:
     image: mysql:5.7.20
     ports:
-      - "3306:3306"
+      - "3306"
     environment:
       MYSQL_DATABASE: tvarkau_miesta_test
       MYSQL_ROOT_PASSWORD: a
