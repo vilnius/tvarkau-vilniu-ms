@@ -9,7 +9,8 @@ default: &default
 
 development:
   <<: *default
-  host: localhost
+  host: mysql
+  port: 3306
   database: tvarkau_miesta_development
   username: root
   password: a

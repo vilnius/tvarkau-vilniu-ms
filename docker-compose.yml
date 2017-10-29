@@ -41,6 +41,7 @@ services:
       MYSQL_DATABASE: tvarkau_miesta_development
       MYSQL_ROOT_PASSWORD: a
     volumes:
+      - /var/lib/mysql
       - ./db_vilnius:/docker-entrypoint-initdb.d
 volumes:
   postgresql-data:
