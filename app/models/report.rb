@@ -4,12 +4,11 @@ class Report < TvarkauVilniuDbBase
   alias_attribute :id, :ID
   alias_attribute :description, :DESCRIPTION
   alias_attribute :address, :ADDRESS
-  alias_attribute :report_type_id, :PROBLEM_TYPE_ID
   alias_attribute :lat, :COORDS_GOOGLE_LAT
   alias_attribute :lng, :COORDS_GOOGLE_LNG
   alias_attribute :report_date, :REG_DATE
-  alias_attribute :status_id, :STATUS_ID
   alias_attribute :user_id, :USER_ID
+  alias_attribute :version, :VERSION
 
   # Unused
   alias_attribute :lks_x, :COORDS_LKS_X
@@ -28,7 +27,7 @@ class Report < TvarkauVilniuDbBase
 
   validates :description,
             :address,
-            :report_type_id,
+            :report_type,
             presence: true
 
   validates :lat,
@@ -46,9 +45,10 @@ class Report < TvarkauVilniuDbBase
             }
 
   validate :report_type_validation
-  validate :plate_number_validation
 
-  belongs_to :report_type, foreign_key: 'report_type_id' # won't work - no foreign keys on database
+  belongs_to :report_type, class_name: 'ReportType', foreign_key: 'PROBLEM_TYPE_ID'
+  belongs_to :status_type, class_name: 'StatusType', foreign_key: 'STATUS_ID'
+  belongs_to :main_cfg, class_name: 'MainCfg', foreign_key: 'CITY_ID'
 
   after_initialize :defaults, unless: :persisted?
 
@@ -62,7 +62,6 @@ class Report < TvarkauVilniuDbBase
   private
 
   def defaults
-    self.status_id = STATUS_REGISTERED
     self.user_id = DEFAULT_USER_ID
     self.lks_x = 0
     self.lks_y = 0
@@ -73,16 +72,8 @@ class Report < TvarkauVilniuDbBase
 
   def report_type_validation
     # Avoid double errors and back out early. Presence validator will validate nil
-    return if report_type_id.nil?
-    return if ReportType.find_by(id: report_type_id)
+    return unless report_type.nil?
 
     errors.add(:report_type, I18n.t('error.report_type.non_existing'))
-  end
-
-  def plate_number_validation
-    return unless report_type&.validate_plate
-    return unless plate_number.blank?
-
-    errors.add(:plate_number, I18n.t('error.report.validation.plate_number.blank'))
   end
 end

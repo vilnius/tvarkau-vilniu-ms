@@ -4,9 +4,12 @@ RSpec.describe Reports::Filter do
 
     let(:type_1) { create(:report_type, title: 'KET') }
     let(:type_2) { create(:report_type, title: 'Aplinka') }
-    let!(:report_1) { create(:report) }
-    let!(:report_2) { create(:report, :in_progress, report_type_id: type_1.id) }
-    let!(:report_3) { create(:report, :postponed, report_type_id: type_2.id) }
+    let(:registered) { create(:status_type) }
+    let(:in_progress) { create(:status_type, :in_progress) }
+    let(:postponed) { create(:status_type, :postponed) }
+    let!(:report_1) { create(:report, status_type: registered) }
+    let!(:report_2) { create(:report, status_type: in_progress, report_type: type_1) }
+    let!(:report_3) { create(:report, status_type: postponed, report_type: type_2) }
     let(:params) do
       {
         limit: 2,
@@ -20,12 +23,13 @@ RSpec.describe Reports::Filter do
     context 'with different statuses' do
       let(:params) do
         {
-          status: [Report::STATUS_REGISTERED, Report::STATUS_IN_PROGRESS],
+          status: [registered.id, in_progress.id],
         }
       end
 
       it 'returns filtered reports' do
-        expect(subject).to include(report_1, report_2)
+        expect(subject).to include report_1
+        expect(subject).to include report_2
       end
     end
 
@@ -42,11 +46,11 @@ RSpec.describe Reports::Filter do
     end
 
     context 'with mixed params' do
-      let!(:report_4) { create(:report, :postponed, report_type_id: type_1.id) }
+      let!(:report_4) { create(:report, :postponed, report_type: type_1) }
       let(:params) do
         {
           type: [type_1.id],
-          status: [Report::STATUS_POSTPONED],
+          status: [postponed.id],
         }
       end
 
