@@ -3,6 +3,7 @@ RSpec.describe Api::ReportsController do
 
   describe '#show' do
     subject { api_get :show, params }
+
     let(:report) { create(:report) }
     let(:params) { { id: report.id } }
 

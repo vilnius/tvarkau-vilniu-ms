@@ -2,7 +2,7 @@ RSpec.describe Report do
 
   it { is_expected.to validate_presence_of(:description) }
   it { is_expected.to validate_presence_of(:address) }
-  it { is_expected.to validate_presence_of(:report_type_id) }
+  it { is_expected.to validate_presence_of(:report_type) }
   it { is_expected.to validate_presence_of(:lat) }
   it { is_expected.to validate_numericality_of(:lat).is_greater_than_or_equal_to(-90) }
   it { is_expected.to validate_numericality_of(:lat).is_less_than_or_equal_to(90) }
@@ -12,11 +12,10 @@ RSpec.describe Report do
 
   describe 'report type validations' do
     let(:report_type_id) { -1 }
-    subject(:report) { build(:report, report_type_id: report_type_id) }
+    subject(:report) { build(:report, report_type: report_type) }
 
     context 'with existing report' do
       let!(:report_type) { create(:report_type) }
-      let(:report_type_id) { report_type.id }
 
       it 'should have no errors on report type' do
         report.save

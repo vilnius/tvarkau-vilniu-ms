@@ -15,7 +15,7 @@ class Reports::Create
     report.address = address
     report.lat = latitude
     report.lng = longitude
-    report.report_type_id = report_type_id
+    report.report_type = ReportType.find_by(id: report_type_id)
 
     report.valid?
 

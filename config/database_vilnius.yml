@@ -9,9 +9,7 @@ default: &default
 
 development:
   <<: *default
-  database: tvarkau_miesta_development
-  username: root
-  password: a
+  database: tvarkau_miesta_tst_api
 
 test:
   <<: *default

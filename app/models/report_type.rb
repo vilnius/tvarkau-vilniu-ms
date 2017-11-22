@@ -3,4 +3,6 @@ class ReportType < TvarkauVilniuDbBase
 
   alias_attribute :id, :ID
   alias_attribute :title, :PROBLEM_TYPE
+  alias_attribute :short_label, :SHORT_LABEL
+  alias_attribute :city_id, :CITY_ID
 end
