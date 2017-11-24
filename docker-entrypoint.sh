@@ -2,6 +2,6 @@
 
 echo "Running main entrypoint..."
 
-rake db:migrate 2>/dev/null || rake db:setup && rake db:seed
+rake db:abort_if_pending_migrations 2>/dev/null || rake db:migrate 2>/dev/null || rake db:setup && rake db:seed
 
 exec rails server --port 3000 --binding 0.0.0.0

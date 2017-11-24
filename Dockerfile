@@ -5,6 +5,7 @@ RUN apt-get install -y \
   libpq-dev \
   libxml2-dev \
   libxslt1-dev \
+  mysql-client \
   nodejs \
   cmake
 
@@ -17,7 +18,5 @@ ADD Gemfile* $APP_HOME/
 RUN bundle install
 
 EXPOSE 3000
-
-ENTRYPOINT ./wait-for-it.sh db:5432 -- ./wait-for-it.sh mysql:3306 -t 60 -- ./docker-entrypoint.sh
 
 ADD . $APP_HOME

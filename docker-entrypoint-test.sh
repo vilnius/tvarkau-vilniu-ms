@@ -2,7 +2,7 @@
 
 echo "Running test entrypoint..."
 
-rake db:migrate 2>/dev/null || rake db:setup && rake db:test:prepare
+rake db:abort_if_pending_migrations 2>/dev/null || rake db:migrate 2>/dev/null || rake db:setup && rake db:seed
 
 bundle exec rspec spec
 

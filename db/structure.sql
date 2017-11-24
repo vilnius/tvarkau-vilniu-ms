@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.7.20, for osx10.13 (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.58, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: tvarkau_miesta_test
+-- Host: db    Database: tvarkau_miesta_tst_api
 -- ------------------------------------------------------
 -- Server version	5.7.20
 
@@ -397,7 +397,7 @@ CREATE TABLE `schema_migrations` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-24 21:54:25
+-- Dump completed on 2017-11-24 20:35:27
 INSERT INTO schema_migrations (version) VALUES ('20170224201725');
 
 INSERT INTO schema_migrations (version) VALUES ('20170225093150');
