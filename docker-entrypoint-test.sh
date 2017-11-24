@@ -4,7 +4,7 @@ echo "Running test entrypoint..."
 
 rake db:abort_if_pending_migrations 2>/dev/null || rake db:migrate 2>/dev/null || rake db:setup && rake db:seed
 
-bundle exec rspec spec
+bundle exec rspec spec || exit 1
 
 if [ -n "$PULL_REQUEST_ID" ] && [ "$PULL_REQUEST_ID" != "false" ] && [ -n "$PRONTO_GITHUB_ACCESS_TOKEN" ]; then
     echo "Got an upstream PR #${PULL_REQUEST_ID}. Running pronto with github_pr reporter..."
