@@ -7,8 +7,6 @@ gem 'aws-sdk', '~> 2'
 gem 'rails', '4.2.6'
 # Use mysql as the database for remote database
 gem 'mysql2'
-# Use postgresql as the database for local database
-gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.6'

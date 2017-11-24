@@ -124,8 +124,6 @@ GEM
     parser (2.4.0.0)
       ast (~> 2.2)
     path_expander (1.0.1)
-    pg (0.19.0)
-    pg (0.19.0-x64-mingw32)
     powerpack (0.1.1)
     pronto (0.8.2)
       gitlab (~> 3.6, >= 3.4.0)
@@ -279,7 +277,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
-  pg (~> 0.15)
   pronto (~> 0.8)
   pronto-brakeman (~> 0.8)
   pronto-flay (~> 0.8)
@@ -305,4 +302,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.14.6
+   1.15.4
