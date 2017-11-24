@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :main_cfg do
     city_full_name 'Vilnius'
     city_system_name 'Vilnius'

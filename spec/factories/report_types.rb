@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :report_type do
     transient do
       main_cfg { MainCfg.find_by(id: 1) || create(:main_cfg) }

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :status_type do
     status 'Registruota'
     color '0f76bb'
