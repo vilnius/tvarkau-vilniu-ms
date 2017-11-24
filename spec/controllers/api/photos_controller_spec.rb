@@ -2,8 +2,8 @@ RSpec.describe Api::PhotosController do
   before { api_auth_token }
 
   describe '#for' do
-    subject { api_post :create, photo }
-    let(:photo) do
+    subject { api_post :create, params: params }
+    let(:params) do
       {
         photo: {
           file: file,
@@ -14,7 +14,7 @@ RSpec.describe Api::PhotosController do
     let(:uuid) { 'uuid' }
 
     before do
-      expect(Photos::Create).to receive(:for).with(file: file).and_return(uuid)
+      expect(Photos::Create).to receive(:for).with(hash_including(file: file)).and_return(uuid)
     end
 
     it 'returns uuid' do

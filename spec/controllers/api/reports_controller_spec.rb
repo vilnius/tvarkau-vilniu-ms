@@ -2,7 +2,7 @@ RSpec.describe Api::ReportsController do
   before { api_auth_token }
 
   describe '#show' do
-    subject { api_get :show, params }
+    subject { api_get :show, params: params }
 
     let(:report) { create(:report) }
     let(:params) { { id: report.id } }
@@ -14,7 +14,7 @@ RSpec.describe Api::ReportsController do
   end
 
   describe '#index' do
-    subject { api_get :index, params }
+    subject { api_get :index, params: params }
     let(:params) { {} }
 
     before do
@@ -29,7 +29,7 @@ RSpec.describe Api::ReportsController do
   end
 
   describe '#create' do
-    subject { api_post :create, params}
+    subject { api_post :create, params: params }
     let(:params) do
       {
         report: {

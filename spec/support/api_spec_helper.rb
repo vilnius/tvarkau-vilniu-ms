@@ -21,7 +21,8 @@ module ApiSpecHelper
   def api_request(method, action, options)
     reset_response_json
 
-    options.reverse_merge!(token: token)
+    options[:params] ||= {}
+    options[:params].reverse_merge!(token: token)
 
     send(method, action, options)
   end

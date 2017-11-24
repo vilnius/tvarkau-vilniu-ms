@@ -1,3 +1,3 @@
-class TvarkauVilniuDbBase < ActiveRecord::Base
+class TvarkauVilniuDbBase < ApplicationRecord
   self.abstract_class = true
 end
