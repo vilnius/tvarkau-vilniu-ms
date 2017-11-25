@@ -4,11 +4,11 @@ echo "Running test entrypoint..."
 
 bundle check || bundle install
 
-bundle exec rake db:migrate 2>/dev/null \
-  || bundle exec rake db:create \
+bundle exec rake db:migrate 2>/dev/null || (
+  bundle exec rake db:create \
   && bundle exec rake db:structure:load \
-  && bundle exec rake db:migrate \
-  && bundle exec rake db:seed
+  && bundle exec rake db:migrate
+)
 
 bundle exec rspec spec || exit 1
 
