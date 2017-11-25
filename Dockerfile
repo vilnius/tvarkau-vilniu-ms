@@ -11,11 +11,10 @@ RUN apt-get install -y \
 
 RUN gem install bundler
 
+ENV BUNDLE_PATH /box/.bundle
 ENV APP_HOME /opt/tvarkau-vilniu
-WORKDIR $APP_HOME
 
-ADD Gemfile* $APP_HOME/
-RUN bundle install
+WORKDIR $APP_HOME
 
 EXPOSE 3000
 

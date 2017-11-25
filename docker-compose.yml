@@ -19,6 +19,8 @@ services:
       TVARKAU_VILNIU_DB_HOST: db
       TVARKAU_VILNIU_DB_PORT: 3306
     entrypoint: ./wait-for-it.sh db:3306 -t 60 -- ./docker-entrypoint.sh
+    volumes:
+      - box:/box
   db:
     image: mysql:5.7.20
     ports:
@@ -29,6 +31,9 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
       - ./db:/docker-entrypoint-initdb.d
+
 volumes:
   mysql-data:
+    driver: local
+  box:
     driver: local

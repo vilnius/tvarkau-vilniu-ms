@@ -2,8 +2,12 @@
 
 echo "Running main entrypoint..."
 
-rake db:abort_if_pending_migrations 2>/dev/null || rake db:migrate 2>/dev/null || rake db:setup && rake db:seed
+bundle check || bundle install
+
+bundle exec rake db:abort_if_pending_migrations 2>/dev/null || \
+  bundle exec rake db:migrate 2>/dev/null || \
+  bundle exec rake db:setup && bundle exec rake db:seed
 
 [ -e /opt/tvarkau-vilniu/tmp/pids/server.pid ] && rm /opt/tvarkau-vilniu/tmp/pids/server.pid
 
-exec rails server --port 3000 --binding 0.0.0.0
+bundle exec rails server --port 3000 --binding 0.0.0.0

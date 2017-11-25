@@ -22,6 +22,8 @@ services:
       PULL_REQUEST_ID: ${PULL_REQUEST_ID}
       PRONTO_GITHUB_ACCESS_TOKEN: ${PRONTO_GITHUB_ACCESS_TOKEN}
     entrypoint: ./wait-for-it.sh db:3306 -t 60 -- ./docker-entrypoint-test.sh
+    volumes:
+      - box:/box
   db:
     image: mysql:5.7.20
     ports:
@@ -30,5 +32,8 @@ services:
       MYSQL_DATABASE: tvarkau_miesta_test
       MYSQL_ROOT_PASSWORD: a
     volumes:
-      - /var/lib/mysql
       - ./db:/docker-entrypoint-initdb.d
+
+volumes:
+  box:
+    driver: local

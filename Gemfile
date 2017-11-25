@@ -54,6 +54,7 @@ group :development, :test do
   gem 'pronto-rails_schema', '~> 0.8', require: false
   gem 'pronto-rubocop', '~> 0.8', require: false
   gem 'shoulda-matchers'
+  gem 'listen'
 end
 
 group :development do
