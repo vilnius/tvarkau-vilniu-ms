@@ -1,4 +1,4 @@
-class AddLicencePlateToReports < ActiveRecord::Migration
+class AddLicencePlateToReports < ActiveRecord::Migration[4.2]
   def up
    add_column :reports, :plate_number, :string
   end
