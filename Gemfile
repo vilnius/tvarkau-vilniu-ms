@@ -31,6 +31,7 @@ group :development, :test do
   gem 'pronto-rubocop', '~> 0.8', require: false
   gem 'shoulda-matchers'
   gem 'listen'
+  gem 'oauth2'
 end
 
 group :development do
