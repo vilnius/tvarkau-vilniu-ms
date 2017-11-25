@@ -7,6 +7,7 @@ gem 'mysql2'
 gem 'puma', '~> 3.11'
 gem 'aws-sdk', '~> 2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+gem 'doorkeeper', '~> 4.2.6'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc

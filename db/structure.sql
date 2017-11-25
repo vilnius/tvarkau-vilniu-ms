@@ -1,8 +1,3 @@
--- MySQL dump 10.13  Distrib 5.5.58, for debian-linux-gnu (x86_64)
---
--- Host: db    Database: tvarkau_miesta_tst_api
--- ------------------------------------------------------
--- Server version	5.7.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,11 +9,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `PRS_DVS_CFG`
---
-
 DROP TABLE IF EXISTS `PRS_DVS_CFG`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -35,11 +25,6 @@ CREATE TABLE `PRS_DVS_CFG` (
   CONSTRAINT `fk_PRS_DVS_CFG_PRS_MAIN_CFG1` FOREIGN KEY (`CITY_ID`) REFERENCES `PRS_MAIN_CFG` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_EXECUTOR`
---
-
 DROP TABLE IF EXISTS `PRS_EXECUTOR`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -59,11 +44,6 @@ CREATE TABLE `PRS_EXECUTOR` (
   CONSTRAINT `fk_PRS_EXECUTOR_PRS_PROBLEM_TYPES1` FOREIGN KEY (`TYPE_ID`) REFERENCES `PRS_PROBLEM_TYPES` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_MAIL_CFG`
---
-
 DROP TABLE IF EXISTS `PRS_MAIL_CFG`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -86,11 +66,6 @@ CREATE TABLE `PRS_MAIL_CFG` (
   CONSTRAINT `fk_PRS_MAIL_CFG_PRS_MAIN_CFG1` FOREIGN KEY (`CITY_ID`) REFERENCES `PRS_MAIN_CFG` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_MAIL_TEMPLATES`
---
-
 DROP TABLE IF EXISTS `PRS_MAIL_TEMPLATES`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -105,11 +80,6 @@ CREATE TABLE `PRS_MAIL_TEMPLATES` (
   CONSTRAINT `fk_PRS_MAIL_TEMPLATES_PRS_MAIN_CFG1` FOREIGN KEY (`CITY_ID`) REFERENCES `PRS_MAIN_CFG` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_MAIN_CFG`
---
-
 DROP TABLE IF EXISTS `PRS_MAIN_CFG`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -134,11 +104,6 @@ CREATE TABLE `PRS_MAIN_CFG` (
   KEY `IS_ACTIVE` (`IS_ACTIVE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_PROBLEM_TYPES`
---
-
 DROP TABLE IF EXISTS `PRS_PROBLEM_TYPES`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -157,11 +122,6 @@ CREATE TABLE `PRS_PROBLEM_TYPES` (
   CONSTRAINT `fk_PRS_PROBLEM_TYPES_PRS_MAIN_CFG1` FOREIGN KEY (`CITY_ID`) REFERENCES `PRS_MAIN_CFG` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_REG_AVILYS`
---
-
 DROP TABLE IF EXISTS `PRS_REG_AVILYS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -177,11 +137,6 @@ CREATE TABLE `PRS_REG_AVILYS` (
   CONSTRAINT `fk_PRS_REG_AVILYS_PRS_REG_PROBLEMS1` FOREIGN KEY (`PROBLEM_ID`) REFERENCES `PRS_REG_PROBLEMS` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_REG_AVILYS_TX_LOGS`
---
-
 DROP TABLE IF EXISTS `PRS_REG_AVILYS_TX_LOGS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -195,11 +150,6 @@ CREATE TABLE `PRS_REG_AVILYS_TX_LOGS` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Avilio transakcijos';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_REG_FILES`
---
-
 DROP TABLE IF EXISTS `PRS_REG_FILES`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -215,11 +165,6 @@ CREATE TABLE `PRS_REG_FILES` (
   CONSTRAINT `fk_PRS_REG_FILES_PRS_REG_PROBLEMS1` FOREIGN KEY (`PROBLEM_ID`) REFERENCES `PRS_REG_PROBLEMS` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_REG_FILES_ANSWER`
---
-
 DROP TABLE IF EXISTS `PRS_REG_FILES_ANSWER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -236,11 +181,6 @@ CREATE TABLE `PRS_REG_FILES_ANSWER` (
   CONSTRAINT `fk_PRS_REG_FILES_ANSWER_PRS_REG_PROBLEMS1` FOREIGN KEY (`PROBLEM_ID`) REFERENCES `PRS_REG_PROBLEMS` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_REG_PROBLEMS`
---
-
 DROP TABLE IF EXISTS `PRS_REG_PROBLEMS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -289,11 +229,6 @@ CREATE TABLE `PRS_REG_PROBLEMS` (
   CONSTRAINT `fk_PRS_REG_PROBLEMS_PRS_STATUS_TYPES1` FOREIGN KEY (`STATUS_ID`) REFERENCES `PRS_STATUS_TYPES` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_STATUS_LOGS`
---
-
 DROP TABLE IF EXISTS `PRS_STATUS_LOGS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -310,11 +245,6 @@ CREATE TABLE `PRS_STATUS_LOGS` (
   KEY `NEW_STATUS_ID` (`NEW_STATUS_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Status changes, sent emails';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_STATUS_TYPES`
---
-
 DROP TABLE IF EXISTS `PRS_STATUS_TYPES`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -328,11 +258,6 @@ CREATE TABLE `PRS_STATUS_TYPES` (
   KEY `ACTIVE` (`ACTIVE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `PRS_USERS`
---
-
 DROP TABLE IF EXISTS `PRS_USERS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -358,11 +283,6 @@ CREATE TABLE `PRS_USERS` (
   KEY `FACEBOOK_ID` (`FACEBOOK_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `api_auth_tokens`
---
-
 DROP TABLE IF EXISTS `api_auth_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -374,11 +294,74 @@ CREATE TABLE `api_auth_tokens` (
   UNIQUE KEY `index_api_auth_tokens_on_token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `schema_migrations`
---
-
+DROP TABLE IF EXISTS `ar_internal_metadata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ar_internal_metadata` (
+  `key` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `oauth_access_grants`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `oauth_access_grants` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `resource_owner_id` int(11) NOT NULL,
+  `application_id` bigint(20) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `expires_in` int(11) NOT NULL,
+  `redirect_uri` text NOT NULL,
+  `created_at` datetime NOT NULL,
+  `revoked_at` datetime DEFAULT NULL,
+  `scopes` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_oauth_access_grants_on_token` (`token`),
+  KEY `index_oauth_access_grants_on_application_id` (`application_id`),
+  CONSTRAINT `fk_rails_b4b53e07b8` FOREIGN KEY (`application_id`) REFERENCES `oauth_applications` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `oauth_access_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `oauth_access_tokens` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `resource_owner_id` int(11) DEFAULT NULL,
+  `application_id` bigint(20) DEFAULT NULL,
+  `token` varchar(255) NOT NULL,
+  `refresh_token` varchar(255) DEFAULT NULL,
+  `expires_in` int(11) DEFAULT NULL,
+  `revoked_at` datetime DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `scopes` varchar(255) DEFAULT NULL,
+  `previous_refresh_token` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_oauth_access_tokens_on_token` (`token`),
+  UNIQUE KEY `index_oauth_access_tokens_on_refresh_token` (`refresh_token`),
+  KEY `index_oauth_access_tokens_on_application_id` (`application_id`),
+  KEY `index_oauth_access_tokens_on_resource_owner_id` (`resource_owner_id`),
+  CONSTRAINT `fk_rails_732cb83ab7` FOREIGN KEY (`application_id`) REFERENCES `oauth_applications` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `oauth_applications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `oauth_applications` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `uid` varchar(255) NOT NULL,
+  `secret` varchar(255) NOT NULL,
+  `redirect_uri` text NOT NULL,
+  `scopes` varchar(255) NOT NULL DEFAULT '',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_oauth_applications_on_uid` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `schema_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -397,26 +380,18 @@ CREATE TABLE `schema_migrations` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-24 20:35:27
-INSERT INTO schema_migrations (version) VALUES ('20170224201725');
+INSERT INTO `schema_migrations` (version) VALUES
+('20170224201725'),
+('20170225093150'),
+('20170225094828'),
+('20170305081145'),
+('20170306205609'),
+('20170306205918'),
+('20170319101708'),
+('20170323134021'),
+('20170323185850'),
+('20170402082635'),
+('20170709164545'),
+('20171125112707');
 
-INSERT INTO schema_migrations (version) VALUES ('20170225093150');
-
-INSERT INTO schema_migrations (version) VALUES ('20170225094828');
-
-INSERT INTO schema_migrations (version) VALUES ('20170305081145');
-
-INSERT INTO schema_migrations (version) VALUES ('20170306205609');
-
-INSERT INTO schema_migrations (version) VALUES ('20170306205918');
-
-INSERT INTO schema_migrations (version) VALUES ('20170319101708');
-
-INSERT INTO schema_migrations (version) VALUES ('20170323134021');
-
-INSERT INTO schema_migrations (version) VALUES ('20170323185850');
-
-INSERT INTO schema_migrations (version) VALUES ('20170402082635');
-
-INSERT INTO schema_migrations (version) VALUES ('20170709164545');
 

@@ -9,8 +9,6 @@ version: '2'
 services:
   app:
     build: .
-    volumes:
-      - .:/opt/tvarkau-vilniu
     ports:
       - "3000"
     links:
@@ -23,6 +21,7 @@ services:
       PRONTO_GITHUB_ACCESS_TOKEN: ${PRONTO_GITHUB_ACCESS_TOKEN}
     entrypoint: ./wait-for-it.sh db:3306 -t 60 -- ./docker-entrypoint-test.sh
     volumes:
+      - .:/opt/tvarkau-vilniu
       - box:/box
   db:
     image: mysql:5.7.20
