@@ -2,7 +2,7 @@ test:
 	docker-compose run --rm app bundle exec rspec 
 
 bundle:
-	docker-compose run --rm app bundle check || bundle install
+	docker-compose run --rm app bundle install
 
 build:
 	docker-compose build
