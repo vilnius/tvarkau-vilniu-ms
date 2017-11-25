@@ -13,6 +13,4 @@ before_install:
 install:
   - git fetch origin master:master
 
-before_script:
-  - chmod +x run-tests-in-docker.sh
-script: ./run-tests-in-docker.sh
+script: make bundle test pronto
