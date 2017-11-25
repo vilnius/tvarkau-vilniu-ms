@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :report do
     description 'Description'
     address 'Gedimino pr 9.'

@@ -1,4 +1,3 @@
-class TvarkauVilniuDbBase < ActiveRecord::Base
+class TvarkauVilniuDbBase < ApplicationRecord
   self.abstract_class = true
-  establish_connection TVARKAU_VILNIU_DB
 end

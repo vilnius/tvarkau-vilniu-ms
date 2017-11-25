@@ -1,4 +1,4 @@
-class ApiAuthToken < ActiveRecord::Base
+class ApiAuthToken < ApplicationRecord
   def update_last_used
     return unless last_used > 5.minutes.ago
 

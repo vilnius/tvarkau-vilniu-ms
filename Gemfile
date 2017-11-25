@@ -4,18 +4,16 @@ ruby '2.3.1'
 
 gem 'aws-sdk', '~> 2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '5.1.4'
 # Use mysql as the database for remote database
 gem 'mysql2'
-# Use postgresql as the database for local database
-gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -42,7 +40,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'spring-commands-rspec'
   gem 'pry-rails'
   gem 'pry-nav'
@@ -56,6 +54,7 @@ group :development, :test do
   gem 'pronto-rails_schema', '~> 0.8', require: false
   gem 'pronto-rubocop', '~> 0.8', require: false
   gem 'shoulda-matchers'
+  gem 'listen'
 end
 
 group :development do

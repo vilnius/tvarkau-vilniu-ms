@@ -8,7 +8,7 @@ RSpec.describe Api::BaseController do
   let(:params) { {} }
 
   subject do
-    api_get :index, params
+    api_get :index, params: params
     response_json
   end
 

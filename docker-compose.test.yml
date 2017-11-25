@@ -15,33 +15,22 @@ services:
       - "3000"
     links:
       - db
-      - mysql
     environment:
       RAILS_ENV: test
-      TVARKAU_VILNIU_RAILS_DB_HOST: db
-      TVARKAU_VILNIU_RAILS_DB_PORT: 5432
-      TVARKAU_VILNIU_DB_HOST: mysql
+      TVARKAU_VILNIU_DB_HOST: db
       TVARKAU_VILNIU_DB_PORT: 3306
       PULL_REQUEST_ID: ${PULL_REQUEST_ID}
       PRONTO_GITHUB_ACCESS_TOKEN: ${PRONTO_GITHUB_ACCESS_TOKEN}
-    entrypoint: ./wait-for-it.sh db:5432 -- ./wait-for-it.sh mysql:3306 -t 60 -- ./docker-entrypoint-test.sh
+    entrypoint: ./wait-for-it.sh db:3306 -t 60 -- ./docker-entrypoint-test.sh
+    volumes:
+      - box:/box
   db:
-    image: postgres:9.5.6
-    mem_limit: 300m
-    ports:
-      - "5432"
-    environment:
-      LC_ALL: C.UTF-8
-      POSTGRES_DB: tvarkau_vilniu_rails_test
-      POSTGRES_USER: vilnius
-      POSTGRES_PASSWORD: vilnius
-  mysql:
     image: mysql:5.7.20
     ports:
       - "3306"
     environment:
-      MYSQL_DATABASE: tvarkau_miesta_test
       MYSQL_ROOT_PASSWORD: a
-    volumes:
-      - /var/lib/mysql
-      - ./db_vilnius:/docker-entrypoint-initdb.d
+
+volumes:
+  box:
+    driver: local
