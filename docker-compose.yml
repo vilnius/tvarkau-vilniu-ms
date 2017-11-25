@@ -8,8 +8,6 @@ version: '2'
 services:
   app:
     build: .
-    volumes:
-      - .:/opt/tvarkau-vilniu
     ports:
       - "3000:3000"
     links:
@@ -20,6 +18,7 @@ services:
       TVARKAU_VILNIU_DB_PORT: 3306
     entrypoint: ./wait-for-it.sh db:3306 -t 60 -- ./docker-entrypoint.sh
     volumes:
+      - .:/opt/tvarkau-vilniu
       - box:/box
   db:
     image: mysql:5.7.20

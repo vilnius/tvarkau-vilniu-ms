@@ -13,13 +13,13 @@ TrailingCommaInArguments:
 ClassAndModuleChildren:
   Enabled: false
 
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 Style/FrozenStringLiteralComment:
@@ -28,17 +28,17 @@ Style/FrozenStringLiteralComment:
 Style/NumericPredicate:
   Enabled: false
 
-Style/EndOfLine:
+Layout/EndOfLine:
   Enabled: true
 
-Style/TrailingBlankLines:
+Layout/TrailingBlankLines:
   Enabled: true
   EnforcedStyle: final_newline
   SupportedStyles:
   - final_newline
   - final_blank_line
 
-Style/TrailingWhitespace:
+Layout/TrailingWhitespace:
   Enabled: true
 
 Rails:

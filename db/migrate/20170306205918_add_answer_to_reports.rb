@@ -1,4 +1,4 @@
-class AddAnswerToReports < ActiveRecord::Migration
+class AddAnswerToReports < ActiveRecord::Migration[4.2]
   def up
     add_column :reports, :answer, :string
   end

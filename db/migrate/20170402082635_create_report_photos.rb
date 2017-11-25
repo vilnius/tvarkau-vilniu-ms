@@ -1,4 +1,4 @@
-class CreateReportPhotos < ActiveRecord::Migration
+class CreateReportPhotos < ActiveRecord::Migration[4.2]
   def up
     create_table :report_photos do |t|
       t.string :uuid
