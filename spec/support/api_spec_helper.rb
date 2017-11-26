@@ -1,6 +1,6 @@
 module ApiSpecHelper
 
-  delegate :token, to: :api_auth_token
+  delegate :token, to: :oauth_token
 
   def api_get(action, options = {})
     api_request(:get, action, options)
@@ -19,10 +19,7 @@ module ApiSpecHelper
   end
 
   def api_request(method, action, options)
-    reset_response_json
-
-    options[:params] ||= {}
-    options[:params].reverse_merge!(token: token)
+    request.headers['Authorization'] ||= "Bearer #{token}"
 
     send(method, action, options)
   end
@@ -35,7 +32,7 @@ module ApiSpecHelper
     @response_json ||= JSON.parse(response.body)
   end
 
-  def api_auth_token
-    @api_auth_token ||= create(:api_auth_token)
+  def oauth_token
+    @oauth_token ||= create(:oauth_token)
   end
 end

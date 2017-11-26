@@ -283,17 +283,6 @@ CREATE TABLE `PRS_USERS` (
   KEY `FACEBOOK_ID` (`FACEBOOK_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `api_auth_tokens`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `api_auth_tokens` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `token` varchar(255) DEFAULT NULL,
-  `last_used` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `index_api_auth_tokens_on_token` (`token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `ar_internal_metadata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -424,6 +413,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20170402082635'),
 ('20170709164545'),
 ('20171125112707'),
-('20171125122351');
+('20171125122351'),
+('20171126101908');
 
 
