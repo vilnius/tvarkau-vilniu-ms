@@ -1,9 +1,11 @@
+require 'doorkeeper/grants_assertion'
+
 Doorkeeper.configure do
   realm 'Tvarkau Vilniu API'
 
   orm :active_record
 
-  grant_flows %w[password]
+  grant_flows %w[password assertion]
 
   default_scopes :user
   # optional_scopes :write, :update
@@ -11,6 +13,10 @@ Doorkeeper.configure do
   resource_owner_from_credentials do
     user = User.find_for_authentication(email: params[:username])
     user&.valid_password?(params[:password]) ? user : nil
+  end
+
+  resource_owner_from_assertion do
+    Auth::ResourceOwnerFromAssertion.run(request)
   end
 
   # This block will be called to check whether the resource owner is authenticated or not.

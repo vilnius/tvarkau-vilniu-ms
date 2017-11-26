@@ -57,4 +57,52 @@ RSpec.describe 'OAuth2' do
       end
     end
   end
+
+  describe 'assertion grant' do
+    subject(:token) { client.get_token(params) }
+
+    let(:params) do
+      { scope: scope, provider: provider, assertion: assertion, grant_type: 'assertion' }
+    end
+
+    let(:scope) { 'user' }
+    let(:assertion) { 'token123' }
+
+    context 'with google' do
+      let(:provider) { 'google' }
+      let(:google_profile) { build(:google_profile) }
+
+      before do
+        expect(Auth::Google::Profile).to(
+          receive(:from_token).with(assertion).and_return(google_profile)
+        )
+      end
+
+      context 'when user does not exist' do
+        it 'gets creates user and gets token' do
+          expect(token).not_to be_expired
+          expect(doorkeeper_token.resource_owner_id).to be_present
+        end
+      end
+
+      context 'when user exists' do
+        let!(:user) { create(:user, email: google_profile.email) }
+
+        it 'gets token' do
+          expect(token).not_to be_expired
+          expect(doorkeeper_token.resource_owner_id).to eq(user.id)
+        end
+      end
+
+      context 'when assertion is invalid' do
+        let(:google_profile) { nil }
+        it_behaves_like 'not creating token'
+      end
+    end
+
+    context 'with invalid provider' do
+      let(:provider) { 'unknown' }
+      it_behaves_like 'not creating token'
+    end
+  end
 end

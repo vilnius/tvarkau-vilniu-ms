@@ -3,6 +3,7 @@ defaults: &defaults
   storage_access_key: <%= ENV['STORAGE_ACCESS_KEY'] %>
   storage_secret_key: <%= ENV['STORAGE_SECRET_KEY'] %>
   storage_bucket: photos
+  google_client_id: <%= ENV['GOOGLE_CLIENT_ID'] %>
 
 development:
   <<: *defaults
