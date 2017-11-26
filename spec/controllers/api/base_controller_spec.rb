@@ -5,23 +5,19 @@ RSpec.describe Api::BaseController do
     end
   end
 
-  let(:params) { {} }
+  subject { api_get :index }
 
-  subject do
-    api_get :index, params: params
-    response_json
-  end
+  describe 'authorization' do
+    it { is_expected.to be_success }
 
-  describe '#load token' do
-    context 'invalid token' do
-      let(:params) { { token: nil } }
-      its(['code']) { should == Api::BaseController::INVALID_TOKEN }
+    context 'with invalid token' do
+      let(:token) { 'invalid' }
+      it { is_expected.to be_unauthorized }
     end
 
     context 'invalid auth header' do
-      before { request.headers['X-AUTH-TOKEN'] = '123' }
-      let(:params) { { token: nil } }
-      its(['code']) { should == Api::BaseController::INVALID_TOKEN }
+      before { request.headers['Authorization'] = 'invalid' }
+      it { is_expected.to be_unauthorized }
     end
   end
 end

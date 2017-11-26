@@ -1,5 +1,4 @@
 class Api::ReportsController < Api::BaseController
-
   def index
     { entries: ::Reports::Dto.for(::Reports::Filter.for(filter_params)) }
   end

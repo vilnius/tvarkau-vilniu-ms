@@ -1,10 +1,8 @@
 class Api::BaseController < ApplicationController
-  before_action :adjust_request_format
-  before_action :load_token
+  before_action -> { doorkeeper_authorize!(:user) }
   around_action :api
 
   VALIDATION_ERROR = 10
-  INVALID_TOKEN = 20
 
   protected
 
@@ -24,10 +22,6 @@ class Api::BaseController < ApplicationController
   def render_api_response(hash = {}, options = {})
     status = options[:status] || 200
     render(json: hash, status: status)
-  end
-
-  def adjust_request_format
-    request.format = :json if request.format == :html
   end
 
   def render_record_validation_error(record)
@@ -59,22 +53,6 @@ class Api::BaseController < ApplicationController
     end
 
     hash
-  end
-
-  # TODO: Add IP blocking capability
-  def load_token
-    token = params[:token] || request.headers['X-AUTH-TOKEN']
-
-    # Consider adding Rails.cache instead of hitting database each time?
-    @api_auth_token = ApiAuthToken.find_by(token: token)
-
-    if @api_auth_token.nil?
-      render_api_response(hash_for_code(INVALID_TOKEN), status: 403)
-      return false
-    end
-
-    @api_auth_token.update_last_used
-    true
   end
 
   private

@@ -1,6 +1,4 @@
 RSpec.describe Api::PhotosController do
-  before { api_auth_token }
-
   describe '#for' do
     subject { api_post :create, params: params }
     let(:params) do
