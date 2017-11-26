@@ -14,8 +14,8 @@ development:
 test:
   <<: *default
   database: tvarkau_miesta_test
-  username: root
-  password: a
+  username: <%= ENV['TVARKAU_VILNIU_DB_USER'] || 'root' %>
+  password: <%= ENV['TVARKAU_VILNIU_DB_PASSWORD'] || 'a' %>
 
 production:
   <<: *default

@@ -17,5 +17,3 @@ ENV APP_HOME /opt/tvarkau-vilniu
 WORKDIR $APP_HOME
 
 EXPOSE 3000
-
-ADD . $APP_HOME

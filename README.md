@@ -61,7 +61,7 @@ Open `http://localhost:3000/api/reports` to get latest reports
 
 ### Running tests
 
-- `bundle exec rspec spec` or `./run-tests-in-docker.sh`
+- `bundle exec rspec spec` or `make test`
 
 ## Related projects:
 

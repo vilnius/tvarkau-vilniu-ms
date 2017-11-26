@@ -1,18 +1,32 @@
+dist: trusty
 sudo: required
-services:
-  - docker
-env:
-  COMPOSE_VERSION: 1.11.2
+language: ruby
+cache: bundler
 
-before_install:
-  - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - echo "PULL_REQUEST_ID=${TRAVIS_PULL_REQUEST}" >> .env
-  - echo "PRONTO_GITHUB_ACCESS_TOKEN=${PRONTO_GITHUB_ACCESS_TOKEN}" >> .env
-install:
-  - git fetch origin master:master
+rvm:
+  - 2.3.1
+
+services:
+  - mysql
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+
+env:
+  global:
+    - RAILS_ENV=test
+    - TVARKAU_VILNIU_DB_PASSWORD=''
 
 before_script:
-  - chmod +x run-tests-in-docker.sh
-script: ./run-tests-in-docker.sh
+  - bundle exec rake db:setup
+
+after_success:
+  - >
+    [ "${TRAVIS_PULL_REQUEST}" != "false" ] &&
+    #[ "${TRAVIS_RUBY_VERSION}" = "2.3.1" ] &&
+      PRONTO_PULL_REQUEST_ID=${TRAVIS_PULL_REQUEST} \
+        bundle exec pronto run -f github_pr -c origin/${TRAVIS_BRANCH}
