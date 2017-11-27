@@ -6,6 +6,11 @@ class Api::BaseController < ApplicationController
 
   protected
 
+  def current_user
+    return unless doorkeeper_token
+    @current_user ||= User.find(doorkeeper_token.resource_owner_id)
+  end
+
   def render_404(exception = nil, options = { render_items: false })
     #TODO: Implement logging
     render_api_response({}, status: 404)
