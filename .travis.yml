@@ -19,7 +19,7 @@ addons:
 env:
   global:
     - RAILS_ENV=test
-    - TVARKAU_VILNIU_DB_PASSWORD=''
+    - MYSQL_PASSWORD=''
 
 before_script:
   - bundle exec rake db:setup
