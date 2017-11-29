@@ -6,16 +6,14 @@ services:
     ports:
       - "3000:3000"
     links:
-      - db
+      - mysql
     environment:
       RAILS_ENV: development
-      TVARKAU_VILNIU_DB_HOST: db
-      TVARKAU_VILNIU_DB_PORT: 3306
-    command: ./wait-for-it.sh db:3306 -t 60 -- ./docker-entrypoint.sh
+      BUNDLE_PATH: /box/.bundle
     volumes:
       - .:/opt/tvarkau-vilniu
       - box:/box
-  db:
+  mysql:
     image: mysql:5.7.20
     environment:
       MYSQL_ROOT_PASSWORD: a

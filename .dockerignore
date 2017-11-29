@@ -1,0 +1,7 @@
+tmp/*
+log/*
+db/*.sqlite3
+.git
+.bundle
+.DS_Store
+.vagrant
