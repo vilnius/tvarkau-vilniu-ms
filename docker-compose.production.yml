@@ -2,17 +2,11 @@ version: '3'
 
 services:
   app:
-    build: .
+    image: vilnius/tvarkauvilniums:production
     ports:
       - "3000:3000"
-    links:
+    depends_on:
       - mysql
-    environment:
-      RAILS_ENV: development
-      BUNDLE_PATH: /box/.bundle
-    volumes:
-      - .:/opt/tvarkau-vilniu
-      - box:/box
   mysql:
     image: mysql:5.7.20
     environment:
@@ -22,6 +16,4 @@ services:
 
 volumes:
   mysql-data:
-    driver: local
-  box:
     driver: local
