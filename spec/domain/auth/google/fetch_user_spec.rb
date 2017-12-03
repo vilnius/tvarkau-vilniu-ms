@@ -1,7 +1,7 @@
 RSpec.describe Auth::Google::FetchUser, '.run' do
   subject { described_class.run(token) }
 
-  let(:token) { double }
+  let(:token) { double(:google_token) }
   let(:google_profile) { build(:google_profile) }
 
   before do
@@ -17,6 +17,14 @@ RSpec.describe Auth::Google::FetchUser, '.run' do
     it 'creates user' do
       expect(subject).to be_instance_of(User)
       expect(subject).to be_persisted
+    end
+  end
+
+  context 'when user exists' do
+    let!(:user) { create(:user, email: google_profile.email) }
+
+    it 'fetches user' do
+      expect(subject).to eq(user)
     end
   end
 end

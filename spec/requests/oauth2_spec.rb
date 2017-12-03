@@ -70,23 +70,13 @@ RSpec.describe 'OAuth2' do
 
     context 'with google' do
       let(:provider) { 'google' }
-      let(:google_profile) { build(:google_profile) }
 
       before do
-        expect(Auth::Google::Profile).to(
-          receive(:from_token).with(assertion).and_return(google_profile)
-        )
+        expect(Auth::Google::FetchUser).to receive(:run).with(assertion).and_return(user)
       end
 
-      context 'when user does not exist' do
-        it 'gets creates user and gets token' do
-          expect(token).not_to be_expired
-          expect(doorkeeper_token.resource_owner_id).to be_present
-        end
-      end
-
-      context 'when user exists' do
-        let!(:user) { create(:user, email: google_profile.email) }
+      context 'when user can be fetched' do
+        let(:user) { create(:user) }
 
         it 'gets token' do
           expect(token).not_to be_expired
@@ -95,7 +85,29 @@ RSpec.describe 'OAuth2' do
       end
 
       context 'when assertion is invalid' do
-        let(:google_profile) { nil }
+        let(:user) { nil }
+        it_behaves_like 'not creating token'
+      end
+    end
+
+    context 'with facebook' do
+      let(:provider) { 'facebook' }
+
+      before do
+        expect(Auth::Facebook::FetchUser).to receive(:run).with(assertion).and_return(user)
+      end
+
+      context 'when user can be fetched' do
+        let(:user) { create(:user) }
+
+        it 'gets token' do
+          expect(token).not_to be_expired
+          expect(doorkeeper_token.resource_owner_id).to eq(user.id)
+        end
+      end
+
+      context 'when assertion is invalid' do
+        let(:user) { nil }
         it_behaves_like 'not creating token'
       end
     end

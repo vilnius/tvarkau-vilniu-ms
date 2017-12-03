@@ -9,6 +9,8 @@ class Auth::ResourceOwnerFromAssertion
     case provider
     when 'google'
       Auth::Google::FetchUser.run(token)
+    when 'facebook'
+      Auth::Facebook::FetchUser.run(token)
     else
       raise(Doorkeeper::Errors::InvalidAuthorizationStrategy, "Unsupported provider #{provider}")
     end
