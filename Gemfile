@@ -9,6 +9,7 @@ gem 'interactor-initializer', '~> 0.2'
 gem 'doorkeeper', '~> 4.2.6'
 gem 'devise', '~> 4.3.0'
 gem 'jwt', '~> 2.1'
+gem 'koala', '~> 3.0'
 gem 'faraday'
 
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -39,4 +40,8 @@ end
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :test do
+  gem 'webmock', require: false
 end

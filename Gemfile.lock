@@ -64,6 +64,8 @@ GEM
       sshkit (>= 1.9.0)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.3)
     database_cleaner (1.6.2)
     devise (4.3.0)
@@ -96,6 +98,7 @@ GEM
       terminal-table
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    hashdiff (0.3.7)
     httparty (0.15.6)
       multi_xml (>= 0.5.2)
     httpauth (0.2.1)
@@ -103,7 +106,12 @@ GEM
       concurrent-ruby (~> 1.0)
     interactor-initializer (0.2.0)
     jmespath (1.3.1)
+    json (2.1.0)
     jwt (2.1.0)
+    koala (3.0.0)
+      addressable
+      faraday
+      json (>= 1.8)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -239,6 +247,7 @@ GEM
     ruby_parser (3.10.1)
       sexp_processor (~> 4.9)
     rugged (0.26.0)
+    safe_yaml (1.0.4)
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
@@ -271,6 +280,10 @@ GEM
     unicode-display_width (1.3.0)
     warden (1.2.7)
       rack (>= 1.0)
+    webmock (3.1.1)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -290,6 +303,7 @@ DEPENDENCIES
   faraday
   interactor-initializer (~> 0.2)
   jwt (~> 2.1)
+  koala (~> 3.0)
   listen
   mysql2
   oauth2
@@ -309,6 +323,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   tzinfo-data
+  webmock
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
