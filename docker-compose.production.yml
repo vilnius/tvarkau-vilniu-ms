@@ -1,0 +1,47 @@
+version: '3.4'
+
+volumes:
+  mysql-data:
+    driver: local
+
+secrets:
+  mysql_root_password:
+    external: true
+  mysql_password:
+    external: true
+  secret_key_base:
+    external: true
+
+services:
+  app:
+    image: vilnius/tvarkauvilniums:production
+    ports:
+      - "3000:3000"
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_DATABASE: tvarkau_vilniu
+      MYSQL_USER: tvarkau_vilniu
+    secrets:
+      - secret_key_base
+      - mysql_password
+
+  mysql:
+    image: mysql:5.7.20
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
+      MYSQL_DATABASE: tvarkau_vilniu
+      MYSQL_USER: tvarkau_vilniu
+    volumes:
+      - mysql-data:/var/lib/mysql
+    secrets:
+      - mysql_root_password
+      - mysql_password

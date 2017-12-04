@@ -18,3 +18,4 @@ test:
 production:
   <<: *default
   database: <%= ENV['MYSQL_DATABASE'] || 'tvarkau_vilniu' %>
+  password: <%= Secret['MYSQL_PASSWORD'] %>

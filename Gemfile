@@ -34,6 +34,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'listen'
   gem 'oauth2'
+  gem 'capistrano', '~> 3.10', require: false
 end
 
 group :development do
