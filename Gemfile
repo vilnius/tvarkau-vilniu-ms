@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '5.1.4'
 gem 'mysql2'
+gem 'active_model_serializers', '~> 0.10'
 gem 'puma', '~> 3.11'
 gem 'aws-sdk', '~> 2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]

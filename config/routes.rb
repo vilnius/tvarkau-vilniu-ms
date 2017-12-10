@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   namespace :api, constraints: { format: 'json' } do
+    resource :user
     resources :reports
     resources :report_types, only: [:index]
     resources :tokens, only: [:create]
