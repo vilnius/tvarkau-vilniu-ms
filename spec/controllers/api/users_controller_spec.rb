@@ -8,14 +8,9 @@ RSpec.describe Api::UsersController do
       expect(subject).to be_success
 
       expect(response_json).to include(
-        'data' => {
-          'id' => user.id.to_s,
-          'type' => 'users',
-          'attributes' => {
-            'email' => user.email,
-            'created-at' => user.created_at,
-          },
-        }
+        'id' => user.id,
+        'email' => user.email,
+        'created_at' => user.created_at,
       )
     end
   end
