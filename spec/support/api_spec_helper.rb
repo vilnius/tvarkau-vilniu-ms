@@ -33,6 +33,10 @@ module ApiSpecHelper
   end
 
   def oauth_token
-    @oauth_token ||= create(:oauth_token)
+    @oauth_token ||= create(:oauth_token, user: user)
+  end
+
+  def user
+    @user ||= create(:user)
   end
 end
