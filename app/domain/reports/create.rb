@@ -12,7 +12,7 @@ class Reports::Create
 
   def run
     report.description = description
-    report.address = address
+    # report.address = address
     report.lat = latitude
     report.lng = longitude
     report.report_type = ReportType.find_by(id: report_type_id)

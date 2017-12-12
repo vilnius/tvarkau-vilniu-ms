@@ -349,6 +349,30 @@ CREATE TABLE `oauth_applications` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_applications_on_uid` (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `reports`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reports` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ref_no` varchar(50) NOT NULL,
+  `report_type_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `description` text,
+  `answer` mediumtext,
+  `car_plate_no` varchar(255) DEFAULT NULL,
+  `lat` decimal(10,8) DEFAULT NULL,
+  `lng` decimal(11,8) DEFAULT NULL,
+  `registered_at` datetime DEFAULT NULL,
+  `completed_at` datetime DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_reports_on_ref_no` (`ref_no`),
+  KEY `index_reports_on_user_id` (`user_id`),
+  KEY `index_reports_on_report_type_id` (`report_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `schema_migrations`;
@@ -388,7 +412,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_users_on_confirmation_token` (`confirmation_token`),
   UNIQUE KEY `index_users_on_unlock_token` (`unlock_token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -414,6 +438,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20170709164545'),
 ('20171125112707'),
 ('20171125122351'),
-('20171126101908');
+('20171126101908'),
+('20171212214057');
 
 
