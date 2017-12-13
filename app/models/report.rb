@@ -4,7 +4,7 @@ class Report < ApplicationRecord
   belongs_to :status, class_name: 'StatusType'
 
   validates :description,
-            # :address,
+            :address,
             :report_type,
             :status,
             presence: true
@@ -23,13 +23,5 @@ class Report < ApplicationRecord
               less_than_or_equal_to: 180
             }
 
-  after_initialize :generate_ref_no
-
   # belongs_to :main_cfg, class_name: 'MainCfg', foreign_key: 'CITY_ID'
-
-  private
-
-  def generate_ref_no
-    self.ref_no ||= SecureRandom.uuid
-  end
 end

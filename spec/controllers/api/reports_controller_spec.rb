@@ -9,7 +9,7 @@ RSpec.describe Api::ReportsController do
       expect(subject).to be_success
 
       expect(response_json).to include(
-        'ref_no' => instance_of(String),
+        'description' => instance_of(String),
       )
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe Api::ReportsController do
     it 'returns reports' do
       expect(subject).to be_success
       expect(response_json).to include(
-        'ref_no' => instance_of(String),
+        'description' => instance_of(String),
       )
     end
 
