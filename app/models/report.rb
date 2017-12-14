@@ -1,7 +1,7 @@
 class Report < ApplicationRecord
   belongs_to :user
   belongs_to :report_type
-  belongs_to :status, class_name: 'StatusType'
+  belongs_to :status
 
   validates :description,
             :address,
