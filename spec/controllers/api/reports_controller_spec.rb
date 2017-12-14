@@ -6,13 +6,17 @@ RSpec.describe Api::ReportsController do
     let(:params) { { id: report.id } }
 
     it 'returns report' do
-      expect(subject).to have_http_status(:ok)
-      # TODO: Fix when avilys entity is added. expect(response_json['ref_no']).to include 'ref-no'
+      expect(subject).to be_success
+
+      expect(response_json).to include(
+        'description' => instance_of(String),
+      )
     end
   end
 
   describe '#index' do
     subject { api_get :index, params: params }
+
     let(:params) { {} }
 
     before do
@@ -28,6 +32,7 @@ RSpec.describe Api::ReportsController do
 
   describe '#create' do
     subject { api_post :create, params: params }
+
     let(:params) do
       {
         report: {
@@ -35,6 +40,7 @@ RSpec.describe Api::ReportsController do
         }
       }
     end
+
     let(:report) { create(:report) }
 
     before do
@@ -42,8 +48,10 @@ RSpec.describe Api::ReportsController do
     end
 
     it 'returns reports' do
-      expect(subject).to have_http_status(:ok)
-      # TODO: Fix when avilys entity is added. expect(response_json['ref_no']).to include 'ref-no'
+      expect(subject).to be_success
+      expect(response_json).to include(
+        'description' => instance_of(String),
+      )
     end
 
     context 'when report has validation errors' do

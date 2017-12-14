@@ -13,11 +13,10 @@ class Reports::Filter
   end
 
   def run
-    Report.limit(limit)
-      .offset(offset)
-      .filtered_status([*params[:status]])
-      .filtered_type(*[params[:type]])
-      .to_a
+    scope = Report.offset(offset).limit(limit)
+    scope = scope.where(status_id: params[:status]) if params[:status].present?
+    scope = scope.where(report_type_id: params[:type]) if params[:type].present?
+    scope.to_a
   end
 
   private

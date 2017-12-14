@@ -7,9 +7,9 @@ RSpec.describe Reports::Filter do
     let(:registered) { create(:status_type) }
     let(:in_progress) { create(:status_type, :in_progress) }
     let(:postponed) { create(:status_type, :postponed) }
-    let!(:report_1) { create(:report, status_type: registered) }
-    let!(:report_2) { create(:report, status_type: in_progress, report_type: type_1) }
-    let!(:report_3) { create(:report, status_type: postponed, report_type: type_2) }
+    let!(:report_1) { create(:report, status: registered) }
+    let!(:report_2) { create(:report, status: in_progress, report_type: type_1) }
+    let!(:report_3) { create(:report, status: postponed, report_type: type_2) }
     let(:params) do
       {
         limit: 2,
