@@ -2,15 +2,13 @@ FROM ruby:2.3.1
 
 RUN apt-get update -qq && \
   apt-get install -y \
-  libpq-dev \
   libxml2-dev \
   libxslt1-dev \
   mysql-client \
   nodejs \
   cmake && \
-  apt-get clean
-
-RUN gem install bundler
+  apt-get clean && \
+  gem install bundler
 
 ENV RAILS_ENV production
 ENV APP_HOME /opt/tvarkau-vilniu
