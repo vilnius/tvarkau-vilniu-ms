@@ -102,7 +102,7 @@ CREATE TABLE `PRS_MAIN_CFG` (
   PRIMARY KEY (`ID`),
   KEY `PAGE_SIZE` (`PAGE_SIZE`),
   KEY `IS_ACTIVE` (`IS_ACTIVE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `PRS_PROBLEM_TYPES`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -256,7 +256,7 @@ CREATE TABLE `PRS_STATUS_TYPES` (
   `ACTIVE` int(1) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `ACTIVE` (`ACTIVE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `PRS_USERS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -333,7 +333,7 @@ CREATE TABLE `oauth_access_tokens` (
   KEY `index_oauth_access_tokens_on_application_id` (`application_id`),
   KEY `index_oauth_access_tokens_on_resource_owner_id` (`resource_owner_id`),
   CONSTRAINT `fk_rails_732cb83ab7` FOREIGN KEY (`application_id`) REFERENCES `oauth_applications` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `oauth_applications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -349,7 +349,21 @@ CREATE TABLE `oauth_applications` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_applications_on_uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `report_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `report_types` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `city_id` int(11) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `short_label` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_report_types_on_city_id` (`city_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `reports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -379,7 +393,7 @@ CREATE TABLE `reports` (
   UNIQUE KEY `index_reports_on_ref_no` (`ref_no`),
   KEY `index_reports_on_user_id` (`user_id`),
   KEY `index_reports_on_report_type_id` (`report_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `schema_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -387,6 +401,21 @@ DROP TABLE IF EXISTS `schema_migrations`;
 CREATE TABLE `schema_migrations` (
   `version` varchar(191) NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `statuses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statuses` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `color` varchar(7) NOT NULL,
+  `avilys_status` varchar(255) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_statuses_on_active` (`active`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `users`;
@@ -418,7 +447,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_users_on_confirmation_token` (`confirmation_token`),
   UNIQUE KEY `index_users_on_unlock_token` (`unlock_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -445,6 +474,8 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20171125112707'),
 ('20171125122351'),
 ('20171126101908'),
-('20171212214057');
+('20171212214057'),
+('20171214192931'),
+('20171214193807');
 
 
