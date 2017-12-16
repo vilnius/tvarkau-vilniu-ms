@@ -10,8 +10,7 @@ class Api::ReportsController < Api::BaseController
   end
 
   def create
-
-    report = ::Reports::Create.for(current_user.reports.new, report_params)
+    report = ::Reports::Create.run(current_user, report_params)
     return render_record_validation_error(report) if report.errors.any?
     report
   end
@@ -19,7 +18,18 @@ class Api::ReportsController < Api::BaseController
   private
 
   def report_params
-    params.require(:report)
+    params
+      .require(:report)
+      .permit(
+        :report_type_id,
+        :status_id,
+        :description,
+        :lat,
+        :lng,
+        :address,
+        :license_plate_no,
+        :registered_at,
+      )
   end
 
   def filter_params
