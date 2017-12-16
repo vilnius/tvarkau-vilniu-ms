@@ -11,8 +11,7 @@ Doorkeeper.configure do
   # optional_scopes :write, :update
 
   resource_owner_from_credentials do
-    user = User.find_for_authentication(email: params[:username])
-    user&.valid_password?(params[:password]) ? user : nil
+    Auth::ResourceOwnerFromCredentials.run(request)
   end
 
   resource_owner_from_assertion do
