@@ -14,7 +14,7 @@ secrets:
 
 services:
   app:
-    image: vilnius/tvarkauvilniums:production
+    image: kurmisrainas/tvarkau-vilniu-ms
     ports:
       - "3000:3000"
     deploy:
