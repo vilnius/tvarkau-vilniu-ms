@@ -33,18 +33,25 @@ RSpec.describe Api::ReportsController do
   describe '#create' do
     subject { api_post :create, params: params }
 
-    let(:params) do
+    let(:params) { { report: report_params } }
+    let(:report) { create(:report) }
+
+    let(:report_params) do
       {
-        report: {
-          description: 'Description'
-        }
+        report_type_id: '1',
+        status_id: '1',
+        description: 'Description',
+        address: 'Address',
+        license_plate_no: 'ABC123',
+        lat: '10',
+        lng: '10',
+        registered_at: '2017-12-01 12:00:00',
       }
     end
 
-    let(:report) { create(:report) }
-
     before do
-      allow(::Reports::Create).to receive(:for) { report }
+      allow(::Reports::Create)
+        .to receive(:run).with(user, hash_including(report_params)).and_return(report)
     end
 
     it 'returns reports' do

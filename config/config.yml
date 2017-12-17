@@ -4,6 +4,7 @@ defaults: &defaults
   storage_secret_key: <%= Secret['STORAGE_SECRET_KEY'] %>
   storage_bucket: photos
   google_client_id: <%= ENV['GOOGLE_CLIENT_ID'] %>
+  guest_email_domain: localhost
 
 development:
   <<: *defaults
