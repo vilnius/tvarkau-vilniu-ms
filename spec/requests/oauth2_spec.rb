@@ -56,6 +56,20 @@ RSpec.describe 'OAuth2' do
         it_behaves_like 'not creating token'
       end
     end
+
+    context 'with guest user' do
+      let(:username) { 'guest' }
+      let(:scope) { 'user' }
+
+      it 'gets token' do
+        expect(token).not_to be_expired
+        expect(doorkeeper_token.application).to eq(app)
+
+        user = User.find(doorkeeper_token.resource_owner_id)
+
+        expect(user).to be_guest
+      end
+    end
   end
 
   describe 'assertion grant' do
