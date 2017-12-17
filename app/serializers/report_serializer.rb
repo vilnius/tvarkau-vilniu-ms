@@ -8,7 +8,7 @@ class ReportSerializer < ActiveModel::Serializer
              :status_id,
              :description,
              :answer,
-             :car_plate_no,
+             :license_plate_no,
              :registered_at,
              :completed_at
 end
