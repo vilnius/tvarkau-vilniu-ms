@@ -37,7 +37,7 @@ $ vagrant ssh
 - Install docker-compose
 - Install [Homebrew](https://brew.sh/)
 - Install [rbenv](https://github.com/rbenv/rbenv#homebrew-on-mac-os-x) 
-- Install [ruby 2.3.1](https://gorails.com/setup/osx/10.12-sierra) 
+- Install [ruby 2.4.3](https://gorails.com/setup/osx/10.12-sierra) 
 
 ### Running app
 
