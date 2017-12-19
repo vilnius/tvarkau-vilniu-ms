@@ -4,7 +4,7 @@ language: ruby
 cache: bundler
 
 rvm:
-  - 2.3.1
+  - 2.4.3
 
 services:
   - mysql
@@ -27,6 +27,6 @@ before_script:
 after_success:
   - >
     [ "${TRAVIS_PULL_REQUEST}" != "false" ] &&
-    #[ "${TRAVIS_RUBY_VERSION}" = "2.3.1" ] &&
+    #[ "${TRAVIS_RUBY_VERSION}" = "2.4.3" ] &&
       PRONTO_PULL_REQUEST_ID=${TRAVIS_PULL_REQUEST} \
         bundle exec pronto run -f github_pr -c origin/${TRAVIS_BRANCH}

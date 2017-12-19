@@ -63,9 +63,9 @@ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"'               >> ~/.bashrc
 source ~/.bashrc
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-sudo -H -u ubuntu bash -i -c 'rbenv install 2.3.1'
+sudo -H -u ubuntu bash -i -c 'rbenv install 2.4.3'
 sudo -H -u ubuntu bash -i -c 'rbenv rehash'
-sudo -H -u ubuntu bash -i -c 'rbenv global 2.3.1'
+sudo -H -u ubuntu bash -i -c 'rbenv global 2.4.3'
 sudo -H -u ubuntu bash -i -c 'gem install bundler --no-ri --no-rdoc'
 sudo -H -u ubuntu bash -i -c 'rbenv rehash'
 
