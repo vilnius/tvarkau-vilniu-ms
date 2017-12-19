@@ -12,6 +12,7 @@ gem 'devise', '~> 4.3.0'
 gem 'jwt', '~> 2.1'
 gem 'koala', '~> 3.0'
 gem 'faraday'
+gem 'viisp-auth', '~> 0.1'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc

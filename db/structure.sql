@@ -333,7 +333,7 @@ CREATE TABLE `oauth_access_tokens` (
   KEY `index_oauth_access_tokens_on_application_id` (`application_id`),
   KEY `index_oauth_access_tokens_on_resource_owner_id` (`resource_owner_id`),
   CONSTRAINT `fk_rails_732cb83ab7` FOREIGN KEY (`application_id`) REFERENCES `oauth_applications` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `oauth_applications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -420,15 +420,23 @@ CREATE TABLE `statuses` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_statuses_on_active` (`active`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `email` varchar(100) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `personal_code` bigint(20) DEFAULT NULL,
+  `facebook_id` varchar(100) DEFAULT NULL,
+  `google_id` varchar(100) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `guest` tinyint(1) NOT NULL DEFAULT '0',
+  `blacklisted` tinyint(1) NOT NULL DEFAULT '0',
   `encrypted_password` varchar(255) NOT NULL,
   `reset_password_token` varchar(255) DEFAULT NULL,
   `reset_password_sent_at` datetime DEFAULT NULL,
@@ -452,8 +460,12 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_users_on_confirmation_token` (`confirmation_token`),
   UNIQUE KEY `index_users_on_unlock_token` (`unlock_token`),
-  KEY `index_users_on_guest` (`guest`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  UNIQUE KEY `index_users_on_personal_code` (`personal_code`),
+  UNIQUE KEY `index_users_on_facebook_id` (`facebook_id`),
+  UNIQUE KEY `index_users_on_google_id` (`google_id`),
+  KEY `index_users_on_guest` (`guest`),
+  KEY `index_users_on_city_id` (`city_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -484,6 +496,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20171214192931'),
 ('20171214193807'),
 ('20171216124253'),
-('20171216141002');
+('20171216141002'),
+('20171219193843');
 
 
