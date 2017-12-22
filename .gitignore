@@ -11,5 +11,6 @@
 
 .vagrant/
 test/
+public/api.html
 
 /config/app_environment_variables.rb

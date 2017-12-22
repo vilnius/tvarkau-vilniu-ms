@@ -1,5 +1,5 @@
 test:
-	docker-compose run --rm app bundle exec rspec 
+	docker-compose run --rm app bundle exec rspec
 
 bundle:
 	docker-compose run --rm app bundle install
@@ -21,3 +21,6 @@ migrate:
 
 pronto:
 	docker-compose run --rm app bundle exec pronto run
+
+docs:
+	snowboard html -o public/api.html ./blueprints/API.apib
