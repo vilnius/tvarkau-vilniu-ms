@@ -4,7 +4,7 @@ class Auth::ViispController < ActionController::Base
   def new
     postback_url = url_for(
       action: :create,
-      return_to_url: params[:return_to_url],
+      redirect_uri: params[:redirect_uri],
     )
 
     @ticket = VIISP::Auth.ticket(postback_url: postback_url)
@@ -13,8 +13,8 @@ class Auth::ViispController < ActionController::Base
   end
 
   def create
-    if params[:return_to_url].present?
-      redirect_to(return_to_url_with_ticket)
+    if params[:redirect_uri].present?
+      redirect_to(redirect_uri_with_ticket)
     else
       render plain: { ticket: params[:ticket] }.to_json, content_type: 'application/json'
     end
@@ -22,8 +22,8 @@ class Auth::ViispController < ActionController::Base
 
   private
 
-  def return_to_url_with_ticket
-    uri = URI.parse(params[:return_to_url])
+  def redirect_uri_with_ticket
+    uri = URI.parse(params[:redirect_uri])
 
     query = URI.decode_www_form(uri.query || '')
     query << ['ticket', params[:ticket]]
