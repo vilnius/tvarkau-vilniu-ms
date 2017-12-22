@@ -1,0 +1,11 @@
+<html>
+<head></head>
+<body>
+  <form id="login" action="<%= VIISP::Auth.portal_endpoint %>" method="post">
+    <input type="hidden" name="ticket" value="<%= @ticket %>">
+  </form>
+  <script type='text/javascript'>
+    document.getElementById("login").submit();
+  </script>
+</body>
+</html>

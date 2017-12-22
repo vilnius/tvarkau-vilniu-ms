@@ -5,7 +5,6 @@ module Users::CreateGuest
 
   def run
     User.new do |user|
-      user.email = [SecureRandom.uuid, APP_CONFIG['guest_email_domain']].join('@')
       user.password = SecureRandom.uuid
       user.password_confirmation = user.password
       user.skip_confirmation!
