@@ -5,6 +5,36 @@ HOST: https://api.tvarkaumiesta.lt/
 
 API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
 
+# Reports
+
+## Report [/api/reports/{report_id}]
+
++ Parameters
+    + report_id (required, number, `1`) - The id of the Report
+
++ Model (application/json)
+
+        {
+            "id": 1,
+            "ref_no": null,
+            "report_type_id": 1,
+            "lat": "9.99",
+            "lng": "9.99",
+            "user_id": 2,
+            "status_id": 1,
+            "description": "Description",
+            "answer": null,
+            "license_plate_no": "ABC123",
+            "registered_at": "2017-02-24T22:17:25.000Z",
+            "completed_at": null
+        }
+
+### Retrieve a Report [GET]
+
++ Response 200
+
+  [Report][]
+
 ## Reports Collection [/api/reports?{?type,status,limit,offset}]
 
 ### List Reports [GET]
@@ -21,82 +51,22 @@ API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
             "entries": [
                 {
                     "id": 1,
-                    "ref_no": null,
-                    "report_type_id": 1,
-                    "status_id": 1,
-                    "user_id": 1,
-                    "app_id": null,
-                    "description": "Description",
-                    "answer": null,
-                    "license_plate_no": null,
-                    "lat": "9.99",
-                    "lng": "9.99",
-                    "address": "Gedimino pr 9.",
-                    "address_postcode": null,
-                    "address_street": null,
-                    "address_house_no": null,
-                    "city_id": 1,
-                    "registered_at": "2017-02-24T22:17:25.000Z",
-                    "completed_at": null,
-                    "created_at": "2017-12-20T20:34:39.000Z",
-                    "updated_at": "2017-12-20T20:34:39.000Z"
-                }
+                    ...
+                },
+                {
+                    "id": 2,
+                    ...
+                },
             ]
         }
 
 ### Create a New Report [POST]
 
-+ Request (application/json)
++ Request
 
-        {
-            "report": {
-                "report_type_id": "1",
-                "status_id": "1",
-                "description": "Description",
-                "address": "Address",
-                "license_plate_no": "ABC123",
-                "lat": "9.99",
-                "lng": "9.99",
-                "registered_at": "2017-12-01 12:00:00"
-            }
-        }
+  [Report][]
 
-+ Response 201 (application/json)
++ Response 201
 
-        {
-            "id": 1,
-            "ref_no": null,
-            "report_type_id": 1,
-            "lat": "9.99",
-            "lng": "9.99",
-            "user_id": 2,
-            "status_id": 1,
-            "description": "Description",
-            "answer": null,
-            "license_plate_no": "ABC123",
-            "registered_at": "2017-02-24T22:17:25.000Z",
-            "completed_at": null
-        }
+  [Report][]
 
-## Report [/api/reports/{id}]
-
-A single Report object
-
-### Retrieve a Report [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "id": 1,
-            "ref_no": null,
-            "report_type_id": 1,
-            "lat": "9.99",
-            "lng": "9.99",
-            "user_id": 2,
-            "status_id": 1,
-            "description": "Description",
-            "answer": null,
-            "license_plate_no": "ABC123",
-            "registered_at": "2017-02-24T22:17:25.000Z",
-            "completed_at": null
-        }
