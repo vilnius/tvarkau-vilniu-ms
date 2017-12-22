@@ -49,6 +49,11 @@ RSpec.describe 'OAuth2' do
           expect(doorkeeper_token.resource_owner_id).to eq(user.id)
           expect(doorkeeper_token.application).to eq(app)
         end
+
+        context 'and user is blacklisted' do
+          let(:user) { create(:user, blacklisted: true) }
+          it_behaves_like 'not creating token'
+        end
       end
 
       context 'and invalid password' do
@@ -109,6 +114,28 @@ RSpec.describe 'OAuth2' do
 
       before do
         expect(Auth::Facebook::FetchUser).to receive(:run).with(assertion).and_return(user)
+      end
+
+      context 'when user can be fetched' do
+        let(:user) { create(:user) }
+
+        it 'gets token' do
+          expect(token).not_to be_expired
+          expect(doorkeeper_token.resource_owner_id).to eq(user.id)
+        end
+      end
+
+      context 'when assertion is invalid' do
+        let(:user) { nil }
+        it_behaves_like 'not creating token'
+      end
+    end
+
+    context 'with viisp' do
+      let(:provider) { 'viisp' }
+
+      before do
+        expect(Auth::Viisp::FetchUser).to receive(:run).with(assertion).and_return(user)
       end
 
       context 'when user can be fetched' do
