@@ -7,6 +7,14 @@ API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
 
 # Group Authorization
 
+Access to the API is granted using OAuth2. API requests must contain `Authorization` header.
+
+Example:
+
+`Authorization: Bearer accesstoken123`
+
+Access token can be acquired from `/oauth/token` endpoint.
+
 ## Access Token [/oauth/token]
 
 + Model (application/json)
