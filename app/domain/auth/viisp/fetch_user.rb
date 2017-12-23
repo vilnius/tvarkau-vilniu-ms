@@ -39,7 +39,7 @@ class Auth::Viisp::FetchUser
   def identity
     @identity ||= VIISP::Auth.identity(ticket: token)
   rescue VIISP::Auth::RequestError => e
-    Rails.logger.error("VISSP request error #{e.message}")
+    Rails.logger.error("VIISP request error #{e.message}")
     nil
   end
 end
