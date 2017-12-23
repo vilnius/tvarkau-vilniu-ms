@@ -23,4 +23,4 @@ pronto:
 	docker-compose run --rm app bundle exec pronto run
 
 docs:
-	snowboard html -o public/api.html ./blueprints/API.apib
+	snowboard html -o public/api.html ./apiary.apib

@@ -1,0 +1,218 @@
+FORMAT: 1A
+HOST: https://ws.tvarkaumiesta.lt/
+
+# Tvarkau Miestą
+
+API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
+
+# Group Authorization
+
+Access to the API is granted using OAuth2. API requests must contain authorization header.
+
+Example: `Authorization: Bearer accesstoken123`
+
+Using OAuth2 client library is recommended to acquire access token.
+
+Ruby example:
+
+```ruby
+require 'oauth2'
+
+client = OAuth2::Client.new('web', nil, site: 'https://ws.tvarkaumiesta.lt/auth')
+token = client.password.get_token('guest', 'guest')
+
+puts token.token
+```
+
+## Access Token [/oauth/token]
+
++ Model (application/json)
+
+        {
+            "access_token": "7689bb55c6097159a5bca1a90b9aca2e6369c0c69f49929290459643feafb2ac",
+            "token_type": "bearer",
+            "expires_in": 7199,
+            "scope": "user",
+            "created_at": 1513989843
+        }
+
+### Create an access token [POST]
+
+#### Guest login
+
+Grant type: `password`
+
+Pass `guest` value as username/password.
+
+#### Login with email and password
+
+Grant type: `password`
+
+Email should be passed via `username` attribute.
+
+#### Google / Facebook login
+
+Grant type: `assertion`
+
+Required Google/Facebook permissions: `email`
+
+Acquire access token using
+[Google](https://developers.google.com/identity/sign-in/)/[Facebook](https://developers.facebook.com/docs/facebook-login/)
+SDK for your platform and pass it to the token endpoint via `assertion` attribute.
+
+#### VIISP login - Elektroniniai valdžios vartai
+
+Grant type: `assertion`
+
+Acquire [VIISP access token](#reference/authorization/viisp-access-token)
+and pass it to the token endpoint via `assertion` attribute.
+
++ Attributes
+    + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
+    + grant_type: password (string, required) - OAuth2 grant type. One of: *password*, *assertion*.
+    + scope: user (string, optional) - Access scope.
+    + username: gediminas@vilnius.lt (string, optional) - User's email address. **Required for password grant type**.
+    + password: secret (string, optional) - User's password. **Required for password grant type**.
+    + provider: google (string, optional) - Assertion provider. One of: *google*, *facebook*, *viisp*. **Required for assertion grant type**.
+    + assertion: token123 (string, optional) - Google/Facebook/VIISP token. **Required for assertion grant type**.
+
++ Request Create a token using email/password.
+
+            {
+                "client_id": "android",
+                "grant_type": "password",
+                "scope": "user",
+                "username": "gediminas@vilnius.lt",
+                "password": "secret"
+            }
+
++ Response 200
+
+  [Access Token][]
+
++ Request Create a guest user token.
+
+            {
+                "client_id": "android",
+                "grant_type": "password",
+                "scope": "user",
+                "username": "guest",
+                "password": "guest"
+            }
+
++ Response 200
+
+  [Access Token][]
+
++ Request Create a token using Facebook/Google/VIISP token.
+
+            {
+                "client_id": "android",
+                "grant_type": "assertion",
+                "scope": "user",
+                "provider": "google",
+                "assertion": "token123"
+            }
+
++ Response 200
+
+  [Access Token][]
+
+## VIISP Access Token [/auth/viisp/new{?redirect_uri}]
+
+After successful authorization user will be redirected to the `redirect_uri` with the access token.
+VIISP access token should be exchanged to the API access token using OAuth2 assertion grant.
+
+Android/iOS apps can use custom url scheme to handle return to the application with the token.
+
+### Start authorization [GET]
+
++ Parameters
+    + redirect_uri: lt.tvarkauvilniu://viisp/callback (string, required) - URI where user should be redirected after successful authorization.
+
++ Response 200 (text/html)
+
+        <html>
+            <body>
+                A web page automatically redirecting to VIISP authorization system.
+            </body>
+        </html>
+
+# Group Users
+
+## Current User [/api/me]
+
+### Get current user profile [GET]
+
++ Response 200 (application/json)
+
+          {
+            "id": 1,
+            "email": "user1@vilnius.lt",
+            "created_at": "2017-12-23T13:35:46.000Z"
+          }
+
+# Group Reports
+
+## Report [/api/reports/{report_id}]
+
++ Parameters
+    + report_id: 1 (number, required) - The id of the Report
+
++ Model (application/json)
+
+        {
+            "id": 1,
+            "ref_no": null,
+            "report_type_id": 1,
+            "lat": "9.99",
+            "lng": "9.99",
+            "user_id": 2,
+            "status_id": 1,
+            "description": "Description",
+            "answer": null,
+            "license_plate_no": "ABC123",
+            "registered_at": "2017-02-24T22:17:25.000Z",
+            "completed_at": null
+        }
+
+### Retrieve a Report [GET]
+
++ Response 200
+
+  [Report][]
+
+## Reports Collection [/api/reports{?type,status,limit,offset}]
+
+### List Reports [GET]
+
++ Parameters
+    + type: 1 (number, optional) - Report type id
+    + status: 1 (number, optional) - Report status id
+    + limit: 20 (number, optional) - Returned entries limit
+    + offset: 0 (number, optional) - List offset
+
++ Response 200 (application/json)
+
+        {
+            "entries": [
+                {
+                    "id": 1,
+                    ...
+                },
+                {
+                    "id": 2,
+                    ...
+                },
+            ]
+        }
+
+### Create a New Report [POST]
+
++ Request
+
+  [Report][]
+
++ Response 201
+
+  [Report][]

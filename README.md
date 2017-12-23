@@ -5,6 +5,8 @@
 
 API for Tvarkau Vilnių apps. Manages problems reported by Vilnius citizens.
 
+[API specification](https://tvarkaumiesta.docs.apiary.io)
+
 ## Getting started
 
 ### Setting up development environment
