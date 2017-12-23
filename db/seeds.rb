@@ -10,6 +10,27 @@ unless Doorkeeper::Application.exists?(uid: 'android')
   )
 end
 
+unless Doorkeeper::Application.exists?(uid: 'ios')
+  Doorkeeper::Application.create!(
+    name: 'iOS',
+    uid: 'ios',
+    redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+    scopes: 'user',
+  )
+end
+
+unless Doorkeeper::Application.exists?(uid: 'web')
+  redirect_uri = ENV['WEB_REDIRECT_URI'] || 'https://tvarkaumiesta.lt/auth/callback'
+
+  Doorkeeper::Application.create!(
+    name: 'Web',
+    uid: 'web',
+    secret: Secret['WEB_OAUTH2_SECRET'],
+    redirect_uri: redirect_uri,
+    scopes: 'user',
+  )
+end
+
 unless Rails.env.production?
   unless User.exists?(email: 'gediminas@vilnius.lt')
     user = User.new(
