@@ -9,15 +9,6 @@ API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
 
 ## Token [/oauth/token]
 
-+ Parameters
-    + client_id (required, string, `android`) ... Client app identifier. One of `android`, `ios`, `web`.
-    + grant_type (required, string, `assertion`) ... OAuth2 grant type. One of `assertion`, `password`.
-    + scope (optional, string, `user`) ... Access scope.
-    + provider (optional, string, `google`) ... Assertion provider. One of `google`, `facebook`, `viisp`. **Required for assertion grant type.**
-    + assertion (optional, string, `abc123`) ... Google/Facebook/VIISP token. **Required for assertion grant type.**
-    + username (optional, string, `gediminas@vilnius.lt`) ... User's email address. **Required for password grand type.**
-    + password (optional, string, `secret`) ... User's password. **Required for password grand type.**
-
 + Model (application/json)
 
         {
@@ -30,7 +21,16 @@ API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
 
 ### Get a new token [POST]
 
-+ Request
++ Attributes
+    + client_id (required, string, `android`) ... Client app identifier. One of `android`, `ios`, `web`.
+    + grant_type (required, string, `assertion`) ... OAuth2 grant type. One of `assertion`, `password`.
+    + scope (optional, string, `user`) ... Access scope.
+    + provider (optional, string, `google`) ... Assertion provider. One of `google`, `facebook`, `viisp`. **Required for assertion grant type.**
+    + assertion (optional, string, `abc123`) ... Google/Facebook/VIISP token. **Required for assertion grant type.**
+    + username (optional, string, `gediminas@vilnius.lt`) ... User's email address. **Required for password grand type.**
+    + password (optional, string, `secret`) ... User's password. **Required for password grand type.**
+
++ Response 200
 
   [Token][]
 
