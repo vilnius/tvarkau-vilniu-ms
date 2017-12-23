@@ -35,9 +35,10 @@ Acquire access token using
 [Google](https://developers.google.com/identity/sign-in/)/[Facebook](https://developers.facebook.com/docs/facebook-login/)
 SDK for your platform and pass it to the token endpoint via `assertion` param.
 
-#### VIISP
+#### VIISP - Elektroniniai valdžios vartai
 
-TODO: instructions
+Acquire [VIISP access token](#reference/authorization/viisp-access-token)
+and pass it to the token endpoint via `assertion` param.
 
 + Attributes
     + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
@@ -90,12 +91,32 @@ TODO: instructions
 
   [Access Token][]
 
+## VIISP Access Token [/auth/viisp/new{?redirect_uri}]
+
+After successful authorization user will be redirected to the `redirect_uri` with the access token.
+The token can be then should be exchanged for the API access token using OAuth2 assertion grant.
+
+Android/iOS apps can use custom url scheme to handle return to the application with the token.
+
+### Start authorization [GET]
+
++ Parameters
+    + redirect_uri: lt.tvarkauvilniu://viisp/success (string, required) - URI where user should be redirected after successful authorization.
+
++ Response 200 (text/html)
+
+        <html>
+            <body>
+                A web page automatically redirecting to VIISP authorization system.
+            </body>
+        </html>
+
 # Group Reports
 
 ## Report [/api/reports/{report_id}]
 
 + Parameters
-    + report_id (required, number, `1`) - The id of the Report
+    + report_id: 1 (number, required) - The id of the Report
 
 + Model (application/json)
 
