@@ -5,6 +5,35 @@ HOST: https://api.tvarkaumiesta.lt/
 
 API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
 
+# Authorization
+
+## Token [/oauth/token]
+
++ Parameters
+    + client_id (required, string, `android`) ... Client app identifier. One of `android`, `ios`, `web`.
+    + grant_type (required, string, `assertion`) ... OAuth2 grant type. One of `assertion`, `password`.
+    + scope (optional, string, `user`) ... Access scope.
+    + provider (optional, string, `google`) ... Assertion provider. One of `google`, `facebook`, `viisp`. **Required for assertion grant type.**
+    + assertion (optional, string, `abc123`) ... Google/Facebook/VIISP token. **Required for assertion grant type.**
+    + username (optional, string, `gediminas@vilnius.lt`) ... User's email address. **Required for password grand type.**
+    + password (optional, string, `secret`) ... User's password. **Required for password grand type.**
+
++ Model (application/json)
+
+        {
+            "access_token": "7689bb55c6097159a5bca1a90b9aca2e6369c0c69f49929290459643feafb2ac",
+            "token_type": "bearer",
+            "expires_in": 7199,
+            "scope": "user",
+            "created_at": 1513989843
+        }
+
+### Get a new token [POST]
+
++ Request
+
+  [Token][]
+
 # Reports
 
 ## Report [/api/reports/{report_id}]
