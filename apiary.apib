@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://api.tvarkaumiesta.lt/
+HOST: https://ws.tvarkaumiesta.lt/
 
 # Tvarkau Miestą
 
@@ -7,11 +7,9 @@ API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
 
 # Group Authorization
 
-Access to the API is granted using OAuth2. API requests must contain `Authorization` header.
+Access to the API is granted using OAuth2. API requests must contain authorization header.
 
-Example:
-
-`Authorization: Bearer accesstoken123`
+Example: `Authorization: Bearer accesstoken123`
 
 Access token can be acquired from `/oauth/token` endpoint.
 
@@ -28,6 +26,18 @@ Access token can be acquired from `/oauth/token` endpoint.
         }
 
 ### Create an access token [POST]
+
+#### Google / Facebook login
+
+Required permissions: `email`
+
+Acquire access token using
+[Google](https://developers.google.com/identity/sign-in/)/[Facebook](https://developers.facebook.com/docs/facebook-login/)
+SDK for your platform and pass it to the token endpoint via `assertion` param.
+
+#### VIISP
+
+TODO: instructions
 
 + Attributes
     + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
