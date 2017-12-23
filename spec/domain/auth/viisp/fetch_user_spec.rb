@@ -40,6 +40,7 @@ RSpec.describe Auth::Viisp::FetchUser, '.run' do
         expect(subject).to be_persisted
         expect(subject.name).to eq('VARDENIS PAVARDENIS')
         expect(subject.email).to be_nil
+        expect(subject.unconfirmed_email).to eq('vardenis@vilnius.lt')
         expect(subject.phone).to eq('123')
         expect(subject.address).to eq('Gedimino 1')
         expect(subject.personal_code).to eq(10000000001)
