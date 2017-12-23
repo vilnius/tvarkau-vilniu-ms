@@ -11,7 +11,18 @@ Access to the API is granted using OAuth2. API requests must contain authorizati
 
 Example: `Authorization: Bearer accesstoken123`
 
-Access token can be acquired from `/oauth/token` endpoint.
+Using OAuth2 client library is recommended to acquire access token.
+
+Ruby example:
+
+```ruby
+require 'oauth2'
+
+client = OAuth2::Client.new('web', nil, site: 'https://ws.tvarkaumiesta.lt/auth')
+token = client.password.get_token('guest', 'guest')
+
+puts token.token
+```
 
 ## Access Token [/oauth/token]
 
@@ -101,7 +112,7 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 ### Start authorization [GET]
 
 + Parameters
-    + redirect_uri: lt.tvarkauvilniu://viisp/success (string, required) - URI where user should be redirected after successful authorization.
+    + redirect_uri: lt.tvarkauvilniu://viisp/callback (string, required) - URI where user should be redirected after successful authorization.
 
 + Response 200 (text/html)
 
