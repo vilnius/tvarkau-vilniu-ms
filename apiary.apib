@@ -48,6 +48,21 @@ Get a new token using password grant.
 
   [Token][]
 
+### Guest login [POST]
+
+Get a new guest user token.
+
++ Attributes
+    + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
+    + grant_type: password (string, required) - OAuth2 grant type.
+    + scope: user (string, optional) - Access scope.
+    + username: guest (string, required) - Username must be *guest*.
+    + password: guest (string, optional)
+
++ Response 200
+
+  [Token][]
+
 # Reports
 
 ## Report [/api/reports/{report_id}]
