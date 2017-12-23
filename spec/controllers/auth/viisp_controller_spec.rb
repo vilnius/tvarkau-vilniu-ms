@@ -2,10 +2,10 @@
 
 RSpec.describe Auth::ViispController do
   let(:ticket) { 'abc' }
-  let(:return_to_url) { 'https://test.localhost' }
+  let(:redirect_uri) { 'https://test.localhost' }
 
   describe '#new' do
-    subject { get :new, params: { return_to_url: return_to_url } }
+    subject { get :new, params: { redirect_uri: redirect_uri } }
 
     render_views
 
@@ -17,14 +17,14 @@ RSpec.describe Auth::ViispController do
   end
 
   describe '#create' do
-    subject { post :create, params: { return_to_url: return_to_url, ticket: ticket } }
+    subject { post :create, params: { redirect_uri: redirect_uri, ticket: ticket } }
 
     it 'to return url with ticket' do
       expect(subject).to redirect_to(/#{ticket}/)
     end
 
     context 'when return url is not set' do
-      let(:return_to_url) { nil }
+      let(:redirect_uri) { nil }
 
       it 'to renders json' do
         expect(subject).to be_success
