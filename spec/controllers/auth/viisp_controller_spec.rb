@@ -2,7 +2,7 @@
 
 RSpec.describe Auth::ViispController do
   let(:ticket) { 'abc' }
-  let(:redirect_uri) { 'https://test.localhost' }
+  let(:redirect_uri) { 'https://localhost:3000' }
 
   describe '#new' do
     subject { get :new, params: { redirect_uri: redirect_uri } }
@@ -13,6 +13,11 @@ RSpec.describe Auth::ViispController do
       expect(VIISP::Auth).to receive(:ticket).and_return(ticket)
       expect(subject).to be_success
       expect(response.body).to include(ticket)
+    end
+
+    context 'with invalid redirect uri' do
+      let(:redirect_uri) { 'https://fake.net' }
+      it { is_expected.to be_forbidden }
     end
   end
 
@@ -30,6 +35,11 @@ RSpec.describe Auth::ViispController do
         expect(subject).to be_success
         expect(JSON.parse(response.body)).to include('ticket' => ticket)
       end
+    end
+
+    context 'with invalid redirect uri' do
+      let(:redirect_uri) { 'https://fake.net' }
+      it { is_expected.to be_forbidden }
     end
   end
 end
