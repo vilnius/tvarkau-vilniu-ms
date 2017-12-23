@@ -11,6 +11,8 @@ secrets:
     external: true
   secret_key_base:
     external: true
+  web_oauth2_secret:
+    external: true
 
 services:
   app:
@@ -29,6 +31,7 @@ services:
     secrets:
       - secret_key_base
       - mysql_password
+      - web_oauth2_secret
 
   mysql:
     image: mysql:5.7.20
