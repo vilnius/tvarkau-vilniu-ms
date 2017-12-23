@@ -2,11 +2,12 @@ FORMAT: 1A
 HOST: https://api.tvarkaumiesta.lt/
 
 # Tvarkau Miestą
+
 API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
 
-# Authorization
+# Group Authorization
 
-## Token [/oauth/token]
+## Access Token [/oauth/token]
 
 + Model (application/json)
 
@@ -18,53 +19,63 @@ API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
             "created_at": 1513989843
         }
 
-### Assertion grant [POST]
-
-Get a new token using assertion grant.
-Use for Facebook/Google/VIISP login.
+### Create an access token [POST]
 
 + Attributes
     + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
-    + grant_type: assertion (string, required) - OAuth2 grant type.
+    + grant_type: password (string, required) - OAuth2 grant type. One of: *password*, *assertion*.
     + scope: user (string, optional) - Access scope.
-    + provider: google (string, required) - Assertion provider. One of: *google*, *facebook*, *viisp*.
-    + assertion: token123 (string, required) - Google/Facebook/VIISP token.
+    + username: gediminas@vilnius.lt (string, optional) - User's email address. **Required for password grant type**.
+    + password: secret (string, optional) - User's password. **Required for password grant type**.
+    + provider: google (string, optional) - Assertion provider. One of: *google*, *facebook*, *viisp*. **Required for assertion grant type**.
+    + assertion: token123 (string, optional) - Google/Facebook/VIISP token. **Required for assertion grant type**.
+
++ Request Create a token using email/password.
+  + Body
+
+            {
+                "client_id": "android",
+                "grant_type": "password",
+                "scope": "user",
+                "username": "gediminas@vilnius.lt",
+                "password": "secret"
+            }
 
 + Response 200
 
-  [Token][]
+  [Access Token][]
 
-### Password grant [POST]
++ Request Create a guest user token.
+  + Body
 
-Get a new token using password grant.
-
-+ Attributes
-    + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
-    + grant_type: password (string, required) - OAuth2 grant type.
-    + scope: user (string, optional) - Access scope.
-    + username: gediminas@vilnius.lt (string, required) - User's email address.
-    + password: secret (string, required) - User's password.
-
-+ Response 200
-
-  [Token][]
-
-### Guest login [POST]
-
-Get a new guest user token.
-
-+ Attributes
-    + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
-    + grant_type: password (string, required) - OAuth2 grant type.
-    + scope: user (string, optional) - Access scope.
-    + username: guest (string, required) - Username must be *guest*.
-    + password: guest (string, optional)
+            {
+                "client_id": "android",
+                "grant_type": "password",
+                "scope": "user",
+                "username": "guest",
+                "password": "guest"
+            }
 
 + Response 200
 
-  [Token][]
+  [Access Token][]
 
-# Reports
++ Request Create a token using Facebook/Google/VIISP token.
+  + Body
+
+            {
+                "client_id": "android",
+                "grant_type": "assertion",
+                "scope": "user",
+                "provider": "google",
+                "assertion": "token123"
+            }
+
++ Response 200
+
+  [Access Token][]
+
+# Group Reports
 
 ## Report [/api/reports/{report_id}]
 
@@ -94,15 +105,15 @@ Get a new guest user token.
 
   [Report][]
 
-## Reports Collection [/api/reports?{?type,status,limit,offset}]
+## Reports Collection [/api/reports{?type,status,limit,offset}]
 
 ### List Reports [GET]
 
 + Parameters
-    + type (optional, number, `1`) ... Report type id
-    + status (optional, number, `1`) ... Report status id
-    + limit (optional, number, `20`) ... Returned entries limit
-    + offset (optional, number, `0`) ... List offset
+    + type: 1 (number, optional) - Report type id
+    + status: 1 (number, optional) - Report status id
+    + limit: 20 (number, optional) - Returned entries limit
+    + offset: 0 (number, optional) - List offset
 
 + Response 200 (application/json)
 
@@ -128,4 +139,3 @@ Get a new guest user token.
 + Response 201
 
   [Report][]
-
