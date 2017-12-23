@@ -18,16 +18,31 @@ API for Tvarkau Miestą apps. Manages problems reported by Lithuanian citizens.
             "created_at": 1513989843
         }
 
-### Get a new token [POST]
+### Assertion grant [POST]
+
+Get a new token using assertion grant.
 
 + Attributes
     + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
-    + grant_type: assertion (string, required) - OAuth2 grant type. One of: *assertion*, *password*.
+    + grant_type: assertion (string, required) - OAuth2 grant type.
     + scope: user (string, optional) - Access scope.
-    + provider: google (string, optional) - Assertion provider. One of: *google*, *facebook*, *viisp*. **Required for assertion grant type.**
-    + assertion: token123 (string, optional) - Google/Facebook/VIISP token. **Required for assertion grant type.**
-    + username: gediminas@vilnius.lt (string, optional) - User's email address. **Required for password grand type.**
-    + password: secret (string, optional) - User's password. **Required for password grand type.**
+    + provider: google (string, required) - Assertion provider. One of: *google*, *facebook*, *viisp*.
+    + assertion: token123 (string, required) - Google/Facebook/VIISP token.
+
++ Response 200
+
+  [Token][]
+
+### Password grant [POST]
+
+Get a new token using password grant.
+
++ Attributes
+    + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
+    + grant_type: password (string, required) - OAuth2 grant type.
+    + scope: user (string, optional) - Access scope.
+    + username: gediminas@vilnius.lt (string, required) - User's email address.
+    + password: secret (string, required) - User's password.
 
 + Response 200
 
