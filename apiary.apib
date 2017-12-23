@@ -38,15 +38,31 @@ puts token.token
 
 ### Create an access token [POST]
 
+#### Guest login
+
+Grant type: `password`
+
+Pass `guest` value as username/password.
+
+#### Login with email and password
+
+Grant type: `password`
+
+Email should be passed via `username` attribute.
+
 #### Google / Facebook login
 
-Required permissions: `email`
+Grant type: `assertion`
+
+Required Google/Facebook permissions: `email`
 
 Acquire access token using
 [Google](https://developers.google.com/identity/sign-in/)/[Facebook](https://developers.facebook.com/docs/facebook-login/)
 SDK for your platform and pass it to the token endpoint via `assertion` param.
 
-#### VIISP - Elektroniniai valdžios vartai
+#### VIISP login - Elektroniniai valdžios vartai
+
+Grant type: `assertion`
 
 Acquire [VIISP access token](#reference/authorization/viisp-access-token)
 and pass it to the token endpoint via `assertion` param.
