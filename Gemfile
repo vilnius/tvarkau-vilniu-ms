@@ -36,6 +36,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'listen'
   gem 'oauth2'
+  gem 'dotenv-rails', '~> 2.2'
 end
 
 group :development do
