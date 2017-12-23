@@ -21,6 +21,7 @@ class Auth::Viisp::FetchUser
       u.name = name
       u.phone = identity['user_information']['phoneNumber']
       u.address = identity['user_information']['address']
+      u.unconfirmed_email = identity['user_information']['email']
       u.password = Devise.friendly_token
       u.password_confirmation = u.password
       u.skip_confirmation!
