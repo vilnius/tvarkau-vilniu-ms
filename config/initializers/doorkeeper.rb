@@ -1,11 +1,11 @@
 require 'doorkeeper/grants_assertion'
 
 Doorkeeper.configure do
-  realm 'Tvarkau Vilniu API'
+  realm 'Tvarkau Miesta API'
 
   orm :active_record
 
-  grant_flows %w[password assertion]
+  grant_flows %w[authorization_code password assertion]
 
   default_scopes :user
   # optional_scopes :write, :update
@@ -18,13 +18,11 @@ Doorkeeper.configure do
     Auth::ResourceOwnerFromAssertion.run(request)
   end
 
-  # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
-    # Put your resource owner authentication logic here.
-    # Example implementation:
-    #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
+    warden.authenticate!
   end
+
+  skip_authorization { true }
 
   admin_authenticator ->(_) { raise(Doorkeeper::Errors::DoorkeeperError, 'Access denied') }
 

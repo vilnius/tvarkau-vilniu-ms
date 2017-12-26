@@ -168,6 +168,8 @@ Devise.setup do |config|
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
+  #
+  config.timeout_in = 1.minute
 
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
@@ -250,7 +252,8 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], Secret['FACEBOOK_APP_SECRET'], scope: 'email'
+  config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], Secret['GOOGLE_APP_SECRET'], scope: 'email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

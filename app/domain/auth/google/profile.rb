@@ -6,7 +6,7 @@ module Auth::Google::Profile
   end
 
   def verify(id_token)
-    Auth::Google::VerifyToken.run(id_token, APP_CONFIG['google_client_id'])
+    Auth::Google::VerifyToken.run(id_token, ENV['GOOGLE_APP_ID'])
   end
 
   def build(payload)
