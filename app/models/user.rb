@@ -17,21 +17,4 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && !blacklisted?
   end
-
-  def self.from_omniauth(auth)
-    case auth.provider
-    when 'google_oauth2'
-      where(email: auth.info.email).first_or_create do |user|
-        user.name = auth.info.name
-        user.password = Devise.friendly_token[0,20]
-        user.skip_confirmation!
-      end
-    when 'facebook'
-      where(email: auth.info.email).first_or_create do |user|
-        user.name = auth.info.name
-        user.password = Devise.friendly_token[0,20]
-        user.skip_confirmation!
-      end
-    end
-  end
 end
