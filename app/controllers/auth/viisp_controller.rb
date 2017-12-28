@@ -37,7 +37,7 @@ class Auth::ViispController < ActionController::Base
   end
 
   def check_redirect_uri
-    return if redirect_uri.empty?
+    return if redirect_uri.blank?
     return if redirect_uri.in?(ALLOWED_REDIRECT_URIS)
 
     error = "VIISP redirect uri #{redirect_uri} is not allowed"
