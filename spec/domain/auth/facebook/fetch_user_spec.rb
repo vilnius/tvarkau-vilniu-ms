@@ -30,6 +30,9 @@ RSpec.describe Auth::Facebook::FetchUser, '.run' do
     it 'creates user' do
       expect(subject).to be_instance_of(User)
       expect(subject).to be_persisted
+      expect(subject.facebook_id).to eq(graph_response[:id])
+      expect(subject.email).to eq(graph_response[:email])
+      expect(subject.name).to eq('Gediminas Gediminaitis')
     end
   end
 
