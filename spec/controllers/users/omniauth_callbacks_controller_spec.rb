@@ -25,4 +25,9 @@ RSpec.describe Users::OmniauthCallbacksController do
     subject { post :google_oauth2 }
     it_behaves_like 'successful login'
   end
+
+  describe '#viisp' do
+    subject { post :viisp }
+    it_behaves_like 'successful login'
+  end
 end

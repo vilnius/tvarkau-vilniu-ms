@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable,
-         :omniauthable, omniauth_providers: %i[facebook google_oauth2]
+         :omniauthable, omniauth_providers: %i[facebook google_oauth2 viisp]
 
   has_many :reports
 

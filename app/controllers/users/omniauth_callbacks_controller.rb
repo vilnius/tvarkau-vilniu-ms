@@ -7,6 +7,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     sign_in_with_omniauth
   end
 
+  def viisp
+    sign_in_with_omniauth
+  end
+
   private
 
   def sign_in_with_omniauth

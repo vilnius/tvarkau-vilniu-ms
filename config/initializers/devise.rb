@@ -1,3 +1,5 @@
+require 'omniauth/strategies/viisp'
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -254,6 +256,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], Secret['FACEBOOK_APP_SECRET'], scope: 'email'
   config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], Secret['GOOGLE_APP_SECRET'], scope: 'email'
+  config.omniauth :viisp
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
