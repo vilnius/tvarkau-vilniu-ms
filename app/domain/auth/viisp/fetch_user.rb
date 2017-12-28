@@ -33,6 +33,11 @@ class Auth::Viisp::FetchUser
     identity['attributes']['lt-personal-code']
   end
 
+  def email
+    return unless identity['user_information']['email'].present?
+    identity['user_information']['email'].downcase
+  end
+
   def name
     [identity['user_information']['firstName'], identity['user_information']['lastName']].join(' ')
   end
