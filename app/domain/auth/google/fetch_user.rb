@@ -1,7 +1,7 @@
 class Auth::Google::FetchUser
   include Interactor::Initializer
 
-  initialize_with :token
+  initialize_with :profile
 
   def run
     return unless profile
@@ -10,10 +10,6 @@ class Auth::Google::FetchUser
   end
 
   private
-
-  def profile
-    @profile ||= Auth::Google::Profile.from_token(token)
-  end
 
   def existing_user
     User.find_by('google_id=? OR email=?', profile.id, email)
@@ -32,6 +28,10 @@ class Auth::Google::FetchUser
   end
 
   def name
+    profile.name.presence || build_name
+  end
+
+  def build_name
     [profile.given_name, profile.family_name].reject(&:blank?).join(' ')
   end
 

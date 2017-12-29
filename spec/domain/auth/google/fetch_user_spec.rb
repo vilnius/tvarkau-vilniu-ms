@@ -1,12 +1,7 @@
 RSpec.describe Auth::Google::FetchUser, '.run' do
-  subject { described_class.run(token) }
+  subject { described_class.run(google_profile) }
 
-  let(:token) { double(:google_token) }
   let(:google_profile) { build(:google_profile) }
-
-  before do
-    expect(Auth::Google::Profile).to receive(:from_token).with(token).and_return(google_profile)
-  end
 
   context 'when token invalid' do
     let(:google_profile) { nil }

@@ -1,7 +1,7 @@
 class Auth::Viisp::FetchUser
   include Interactor::Initializer
 
-  initialize_with :token
+  initialize_with :identity
 
   def run
     return unless identity
@@ -40,12 +40,5 @@ class Auth::Viisp::FetchUser
 
   def name
     [identity['user_information']['firstName'], identity['user_information']['lastName']].join(' ')
-  end
-
-  def identity
-    @identity ||= VIISP::Auth.identity(ticket: token)
-  rescue VIISP::Auth::RequestError => e
-    Rails.logger.error("VIISP request error #{e.message}")
-    nil
   end
 end

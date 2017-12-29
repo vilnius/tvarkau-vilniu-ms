@@ -91,7 +91,8 @@ RSpec.describe 'OAuth2' do
       let(:provider) { 'google' }
 
       before do
-        expect(Auth::Google::FetchUser).to receive(:run).with(assertion).and_return(user)
+        expect(Auth::Google::FetchUserFromAssertion)
+          .to receive(:run).with(assertion).and_return(user)
       end
 
       context 'when user can be fetched' do
@@ -113,7 +114,8 @@ RSpec.describe 'OAuth2' do
       let(:provider) { 'facebook' }
 
       before do
-        expect(Auth::Facebook::FetchUser).to receive(:run).with(assertion).and_return(user)
+        expect(Auth::Facebook::FetchUserFromAssertion)
+          .to receive(:run).with(assertion).and_return(user)
       end
 
       context 'when user can be fetched' do
@@ -135,7 +137,8 @@ RSpec.describe 'OAuth2' do
       let(:provider) { 'viisp' }
 
       before do
-        expect(Auth::Viisp::FetchUser).to receive(:run).with(assertion).and_return(user)
+        expect(Auth::Viisp::FetchUserFromAssertion)
+          .to receive(:run).with(assertion).and_return(user)
       end
 
       context 'when user can be fetched' do

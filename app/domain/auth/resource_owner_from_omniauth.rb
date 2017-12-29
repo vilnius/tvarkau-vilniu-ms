@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
-class Auth::ResourceOwnerFromAssertion
+class Auth::ResourceOwnerFromOmniauth
   include Interactor::Initializer
 
-  initialize_with :request
+  initialize_with :auth
+
+  PROVIDER_MAP = {
+    'google_oauth2' => 'google',
+  }.freeze
 
   def run
     Auth::ValidateProvider.run(provider)
@@ -15,20 +19,16 @@ class Auth::ResourceOwnerFromAssertion
   private
 
   def fetch_user
-    adapter.run(assertion)
+    adapter.run(auth)
   end
 
   def adapter
-    "Auth::#{provider.capitalize}::FetchUserFromAssertion".constantize
+    "Auth::#{provider.capitalize}::FetchUserFromOmniauth".constantize
   rescue NameError
     raise(Doorkeeper::Errors::InvalidAuthorizationStrategy, "Unsupported provider #{provider}")
   end
 
-  def assertion
-    request.params[:assertion]
-  end
-
   def provider
-    request.params[:provider]
+    PROVIDER_MAP[auth.provider] || auth.provider
   end
 end
