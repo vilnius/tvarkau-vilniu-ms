@@ -3,7 +3,7 @@ class PhotoService
   require 'mimemagic'
 
   ACCEPTED_CONTENT_TYPES = %w(image/jpeg image/png).freeze
-  BUCKET = APP_CONFIG['storage_bucket']
+  BUCKET = ENV.fetch('STORAGE_BUCKET', 'photos').freeze
 
   def self.upload_photo(photo_uuid, uploaded_data)
     # TODO: Add tracking of validation errors

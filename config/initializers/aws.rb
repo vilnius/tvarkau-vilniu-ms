@@ -1,9 +1,9 @@
 Aws.config.update(
-  region: 'us-east-1',
-  endpoint: APP_CONFIG['storage_endpoint'],
+  region: ENV.fetch('STORAGE_REGION', 'us-east-1'),
+  endpoint: ENV['STORAGE_ENDPOINT'],
   force_path_style: true,
   credentials: Aws::Credentials.new(
-    APP_CONFIG['storage_access_key'],
-    APP_CONFIG['storage_secret_key']
+    ENV['STORAGE_ACCESS_KEY'],
+    Secret['STORAGE_SECRET_KEY']
   )
 )
