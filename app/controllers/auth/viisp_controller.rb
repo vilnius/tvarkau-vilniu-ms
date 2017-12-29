@@ -1,6 +1,4 @@
-class Auth::ViispController < ActionController::Base
-  include ActionView::Rendering
-
+class Auth::ViispController < ApplicationController
   ALLOWED_REDIRECT_URIS = ENV['VIISP_REDIRECT_URIS'].to_s.split(',').freeze
 
   before_action :check_redirect_uri
@@ -12,8 +10,6 @@ class Auth::ViispController < ActionController::Base
     )
 
     @ticket = VIISP::Auth.ticket(postback_url: postback_url)
-
-    render
   end
 
   def create

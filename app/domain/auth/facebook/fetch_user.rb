@@ -1,9 +1,7 @@
 class Auth::Facebook::FetchUser
   include Interactor::Initializer
 
-  USER_FIELDS = %w[email first_name last_name]
-
-  initialize_with :token
+  initialize_with :profile
 
   def run
     return unless profile
@@ -30,22 +28,15 @@ class Auth::Facebook::FetchUser
   end
 
   def name
+    profile.name.presence || build_name
+  end
+
+  def build_name
     [profile.first_name, profile.last_name].reject(&:blank?).join(' ')
   end
 
   def email
     raise('Facebook email is missing') unless profile.email.present?
     profile.email.downcase
-  end
-
-  def profile
-    @profile ||= OpenStruct.new(
-      graph.get_object('me', fields: USER_FIELDS)
-    )
-  rescue Koala::Facebook::AuthenticationError => e
-  end
-
-  def graph
-    @graph ||= Koala::Facebook::API.new(token)
   end
 end
