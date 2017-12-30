@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Api::UsersController do
+RSpec.describe UsersController do
   describe '#show' do
     subject { api_get :show }
 

@@ -1,4 +1,4 @@
-RSpec.describe Api::PhotosController do
+RSpec.describe PhotosController do
   describe '#for' do
     subject { api_post :create, params: params }
     let(:params) do

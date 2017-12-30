@@ -1,5 +1,5 @@
-RSpec.describe Api::BaseController do
-  controller(Api::BaseController) do
+RSpec.describe ApiController do
+  controller(described_class) do
     def index
       {}
     end

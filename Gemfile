@@ -8,7 +8,7 @@ gem 'aws-sdk', '~> 2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'interactor-initializer', '~> 0.2'
 gem 'doorkeeper', '~> 4.2.6'
-gem 'devise', '~> 4.3.0'
+gem 'devise', '~> 4.4.0'
 gem 'omniauth-google-oauth2', '~> 0.5'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'jwt'

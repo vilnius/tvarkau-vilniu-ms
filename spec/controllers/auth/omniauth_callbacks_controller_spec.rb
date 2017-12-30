@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Users::OmniauthCallbacksController do
+RSpec.describe Auth::OmniauthCallbacksController do
   include Devise::Test::ControllerHelpers
 
   before do

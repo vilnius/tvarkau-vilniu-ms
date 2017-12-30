@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::UsersController < Api::BaseController
+class UsersController < ApiController
   def show
     render json: current_user
   end
