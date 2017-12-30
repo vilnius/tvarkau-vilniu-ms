@@ -1,4 +1,4 @@
-class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def google_oauth2
     sign_in_with_omniauth
   end

@@ -1,4 +1,4 @@
-class Api::BaseController < ApplicationController
+class ApiController < ApplicationController
   before_action -> { doorkeeper_authorize!(:user) }
   around_action :api
 

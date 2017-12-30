@@ -1,4 +1,4 @@
-RSpec.describe Api::ReportsController do
+RSpec.describe ReportsController do
   describe '#show' do
     subject { api_get :show, params: params }
 

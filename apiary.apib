@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://ws.tvarkaumiesta.lt/
+HOST: https://tvarkaumiesta.lt/api/
 
 # Tvarkau Miestą
 
@@ -140,7 +140,7 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 
 # Group Users
 
-## Current User [/api/me]
+## Current User [/me]
 
 ### Get current user profile [GET]
 
@@ -154,7 +154,7 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 
 # Group Reports
 
-## Report [/api/reports/{report_id}]
+## Report [/reports/{report_id}]
 
 + Parameters
     + report_id: 1 (number, required) - The id of the Report
@@ -182,7 +182,7 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 
   [Report][]
 
-## Reports Collection [/api/reports{?type,status,limit,offset}]
+## Reports Collection [/reports{?type,status,limit,offset}]
 
 ### List Reports [GET]
 

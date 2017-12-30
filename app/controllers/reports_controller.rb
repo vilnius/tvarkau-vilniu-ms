@@ -1,4 +1,4 @@
-class Api::ReportsController < Api::BaseController
+class ReportsController < ApiController
   def index
     reports = ::Reports::Filter.for(filter_params)
 
