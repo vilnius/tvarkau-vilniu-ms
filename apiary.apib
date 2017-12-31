@@ -18,7 +18,7 @@ Ruby example:
 ```ruby
 require 'oauth2'
 
-client = OAuth2::Client.new('web', nil, site: 'https://ws.tvarkaumiesta.lt/auth')
+client = OAuth2::Client.new('android', nil, site: 'https://tvarkaumiesta.lt/api/oauth')
 token = client.password.get_token('guest', 'guest')
 
 puts token.token
@@ -44,6 +44,13 @@ Grant type: `password`
 
 Pass `guest` value as username/password.
 
+#### Web authorization
+
+Grant type: `authorization_code`
+
+First get authorization using `authorize` endpoint and pass it via `code` attribute. Also pass
+`redirect_uri` which should be the same as passed to the `authorize` endpoint.
+
 #### Login with email and password
 
 Grant type: `password`
@@ -68,27 +75,16 @@ Acquire [VIISP access token](#reference/authorization/viisp-access-token)
 and pass it to the token endpoint via `assertion` attribute.
 
 + Attributes
-    + client_id: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
-    + grant_type: password (string, required) - OAuth2 grant type. One of: *password*, *assertion*.
+    + `client_id`: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
+    + `client_secret`: secret123 (string, optional) - Client secret. **Required for authorization_code grant type**.
+    + `grant_type`: password (string, required) - OAuth2 grant type. One of: *password*, *assertion*, *authorization_code*.
     + scope: user (string, optional) - Access scope.
     + username: gediminas@vilnius.lt (string, optional) - User's email address. **Required for password grant type**.
     + password: secret (string, optional) - User's password. **Required for password grant type**.
     + provider: google (string, optional) - Assertion provider. One of: *google*, *facebook*, *viisp*. **Required for assertion grant type**.
     + assertion: token123 (string, optional) - Google/Facebook/VIISP token. **Required for assertion grant type**.
-
-+ Request Create a token using email/password.
-
-            {
-                "client_id": "android",
-                "grant_type": "password",
-                "scope": "user",
-                "username": "gediminas@vilnius.lt",
-                "password": "secret"
-            }
-
-+ Response 200
-
-  [Access Token][]
+    + code: code123 (string, optional) - Authorization code. **Required for authorization_code grant type**.
+    + `redirect_uri`: https://tvarkaumiesta.lt/auth/callback (string, optional) - Redirect uri, must be the same as in authorize request. **Required for authorization_code grant type**.
 
 + Request Create a guest user token.
 
@@ -98,6 +94,35 @@ and pass it to the token endpoint via `assertion` attribute.
                 "scope": "user",
                 "username": "guest",
                 "password": "guest"
+            }
+
++ Response 200
+
+  [Access Token][]
+
++ Request Create a token using authorization code.
+
+            {
+                "client_id": "web",
+                "client_secret": "secret123",
+                "grant_type": "authorization_code",
+                "scope": "user",
+                "code": "authorizationcode123",
+                "redirect_uri": "https://tvarkaumiesta.lt/auth/callback"
+            }
+
++ Response 200
+
+  [Access Token][]
+
++ Request Create a token using email/password.
+
+            {
+                "client_id": "android",
+                "grant_type": "password",
+                "scope": "user",
+                "username": "gediminas@vilnius.lt",
+                "password": "secret"
             }
 
 + Response 200
@@ -117,6 +142,21 @@ and pass it to the token endpoint via `assertion` attribute.
 + Response 200
 
   [Access Token][]
+
+## Authorization Code [/oauth/authorize{?client_id,response_type,redirect_uri}]
+
+### Get an authorization code [GET]
+
+Client will be redirected to the authorization web page. After picking authorization method and
+successfully authorizing she will be redirected back to the `redirect_url` with authorization
+`code`. Authorization code should be exchanged to the access token using `token` endpoint.
+
++ Parameters
+    + client_id: web (string, required) - Client app identifier.
+    + response_type: code (string, required) - Response type.
+    + redirect_uri: https://tvarkaumiesta.lt/auth/callback (string, required) - Redirect uri.
+
++ Response 302
 
 ## VIISP Access Token [/auth/viisp/new{?redirect_uri}]
 
