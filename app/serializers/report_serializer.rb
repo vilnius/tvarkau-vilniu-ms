@@ -11,4 +11,6 @@ class ReportSerializer < ActiveModel::Serializer
              :license_plate_no,
              :registered_at,
              :completed_at
+
+  has_many :report_photos
 end

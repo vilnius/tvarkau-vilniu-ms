@@ -3,6 +3,8 @@ class Report < ApplicationRecord
   belongs_to :report_type
   belongs_to :status
 
+  has_many :report_photos
+
   validates :description,
             :address,
             :report_type,

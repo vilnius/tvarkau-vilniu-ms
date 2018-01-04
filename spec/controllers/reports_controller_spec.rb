@@ -2,7 +2,7 @@ RSpec.describe ReportsController do
   describe '#show' do
     subject { api_get :show, params: params }
 
-    let(:report) { create(:report) }
+    let(:report) { create(:report, :with_photos) }
     let(:params) { { id: report.id } }
 
     it 'returns report' do
@@ -10,6 +10,9 @@ RSpec.describe ReportsController do
 
       expect(response_json).to include(
         'description' => instance_of(String),
+        'report_photos' => array_including(
+          hash_including('photo_url' => anything)
+        ),
       )
     end
   end

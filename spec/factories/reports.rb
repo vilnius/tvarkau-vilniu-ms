@@ -21,5 +21,9 @@ FactoryBot.define do
     trait :solved do
       status { create(:status, :solved) }
     end
+
+    trait :with_photos do
+      report_photos { [build(:report_photo)] }
+    end
   end
 end

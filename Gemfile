@@ -4,7 +4,6 @@ gem 'rails', '5.1.4'
 gem 'mysql2'
 gem 'active_model_serializers', '~> 0.10'
 gem 'puma', '~> 3.11'
-gem 'aws-sdk', '~> 2'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'interactor-initializer', '~> 0.2'
 gem 'doorkeeper', '~> 4.2.6'
@@ -15,6 +14,8 @@ gem 'jwt'
 gem 'koala', '~> 3.0'
 gem 'faraday'
 gem 'viisp-auth', '~> 0.1'
+gem 'carrierwave', '~> 1.2'
+gem 'fog-aws', '~> 2.0'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc

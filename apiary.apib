@@ -213,7 +213,14 @@ Android/iOS apps can use custom url scheme to handle return to the application w
             "answer": null,
             "license_plate_no": "ABC123",
             "registered_at": "2017-02-24T22:17:25.000Z",
-            "completed_at": null
+            "completed_at": null,
+            "report_photos": [
+                {
+                    "id": 1,
+                    "uuid": "some-uuid",
+                    "photo_url": "https://url/photo.jpg"
+                }
+            ]
         }
 
 ### Retrieve a Report [GET]
@@ -256,3 +263,21 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 + Response 201
 
   [Report][]
+
+# Group Report Photos
+
+## Report Photos Collection [/report_photos]
+
+### Create a New Report Photo [POST]
+
++ Attributes
+    + report_photo (object)
+        + file: filedata (string) - Uploaded file (multipart)
+
++ Response 201
+
+        {
+            "id": 1,
+            "uuid": "some-uuid",
+            "photo_url": "https://url/photo.jpg"
+        }
