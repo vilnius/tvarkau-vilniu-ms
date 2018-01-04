@@ -16,6 +16,7 @@ gem 'faraday'
 gem 'viisp-auth', '~> 0.1'
 gem 'carrierwave', '~> 1.2'
 gem 'fog-aws', '~> 2.0'
+gem 'mini_magick', '~> 4.8'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc
