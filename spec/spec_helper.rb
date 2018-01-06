@@ -44,7 +44,7 @@ RSpec.configure do |config|
       aws_secret_access_key: '',
       provider: 'AWS'
     ).tap do |connection|
-      connection.directories.create(key: ENV.fetch('STORAGE_BUCKET', 'photos'))
+      connection.directories.create(key: ENV.fetch('STORAGE_BUCKET', 'uploads'))
     end
   end
 

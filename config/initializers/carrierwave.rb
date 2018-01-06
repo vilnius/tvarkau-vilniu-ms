@@ -5,9 +5,10 @@ CarrierWave.configure do |config|
     provider: 'AWS',
     aws_access_key_id: ENV['STORAGE_ACCESS_KEY'].to_s,
     aws_secret_access_key: Secret['STORAGE_SECRET_KEY'].to_s,
-    region: ENV.fetch('STORAGE_REGION', 'us-east-1'),
+    host: ENV['STORAGE_HOST'],
     endpoint: ENV['STORAGE_ENDPOINT'],
+    path_style: true,
   }
 
-  config.fog_directory = ENV.fetch('STORAGE_BUCKET', 'photos')
+  config.fog_directory = ENV.fetch('STORAGE_BUCKET', 'uploads')
 end
