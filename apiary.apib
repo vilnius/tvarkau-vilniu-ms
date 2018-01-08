@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://tvarkaumiesta.lt/api/
+HOST: https://api.tvarkaumiesta.lt/
 
 # Tvarkau Miestą
 
@@ -18,7 +18,7 @@ Ruby example:
 ```ruby
 require 'oauth2'
 
-client = OAuth2::Client.new('android', nil, site: 'https://tvarkaumiesta.lt/api/oauth')
+client = OAuth2::Client.new('android', nil, site: 'https://api.tvarkaumiesta.lt/oauth')
 token = client.password.get_token('guest', 'guest')
 
 puts token.token
