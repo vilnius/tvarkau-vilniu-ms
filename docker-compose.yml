@@ -1,18 +1,24 @@
-version: '3'
+version: '3.4'
 
 services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - 3000:3000
     links:
       - mysql
+      - minio
     environment:
       RAILS_ENV: development
       BUNDLE_PATH: /box/.bundle
+      STORAGE_HOST: minio
+      STORAGE_ENDPOINT: http://minio:9000
+      STORAGE_ACCESS_KEY: testkey
+      STORAGE_SECRET_KEY: testsecret
     volumes:
       - .:/opt/tvarkau-vilniu
       - box:/box
+
   mysql:
     image: mysql:5.7.20
     environment:
@@ -20,8 +26,22 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
+  minio:
+    image: minio/minio
+    ports:
+      - 9000:9000
+    command: server /data
+    volumes:
+      - minio-data:/data
+    environment:
+      STORAGE_ENDPOINT: minio
+      MINIO_ACCESS_KEY: testkey
+      MINIO_SECRET_KEY: testsecret
+
 volumes:
   mysql-data:
+    driver: local
+  minio-data:
     driver: local
   box:
     driver: local

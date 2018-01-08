@@ -37,6 +37,15 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner[:active_record, { model: TvarkauVilniuDbBase }].strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+
+    Fog.mock!
+    Fog::Storage.new(
+      aws_access_key_id: '',
+      aws_secret_access_key: '',
+      provider: 'AWS'
+    ).tap do |connection|
+      connection.directories.create(key: ENV.fetch('STORAGE_BUCKET', 'uploads'))
+    end
   end
 
   config.before(:each) do

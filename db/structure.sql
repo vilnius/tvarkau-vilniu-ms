@@ -349,7 +349,22 @@ CREATE TABLE `oauth_applications` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_applications_on_uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `report_photos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `report_photos` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) NOT NULL,
+  `report_id` int(11) DEFAULT NULL,
+  `photo` json DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_report_photos_on_uuid` (`uuid`),
+  KEY `index_report_photos_on_report_id` (`report_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `report_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -497,6 +512,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20171214193807'),
 ('20171216124253'),
 ('20171216141002'),
-('20171219193843');
+('20171219193843'),
+('20180104191653');
 
 
