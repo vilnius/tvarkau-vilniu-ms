@@ -4,6 +4,8 @@ class Reports::Create
   initialize_with :user, :params
 
   def run
+    report = build_report
+
     return report unless report.valid?
 
     report.save
@@ -12,7 +14,9 @@ class Reports::Create
 
   private
 
-  def report
-    @report ||= user.reports.new(params)
+  def build_report
+    user.reports.new(params) do |o|
+      o.city_id = o.report_type&.city_id
+    end
   end
 end
