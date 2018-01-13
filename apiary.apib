@@ -178,6 +178,27 @@ Android/iOS apps can use custom url scheme to handle return to the application w
             </body>
         </html>
 
+# Group Cities
+
+## Cities Collection [/cities]
+
+### List Cities [GET]
+
++ Response 200 (application/json)
+
+        {
+            "cities": [
+                {
+                    "id": 1,
+                    ...
+                },
+                {
+                    "id": 2,
+                    ...
+                },
+            ]
+        }
+
 # Group Users
 
 ## Current User [/me]
@@ -186,11 +207,13 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 
 + Response 200 (application/json)
 
-          {
-            "id": 1,
-            "email": "user1@vilnius.lt",
-            "created_at": "2017-12-23T13:35:46.000Z"
-          }
+        {
+            "user": {
+                "id": 1,
+                "email": "user1@vilnius.lt",
+                "created_at": "2017-12-23T13:35:46.000Z"
+            }
+        }
 
 # Group Reports
 
@@ -202,26 +225,28 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 + Model (application/json)
 
         {
-            "id": 1,
-            "ref_no": null,
-            "report_type_id": 1,
-            "lat": "9.99",
-            "lng": "9.99",
-            "user_id": 2,
-            "status_id": 1,
-            "description": "Description",
-            "answer": null,
-            "license_plate_no": "ABC123",
-            "registered_at": "2017-02-24T22:17:25.000Z",
-            "completed_at": null,
-            "report_photos": [
-                {
-                    "id": 1,
-                    "uuid": "some-uuid",
-                    "photo_url": "https://url/photo.jpg",
-                    "photo_thumb_url": "https://url/photo_thumb.jpg"
-                }
-            ]
+            "report": {
+                "id": 1,
+                "ref_no": null,
+                "report_type_id": 1,
+                "lat": "9.99",
+                "lng": "9.99",
+                "user_id": 2,
+                "status_id": 1,
+                "description": "Description",
+                "answer": null,
+                "license_plate_no": "ABC123",
+                "registered_at": "2017-02-24T22:17:25.000Z",
+                "completed_at": null,
+                "report_photos": [
+                    {
+                        "id": 1,
+                        "uuid": "some-uuid",
+                        "photo_url": "https://url/photo.jpg",
+                        "photo_thumb_url": "https://url/photo_thumb.jpg"
+                    }
+                ]
+            }
         }
 
 ### Retrieve a Report [GET]
@@ -243,7 +268,7 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 + Response 200 (application/json)
 
         {
-            "entries": [
+            "reports": [
                 {
                     "id": 1,
                     ...
@@ -278,8 +303,10 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 + Response 201
 
         {
-            "id": 1,
-            "uuid": "some-uuid",
-            "photo_url": "https://url/photo.jpg",
-            "photo_thumb_url": "https://url/photo_thumb.jpg"
+            "report_photo": {
+                "id": 1,
+                "uuid": "some-uuid",
+                "photo_url": "https://url/photo.jpg",
+                "photo_thumb_url": "https://url/photo_thumb.jpg"
+            }
         }

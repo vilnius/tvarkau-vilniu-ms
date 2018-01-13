@@ -2,17 +2,17 @@ class ReportsController < ApiController
   def index
     reports = ::Reports::Filter.for(filter_params)
 
-    { entries: reports }
+    render json: reports
   end
 
   def show
-    Report.find(params[:id])
+    render json: Report.find(params[:id])
   end
 
   def create
     report = ::Reports::Create.run(current_user, report_params)
     return render_record_validation_error(report) if report.errors.any?
-    report
+    render json: report
   end
 
   private

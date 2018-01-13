@@ -13,7 +13,7 @@ RSpec.describe ReportPhotosController do
 
     it 'returns uuid' do
       expect(subject).to be_success
-      expect(response_json['uuid']).to be_present
+      expect(response_json['report_photo']['uuid']).to be_present
     end
 
     context 'when upload failed' do

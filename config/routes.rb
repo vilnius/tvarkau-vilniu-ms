@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   defaults format: :json do
     resource :me, controller: :users, only: :show
+    resources :cities, only: [:index]
     resources :reports
     resources :report_types, only: [:index]
     resources :tokens, only: [:create]
