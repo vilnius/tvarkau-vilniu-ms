@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '5.1.4'
+gem 'rails-i18n', '~> 5.0.0'
 gem 'mysql2'
 gem 'active_model_serializers', '~> 0.10'
 gem 'puma', '~> 3.11'

@@ -1,12 +1,8 @@
 FactoryBot.define do
   factory :report_type do
-    transient do
-      main_cfg { MainCfg.find_by(id: 1) || create(:main_cfg) }
-    end
-
+    city
     title 'Aplinkos tvarkymas'
     short_label 'Aplinkos tvarkymas'
-    city_id { main_cfg.id }
 
     factory :parking_violation_report_type do
       requires_photos 2

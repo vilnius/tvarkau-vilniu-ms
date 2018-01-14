@@ -8,7 +8,7 @@ RSpec.describe ReportsController do
     it 'returns report' do
       expect(subject).to be_success
 
-      expect(response_json).to include(
+      expect(response_json['report']).to include(
         'description' => instance_of(String),
         'report_photos' => array_including(
           hash_including('photo_url' => anything)
@@ -21,15 +21,11 @@ RSpec.describe ReportsController do
     subject { api_get :index, params: params }
 
     let(:params) { {} }
-
-    before do
-      create(:report)
-      create(:report)
-    end
+    let!(:report) { create(:report) }
 
     it 'returns reports' do
       expect(subject).to have_http_status(:ok)
-      expect(response_json).to include('entries')
+      expect(response_json['reports'].first).to include('id' => report.id)
     end
   end
 
@@ -59,7 +55,7 @@ RSpec.describe ReportsController do
 
     it 'returns reports' do
       expect(subject).to be_success
-      expect(response_json).to include(
+      expect(response_json['report']).to include(
         'description' => instance_of(String),
       )
     end

@@ -7,7 +7,7 @@ RSpec.describe UsersController do
     it 'returns current user' do
       expect(subject).to be_success
 
-      expect(response_json).to include(
+      expect(response_json['user']).to include(
         'id' => user.id,
         'email' => user.email,
         'created_at' => user.created_at,

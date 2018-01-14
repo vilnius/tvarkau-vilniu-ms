@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :reports
 
+  belongs_to :city, optional: true
+
   def email_required?
     !guest? && !personal_code?
   end

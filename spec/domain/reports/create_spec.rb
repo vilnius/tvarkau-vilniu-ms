@@ -22,7 +22,6 @@ RSpec.describe Reports::Create, '.run' do
 
   it 'creates report' do
     expect(subject).to be_persisted
-    expect(subject).to be_persisted
     expect(subject.user).to eq(user)
     expect(subject.report_type).to eq(report_type)
     expect(subject.status).to eq(status)

@@ -1,4 +1,5 @@
 class Report < ApplicationRecord
+  belongs_to :city
   belongs_to :user
   belongs_to :report_type
   belongs_to :status
@@ -27,6 +28,4 @@ class Report < ApplicationRecord
 
   validates :license_plate_no, presence: true, if: -> { report_type&.requires_license_plate_no? }
   validates :registered_at, presence: true, if: -> { report_type&.requires_registered_at? }
-
-  # belongs_to :main_cfg, class_name: 'MainCfg', foreign_key: 'CITY_ID'
 end

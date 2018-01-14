@@ -31,6 +31,16 @@ unless Doorkeeper::Application.exists?(uid: 'web')
   )
 end
 
+unless City.exists?(code: 'vilnius')
+  City.create!(
+    name: 'Vilnius',
+    code: 'vilnius',
+    lat: '54.687157',
+    lng: '25.279652',
+    active: true,
+  )
+end
+
 unless Rails.env.production?
   unless User.exists?(email: 'gediminas@vilnius.lt')
     user = User.new(
