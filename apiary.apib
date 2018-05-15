@@ -32,11 +32,18 @@ puts token.token
             "access_token": "7689bb55c6097159a5bca1a90b9aca2e6369c0c69f49929290459643feafb2ac",
             "token_type": "bearer",
             "expires_in": 7199,
+            "refresh_token": "e7088e40a0d18143c0e09f805b501b08683ea81aa034eaa651123cacea329e75",
             "scope": "user",
             "created_at": 1513989843
         }
 
 ### Create an access token [POST]
+
+#### Token refresh
+
+If you already have an access token which has expired, you can use refresh token to get a new token.
+
+Grant type: `refresh_token`
 
 #### Guest login
 
@@ -77,7 +84,8 @@ and pass it to the token endpoint via `assertion` attribute.
 + Attributes
     + `client_id`: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
     + `client_secret`: secret123 (string, optional) - Client secret. **Required for authorization_code grant type**.
-    + `grant_type`: password (string, required) - OAuth2 grant type. One of: *password*, *assertion*, *authorization_code*.
+    + `grant_type`: password (string, required) - OAuth2 grant type. One of: *password*, *assertion*, *authorization_code*, *refresh_token*.
+    + `refresh_token`: token123 (string, optional) - Refresh token. **Required for refresh_token grant type**.
     + scope: user (string, optional) - Access scope.
     + username: gediminas@vilnius.lt (string, optional) - User's email address. **Required for password grant type**.
     + password: secret (string, optional) - User's password. **Required for password grant type**.
@@ -85,6 +93,17 @@ and pass it to the token endpoint via `assertion` attribute.
     + assertion: token123 (string, optional) - Google/Facebook/VIISP token. **Required for assertion grant type**.
     + code: code123 (string, optional) - Authorization code. **Required for authorization_code grant type**.
     + `redirect_uri`: https://tvarkaumiesta.lt/auth/callback (string, optional) - Redirect uri, must be the same as in authorize request. **Required for authorization_code grant type**.
+
++ Request Create a token using refresh token.
+
+            {
+                "grant_type": "refresh_token",
+                "refresh_token": "token123",
+            }
+
++ Response 200
+
+  [Access Token][]
 
 + Request Create a guest user token.
 
