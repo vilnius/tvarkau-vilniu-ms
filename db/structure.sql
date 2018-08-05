@@ -308,7 +308,7 @@ CREATE TABLE `cities` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_cities_on_code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `oauth_access_grants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -363,9 +363,10 @@ CREATE TABLE `oauth_applications` (
   `scopes` varchar(255) NOT NULL DEFAULT '',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
+  `confidential` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_applications_on_uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `report_photos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -496,7 +497,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_google_id` (`google_id`),
   KEY `index_users_on_guest` (`guest`),
   KEY `index_users_on_city_id` (`city_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -530,6 +531,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20171216141002'),
 ('20171219193843'),
 ('20180104191653'),
-('20180112204016');
+('20180112204016'),
+('20180805121935');
 
 
