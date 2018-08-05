@@ -309,6 +309,29 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 
   [Report][]
 
+# Group Report Types
+
+## Report Types Collection [/report_types]
+
+### List Report Types [GET]
+
+Get report types list for current user city.
+
++ Response 200 (application/json)
+
+        {
+            "report_types": [
+                {
+                    "id": 1,
+                    ...
+                },
+                {
+                    "id": 2,
+                    ...
+                },
+            ]
+        }
+
 # Group Report Photos
 
 ## Report Photos Collection [/report_photos]

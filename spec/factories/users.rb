@@ -4,5 +4,7 @@ FactoryBot.define do
     password 'test123'
     password_confirmation { password }
     confirmed_at { Time.zone.now }
+
+    association :city
   end
 end
