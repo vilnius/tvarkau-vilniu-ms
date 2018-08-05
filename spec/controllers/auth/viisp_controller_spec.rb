@@ -11,7 +11,7 @@ RSpec.describe Auth::ViispController do
 
     it 'creates ticket and renders redirect' do
       expect(VIISP::Auth).to receive(:ticket).and_return(ticket)
-      expect(subject).to be_success
+      expect(subject).to be_successful
       expect(response.body).to include(ticket)
     end
 
@@ -32,7 +32,7 @@ RSpec.describe Auth::ViispController do
       let(:redirect_uri) { nil }
 
       it 'to renders json' do
-        expect(subject).to be_success
+        expect(subject).to be_successful
         expect(JSON.parse(response.body)).to include('ticket' => ticket)
       end
     end
