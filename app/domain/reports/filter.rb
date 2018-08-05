@@ -14,7 +14,7 @@ class Reports::Filter
 
   def run
     scope = Report.offset(offset).limit(limit)
-    scope = scope.where(status_id: params[:status]) if params[:status].present?
+    scope = scope.where(report_status_id: params[:status]) if params[:status].present?
     scope = scope.where(report_type_id: params[:type]) if params[:type].present?
     scope.to_a
   end

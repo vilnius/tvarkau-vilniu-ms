@@ -4,13 +4,13 @@ RSpec.describe Reports::Create, '.run' do
   subject { described_class.run(user, params) }
 
   let(:user) { create(:user) }
-  let(:status) { create(:status) }
+  let(:report_status) { create(:report_status) }
   let(:report_type) { create(:report_type) }
 
   let(:params) do
     {
       report_type_id: report_type.id,
-      status_id: status.id,
+      report_status_id: report_status.id,
       description: 'Test report',
       address: 'Test address',
       lat: 19,
@@ -24,7 +24,7 @@ RSpec.describe Reports::Create, '.run' do
     expect(subject).to be_persisted
     expect(subject.user).to eq(user)
     expect(subject.report_type).to eq(report_type)
-    expect(subject.status).to eq(status)
+    expect(subject.report_status).to eq(report_status)
     expect(subject.description).to eq(params[:description])
     expect(subject.address).to eq(params[:address])
     expect(subject.lat).to eq(params[:lat])

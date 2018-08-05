@@ -38,7 +38,7 @@ RSpec.describe ReportsController do
     let(:report_params) do
       {
         report_type_id: '1',
-        status_id: '1',
+        report_status_id: '1',
         description: 'Description',
         address: 'Address',
         license_plate_no: 'ABC123',

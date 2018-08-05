@@ -2,14 +2,14 @@ class Report < ApplicationRecord
   belongs_to :city
   belongs_to :user
   belongs_to :report_type
-  belongs_to :status
+  belongs_to :report_status
 
   has_many :report_photos
 
   validates :description,
             :address,
             :report_type,
-            :status,
+            :report_status,
             presence: true
 
   validates :lat,
