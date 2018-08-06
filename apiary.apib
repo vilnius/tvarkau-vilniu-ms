@@ -274,15 +274,15 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 
   [Report][]
 
-## Reports Collection [/reports{?type,status,limit,offset}]
+## Reports Collection [/reports{?type,status,page,per_page}]
 
 ### List Reports [GET]
 
 + Parameters
     + type: 1 (number, optional) - Report type id
     + status: 1 (number, optional) - Report status id
-    + limit: 20 (number, optional) - Returned entries limit
-    + offset: 0 (number, optional) - List offset
+    + page: 2 (number, optional) - Page number
+    + per_page: 20 (number, optional) - Returned entries limit
 
 + Response 200 (application/json)
 
@@ -308,6 +308,29 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 + Response 201
 
   [Report][]
+
+# Group Report Types
+
+## Report Types Collection [/report_types]
+
+### List Report Types [GET]
+
+Get report types list for current user city.
+
++ Response 200 (application/json)
+
+        {
+            "report_types": [
+                {
+                    "id": 1,
+                    ...
+                },
+                {
+                    "id": 2,
+                    ...
+                },
+            ]
+        }
 
 # Group Report Photos
 
