@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :status do
-    initialize_with { Status.find_by(title: title) || new(attributes) }
+  factory :report_status do
+    initialize_with { ReportStatus.find_by(title: title) || new(attributes) }
 
     title 'Registruota'
     color '0f76bb'

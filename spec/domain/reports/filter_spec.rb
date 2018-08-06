@@ -3,12 +3,12 @@ RSpec.describe Reports::Filter, '.for' do
 
   let(:type_1) { create(:report_type, title: 'KET') }
   let(:type_2) { create(:report_type, title: 'Aplinka') }
-  let(:registered) { create(:status) }
-  let(:in_progress) { create(:status, :in_progress) }
-  let(:postponed) { create(:status, :postponed) }
-  let!(:report_1) { create(:report, status: registered) }
-  let!(:report_2) { create(:report, status: in_progress, report_type: type_1) }
-  let!(:report_3) { create(:report, status: postponed, report_type: type_2) }
+  let(:registered) { create(:report_status) }
+  let(:in_progress) { create(:report_status, :in_progress) }
+  let(:postponed) { create(:report_status, :postponed) }
+  let!(:report_1) { create(:report, report_status: registered) }
+  let!(:report_2) { create(:report, report_status: in_progress, report_type: type_1) }
+  let!(:report_3) { create(:report, report_status: postponed, report_type: type_2) }
   let(:params) do
     {
       per_page: 2,

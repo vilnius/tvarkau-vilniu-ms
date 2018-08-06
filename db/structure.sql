@@ -308,7 +308,7 @@ CREATE TABLE `cities` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_cities_on_code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `oauth_access_grants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -381,6 +381,21 @@ CREATE TABLE `report_photos` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_report_photos_on_uuid` (`uuid`),
   KEY `index_report_photos_on_report_id` (`report_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `report_statuses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `report_statuses` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `color` varchar(7) NOT NULL,
+  `avilys_status` varchar(255) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_report_statuses_on_active` (`active`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `report_types`;
@@ -408,7 +423,7 @@ CREATE TABLE `reports` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `ref_no` varchar(100) DEFAULT NULL,
   `report_type_id` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL,
+  `report_status_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `app_id` int(11) DEFAULT NULL,
   `description` text,
@@ -429,7 +444,7 @@ CREATE TABLE `reports` (
   UNIQUE KEY `index_reports_on_ref_no` (`ref_no`),
   KEY `index_reports_on_user_id` (`user_id`),
   KEY `index_reports_on_report_type_id` (`report_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `schema_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -437,21 +452,6 @@ DROP TABLE IF EXISTS `schema_migrations`;
 CREATE TABLE `schema_migrations` (
   `version` varchar(191) NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `statuses`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `statuses` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `color` varchar(7) NOT NULL,
-  `avilys_status` varchar(255) NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_statuses_on_active` (`active`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `users`;
@@ -532,7 +532,6 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20171219193843'),
 ('20180104191653'),
 ('20180112204016'),
+('20180805111954'),
 ('20180805121935'),
 ('20180805123604');
-
-

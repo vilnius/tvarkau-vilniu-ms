@@ -5,7 +5,7 @@ class ReportSerializer < ActiveModel::Serializer
              :lat,
              :lng,
              :user_id,
-             :status_id,
+             :report_status_id,
              :description,
              :answer,
              :license_plate_no,

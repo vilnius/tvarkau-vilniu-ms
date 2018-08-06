@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resource :me, controller: :users, only: :show
     resources :cities, only: [:index]
     resources :reports
+    resources :report_statuses, only: [:index]
     resources :report_types, only: [:index]
     resources :tokens, only: [:create]
     resources :report_photos, only: [:create]
