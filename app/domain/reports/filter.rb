@@ -1,6 +1,6 @@
 class Reports::Filter
 
-  DEFAULT_LIMIT = 20
+  DEFAULT_PER_PAGE = 20
 
   def self.for(params)
     new(params).run
@@ -13,7 +13,7 @@ class Reports::Filter
   end
 
   def run
-    scope = Report.offset(offset).limit(limit)
+    scope = Report.offset(offset).limit(per_page)
     scope = scope.where(report_status_id: params[:status]) if params[:status].present?
     scope = scope.where(report_type_id: params[:type]) if params[:type].present?
     scope.to_a
@@ -21,11 +21,15 @@ class Reports::Filter
 
   private
 
-  def limit
-    params[:limit] || DEFAULT_LIMIT
+  def offset
+    page.to_i * per_page.to_i
   end
 
-  def offset
-    params[:start] || 0
+  def per_page
+    params[:per_page] || DEFAULT_PER_PAGE
+  end
+
+  def page
+    params[:page] || 0
   end
 end

@@ -11,7 +11,7 @@ RSpec.describe Reports::Filter, '.for' do
   let!(:report_3) { create(:report, report_status: postponed, report_type: type_2) }
   let(:params) do
     {
-      limit: 2,
+      per_page: 2,
     }
   end
 

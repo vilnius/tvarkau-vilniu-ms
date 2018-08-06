@@ -6,7 +6,7 @@ RSpec.describe CitiesController do
     let!(:city) { create(:city) }
 
     it 'returns cities' do
-      expect(subject).to have_http_status(:ok)
+      expect(subject).to be_successful
       expect(response_json['cities'].first).to include('id' => city.id)
     end
   end
