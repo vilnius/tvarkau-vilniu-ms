@@ -33,6 +33,6 @@ class ReportsController < ApiController
   end
 
   def filter_params
-    params.permit(:start, :limit, :type, :status)
+    params.permit(:page, :per_page, :type, :status)
   end
 end
