@@ -12,7 +12,7 @@ RSpec.describe ReportPhotosController do
     let(:file) { Rails.root.join('spec/fixtures/seal.jpg') }
 
     it 'returns uuid' do
-      expect(subject).to be_success
+      expect(subject).to be_successful
       expect(response_json['report_photo']['uuid']).to be_present
     end
 
@@ -20,7 +20,7 @@ RSpec.describe ReportPhotosController do
       let(:uploaded_file) { Rack::Test::UploadedFile.new(file, 'text/plain') }
 
       it 'returns error' do
-        expect(subject).not_to be_success
+        expect(subject).not_to be_successful
         expect(response_json['message']).to eq(I18n.t('error.uploading_photo'))
       end
     end
