@@ -2,6 +2,6 @@
 
 class CitiesController < ApiController
   def index
-    render json: City.active.all
+    render json: City.active.all, root: :cities
   end
 end

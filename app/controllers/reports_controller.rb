@@ -2,7 +2,7 @@ class ReportsController < ApiController
   def index
     reports = ::Reports::Filter.for(filter_params)
 
-    render json: reports
+    render json: reports, root: :reports
   end
 
   def show

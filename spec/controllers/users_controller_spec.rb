@@ -5,7 +5,7 @@ RSpec.describe UsersController do
     subject { api_get :show }
 
     it 'returns current user' do
-      expect(subject).to be_success
+      expect(subject).to be_successful
 
       expect(response_json['user']).to include(
         'id' => user.id,
