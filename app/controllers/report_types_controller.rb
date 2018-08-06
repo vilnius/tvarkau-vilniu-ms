@@ -1,5 +1,5 @@
 class ReportTypesController < ApiController
   def index
-    { entries: ReportType.select(:ID, :problem_type) }
+    render json: current_city.report_types.all, root: :report_types
   end
 end
