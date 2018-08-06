@@ -6,7 +6,8 @@ unless Doorkeeper::Application.exists?(uid: 'android')
     name: 'Android',
     uid: 'android',
     redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-    scopes: 'user',
+    scopes: 'public user',
+    confidential: false,
   )
 end
 
@@ -15,7 +16,8 @@ unless Doorkeeper::Application.exists?(uid: 'ios')
     name: 'iOS',
     uid: 'ios',
     redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-    scopes: 'user',
+    scopes: 'public user',
+    confidential: false,
   )
 end
 
@@ -27,7 +29,8 @@ unless Doorkeeper::Application.exists?(uid: 'web')
     uid: 'web',
     secret: Secret['WEB_OAUTH2_SECRET'],
     redirect_uri: redirect_uri,
-    scopes: 'user',
+    scopes: 'public user',
+    confidential: false,
   )
 end
 

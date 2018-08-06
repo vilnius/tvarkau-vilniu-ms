@@ -20,6 +20,16 @@ RSpec.describe 'OAuth2' do
     end
   end
 
+  describe 'client credentials grant' do
+    subject(:token) { client.client_credentials.get_token }
+
+    it 'gets token' do
+      expect(token).not_to be_expired
+      expect(doorkeeper_token.application).to eq(app)
+      expect(doorkeeper_token.resource_owner_id).to be_nil
+    end
+  end
+
   describe 'password grant' do
     subject(:token) { client.password.get_token(username, password, scope: scope) }
 
@@ -62,6 +72,7 @@ RSpec.describe 'OAuth2' do
       end
     end
 
+    # TODO: remove and replace with client credentials grant
     context 'with guest user' do
       let(:username) { 'guest' }
       let(:scope) { 'user' }
