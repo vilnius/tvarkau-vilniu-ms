@@ -5,10 +5,10 @@ Doorkeeper.configure do
 
   orm :active_record
 
-  grant_flows %w[authorization_code password assertion]
+  grant_flows %w[client_credentials authorization_code password assertion]
 
-  default_scopes :user
-  # optional_scopes :write, :update
+  default_scopes :public
+  optional_scopes :user
 
   resource_owner_from_credentials do
     Auth::ResourceOwnerFromCredentials.run(request)
