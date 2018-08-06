@@ -6,7 +6,7 @@ RSpec.describe ReportsController do
     let(:params) { { id: report.id } }
 
     it 'returns report' do
-      expect(subject).to be_success
+      expect(subject).to be_successful
 
       expect(response_json['report']).to include(
         'description' => instance_of(String),
@@ -20,12 +20,21 @@ RSpec.describe ReportsController do
   describe '#index' do
     subject { api_get :index, params: params }
 
-    let(:params) { {} }
+    let(:params) { { type: type } }
+    let(:type) {}
     let!(:report) { create(:report) }
 
     it 'returns reports' do
-      expect(subject).to have_http_status(:ok)
+      expect(subject).to be_successful
       expect(response_json['reports'].first).to include('id' => report.id)
+    end
+
+    context 'when no reports match requested type' do
+      let(:type) { :postponed }
+
+      it 'returns empty list' do
+        expect(subject).to be_successful
+      end
     end
   end
 
@@ -54,7 +63,7 @@ RSpec.describe ReportsController do
     end
 
     it 'returns reports' do
-      expect(subject).to be_success
+      expect(subject).to be_successful
       expect(response_json['report']).to include(
         'description' => instance_of(String),
       )
