@@ -13,7 +13,7 @@ RSpec.describe ApiController do
       let(:user) { create(:user) }
 
       it 'authorizes' do
-        expect(subject).to be_success
+        expect(subject).to be_successful
         expect(controller.send(:current_user)).to eq(user)
       end
     end
