@@ -45,11 +45,11 @@ If you already have an access token which has expired, you can use refresh token
 
 Grant type: `refresh_token`
 
-#### Guest login
+#### Anonymous user token
 
-Grant type: `password`
+Grant type: `client_credentials`
 
-Pass `guest` value as username/password.
+Pass only `client_id`. No need for `client_secret`, `username` or `password`.
 
 #### Web authorization
 
@@ -84,7 +84,7 @@ and pass it to the token endpoint via `assertion` attribute.
 + Attributes
     + `client_id`: android (string, required) - Client app identifier. One of: *android*, *ios*, *web*.
     + `client_secret`: secret123 (string, optional) - Client secret. **Required for authorization_code grant type**.
-    + `grant_type`: password (string, required) - OAuth2 grant type. One of: *password*, *assertion*, *authorization_code*, *refresh_token*.
+    + `grant_type`: password (string, required) - OAuth2 grant type. One of: *client_credentials*, *password*, *assertion*, *authorization_code*, *refresh_token*.
     + `refresh_token`: token123 (string, optional) - Refresh token. **Required for refresh_token grant type**.
     + scope: user (string, optional) - Access scope.
     + username: gediminas@vilnius.lt (string, optional) - User's email address. **Required for password grant type**.
@@ -105,14 +105,12 @@ and pass it to the token endpoint via `assertion` attribute.
 
   [Access Token][]
 
-+ Request Create a guest user token.
++ Request Create an anonymous user token.
 
             {
                 "client_id": "android",
-                "grant_type": "password",
-                "scope": "user",
-                "username": "guest",
-                "password": "guest"
+                "grant_type": "client_credentials",
+                "scope": "public"
             }
 
 + Response 200

@@ -5,7 +5,7 @@ FactoryBot.define do
     end
 
     application { create(:oauth_application) }
-    scopes 'user'
+    scopes 'public user'
     resource_owner_id { user&.id }
   end
 end
