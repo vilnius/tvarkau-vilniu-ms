@@ -5,28 +5,12 @@ class Auth::ResourceOwnerFromCredentials
 
   initialize_with :request
 
-  GUEST = 'guest'
-
   def run
-    return guest_user if guest?
-
-    authenticated_user
-  end
-
-  private
-
-  def guest_user
-    Users::CreateGuest.run
-  end
-
-  def authenticated_user
     user = User.find_for_authentication(email: username)
     user if user&.valid_password?(password)
   end
 
-  def guest?
-    username == GUEST
-  end
+  private
 
   def username
     request.params[:username]

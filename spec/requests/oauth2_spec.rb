@@ -27,6 +27,7 @@ RSpec.describe 'OAuth2' do
       expect(token).not_to be_expired
       expect(doorkeeper_token.application).to eq(app)
       expect(doorkeeper_token.resource_owner_id).to be_nil
+      expect(doorkeeper_token.scopes).to eq(['public'])
     end
   end
 
@@ -69,21 +70,6 @@ RSpec.describe 'OAuth2' do
       context 'and invalid password' do
         let(:password) { 'test1234' }
         it_behaves_like 'not creating token'
-      end
-    end
-
-    # TODO: remove and replace with client credentials grant
-    context 'with guest user' do
-      let(:username) { 'guest' }
-      let(:scope) { 'user' }
-
-      it 'gets token' do
-        expect(token).not_to be_expired
-        expect(doorkeeper_token.application).to eq(app)
-
-        user = User.find(doorkeeper_token.resource_owner_id)
-
-        expect(user).to be_guest
       end
     end
   end

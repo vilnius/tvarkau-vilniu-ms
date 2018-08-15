@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  before_action -> { doorkeeper_authorize!(:user) }
+  before_action -> { doorkeeper_authorize! :public, :user }
   around_action :api
 
   VALIDATION_ERROR = 10
@@ -8,7 +8,21 @@ class ApiController < ApplicationController
 
   def current_user
     return unless doorkeeper_token
-    @current_user ||= User.find(doorkeeper_token.resource_owner_id)
+
+    @current_user ||= fetch_user
+  end
+
+  def fetch_user
+    return create_guest_user unless doorkeeper_token.resource_owner_id
+    User.find_for_authentication(id: doorkeeper_token.resource_owner_id)
+  end
+
+  def create_guest_user
+    user = Users::CreateGuest.run
+
+    doorkeeper_token.update!(resource_owner_id: user.id)
+
+    user
   end
 
   def current_city
