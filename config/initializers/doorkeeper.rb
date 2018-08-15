@@ -1,5 +1,3 @@
-require 'doorkeeper/grants_assertion'
-
 Doorkeeper.configure do
   realm 'Tvarkau Miesta API'
 
