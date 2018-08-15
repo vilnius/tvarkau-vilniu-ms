@@ -12,7 +12,13 @@ class ApiController < ApplicationController
   end
 
   def current_city
-    current_user&.city
+    @current_city ||= city_from_header || current_user&.city ||
+      raise('Request header X-City-ID not set and user has no default city')
+  end
+
+  def city_from_header
+    return if request.headers['X-City-ID'].blank?
+    City.find(request.headers['X-City-ID'])
   end
 
   def render_404(exception = nil, options = { render_items: false })
