@@ -32,9 +32,13 @@ Doorkeeper.configure do
   # access_token_expires_in 2.hours
 
   # Assign a custom TTL for implicit grants.
-  # custom_access_token_expires_in do |oauth_client|
-  #   oauth_client.application.additional_settings.implicit_oauth_expiration
-  # end
+  custom_access_token_expires_in do |context|
+    if context.grant_type == Doorkeeper::OAuth::CLIENT_CREDENTIALS
+      1.year
+    else
+      1.hour
+    end
+  end
 
   # Use a custom class for generating the access token.
   # https://github.com/doorkeeper-gem/doorkeeper#custom-access-token-generator

@@ -7,7 +7,7 @@ gem 'active_model_serializers', '~> 0.10'
 gem 'puma', '~> 3.11'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'interactor-initializer', '~> 0.2'
-gem 'doorkeeper', '~> 4.4.1'
+gem 'doorkeeper', '~> 5.0.0'
 gem 'doorkeeper-grants_assertion', '~> 0.2'
 gem 'devise', '~> 4.4.0'
 gem 'omniauth-google-oauth2', '~> 0.5'
