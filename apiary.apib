@@ -371,3 +371,21 @@ Get report types list for current user city.
                 "photo_thumb_url": "https://url/photo_thumb.jpg"
             }
         }
+
+# Group Guest Migration
+
+## Guest Migration [/guest_migration]
+
+### Migrate guest reports to user [POST]
+
+Reports created by anonymous guest user will be migrated to currently logged in user.
+
++ Attributes
+    + guest_token: token123 (string) - Guest access token
+
++ Response 200 (application/json)
+
+        {
+            "success": true
+        }
+
