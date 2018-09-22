@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     resources :report_types, only: [:index]
     resources :tokens, only: [:create]
     resources :report_photos, only: [:create]
+    resource :guest_migration, only: [:create]
   end
 end

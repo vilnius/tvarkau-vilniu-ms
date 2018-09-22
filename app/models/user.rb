@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   belongs_to :city, optional: true
 
+  scope :guests, -> { where(guest: true) }
+
   def email_required?
     !guest? && !personal_code?
   end
