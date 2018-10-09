@@ -10,6 +10,8 @@ RSpec.describe UsersController do
       expect(response_json['user']).to include(
         'id' => user.id,
         'email' => user.email,
+        'name' => user.name,
+        'guest' => user.guest,
         'created_at' => user.created_at,
       )
     end
