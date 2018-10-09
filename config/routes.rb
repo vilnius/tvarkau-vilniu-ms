@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  scope '/auth' do
+  scope '/app' do
     devise_for :users, controllers: { omniauth_callbacks: 'auth/omniauth_callbacks' }
   end
 
