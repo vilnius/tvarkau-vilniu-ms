@@ -44,6 +44,18 @@ unless City.exists?(code: 'vilnius')
   )
 end
 
+if ReportType.none?
+  report_type_titles = File.readlines('./spec/fixtures/report_types.txt').map(&:strip).reject(&:blank?)
+
+  report_type_titles.each do |title|
+    ReportType.find_or_create_by!(
+      title: title,
+      short_label: title,
+      city: City.first,
+    )
+  end
+end
+
 unless Rails.env.production?
   unless User.exists?(email: 'gediminas@vilnius.lt')
     user = User.new(
