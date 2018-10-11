@@ -274,13 +274,14 @@ Android/iOS apps can use custom url scheme to handle return to the application w
 
   [Report][]
 
-## Reports Collection [/reports{?type,status,page,per_page}]
+## Reports Collection [/reports{?type,status,user_id,page,per_page}]
 
 ### List Reports [GET]
 
 + Parameters
     + type: 1 (number, optional) - Report type id
     + status: 1 (number, optional) - Report status id
+    + user_id: 1 (number, optional) - Report creator user id
     + page: 2 (number, optional) - Page number
     + per_page: 20 (number, optional) - Returned entries limit
 
