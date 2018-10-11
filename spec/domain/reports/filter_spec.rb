@@ -57,4 +57,12 @@ RSpec.describe Reports::Filter, '.for' do
       expect(subject).to contain_exactly(report_4)
     end
   end
+
+  context 'with user filter' do
+    let!(:params) do
+      { user_id: report_1.user_id }
+    end
+
+    it { is_expected.to contain_exactly(report_1) }
+  end
 end

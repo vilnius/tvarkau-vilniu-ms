@@ -20,9 +20,9 @@ RSpec.describe ReportsController do
   describe '#index' do
     subject { api_get :index, params: params }
 
-    let(:params) { { type: type } }
+    let(:params) { { type: type, user_id: user.id } }
     let(:type) {}
-    let!(:report) { create(:report) }
+    let!(:report) { create(:report, user: user) }
 
     it 'returns reports' do
       expect(subject).to be_successful
@@ -34,6 +34,16 @@ RSpec.describe ReportsController do
 
       it 'returns empty list' do
         expect(subject).to be_successful
+        expect(response_json['reports']).to be_empty
+      end
+    end
+
+    context 'when no reports match requested user' do
+      let(:params) { { user_id: 0 } }
+
+      it 'returns empty list' do
+        expect(subject).to be_successful
+        expect(response_json['reports']).to be_empty
       end
     end
   end
