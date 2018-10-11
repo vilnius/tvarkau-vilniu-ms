@@ -22,7 +22,6 @@ class ReportsController < ApiController
       .require(:report)
       .permit(
         :report_type_id,
-        :report_status_id,
         :description,
         :lat,
         :lng,
