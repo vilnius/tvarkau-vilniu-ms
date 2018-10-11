@@ -4,13 +4,12 @@ RSpec.describe Reports::Create, '.run' do
   subject { described_class.run(user, params) }
 
   let(:user) { create(:user) }
-  let(:report_status) { create(:report_status) }
   let(:report_type) { create(:report_type) }
+  let!(:report_status) { create(:report_status) }
 
   let(:params) do
     {
       report_type_id: report_type.id,
-      report_status_id: report_status.id,
       description: 'Test report',
       address: 'Test address',
       lat: 19,
