@@ -19,8 +19,8 @@ FactoryBot.define do
       report_status { create(:report_status, :postponed) }
     end
 
-    trait :solved do
-      report_status { create(:report_status, :solved) }
+    trait :completed do
+      report_status { create(:report_status, :completed) }
     end
 
     trait :with_photos do

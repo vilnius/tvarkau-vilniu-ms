@@ -19,6 +19,7 @@ gem 'viisp-auth', '~> 0.1'
 gem 'carrierwave', '~> 1.2'
 gem 'fog-aws', '~> 2.0'
 gem 'mini_magick', '~> 4.8'
+gem 'factory_bot_rails'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc
@@ -26,7 +27,6 @@ gem 'mini_magick', '~> 4.8'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'factory_bot_rails'
   gem 'spring-commands-rspec'
   gem 'pry-rails'
   gem 'pry-nav'

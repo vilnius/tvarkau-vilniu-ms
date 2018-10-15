@@ -44,6 +44,12 @@ unless City.exists?(code: 'vilnius')
   )
 end
 
+FactoryBot.create(:report_status, :registered, id: 1) unless ReportStatus.exists?(1)
+FactoryBot.create(:report_status, :in_progress, id: 2) unless ReportStatus.exists?(2)
+FactoryBot.create(:report_status, :completed, id: 3) unless ReportStatus.exists?(3)
+FactoryBot.create(:report_status, :postponed, id: 4) unless ReportStatus.exists?(4)
+FactoryBot.create(:report_status, :forwarded, id: 5) unless ReportStatus.exists?(5)
+
 if ReportType.none?
   report_type_titles = File.readlines('./spec/fixtures/report_types.txt').map(&:strip).reject(&:blank?)
 
