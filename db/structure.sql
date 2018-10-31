@@ -308,7 +308,7 @@ CREATE TABLE `cities` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_cities_on_code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `oauth_access_grants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -349,7 +349,7 @@ CREATE TABLE `oauth_access_tokens` (
   KEY `index_oauth_access_tokens_on_application_id` (`application_id`),
   KEY `index_oauth_access_tokens_on_resource_owner_id` (`resource_owner_id`),
   CONSTRAINT `fk_rails_732cb83ab7` FOREIGN KEY (`application_id`) REFERENCES `oauth_applications` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `oauth_applications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -366,7 +366,7 @@ CREATE TABLE `oauth_applications` (
   `confidential` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_oauth_applications_on_uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `report_photos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -396,7 +396,7 @@ CREATE TABLE `report_statuses` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_report_statuses_on_active` (`active`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `report_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -409,12 +409,11 @@ CREATE TABLE `report_types` (
   `requires_photos` int(11) NOT NULL DEFAULT '0',
   `requires_viisp_auth` tinyint(1) NOT NULL DEFAULT '0',
   `requires_license_plate_no` tinyint(1) NOT NULL DEFAULT '0',
-  `requires_registered_at` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_report_types_on_city_id` (`city_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `reports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -436,7 +435,6 @@ CREATE TABLE `reports` (
   `address_street` varchar(255) DEFAULT NULL,
   `address_house_no` varchar(10) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
-  `registered_at` datetime DEFAULT NULL,
   `completed_at` datetime DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -444,7 +442,7 @@ CREATE TABLE `reports` (
   UNIQUE KEY `index_reports_on_ref_no` (`ref_no`),
   KEY `index_reports_on_user_id` (`user_id`),
   KEY `index_reports_on_report_type_id` (`report_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `schema_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -497,7 +495,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_google_id` (`google_id`),
   KEY `index_users_on_guest` (`guest`),
   KEY `index_users_on_city_id` (`city_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -534,4 +532,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20180112204016'),
 ('20180805111954'),
 ('20180805121935'),
-('20180805123604');
+('20180805123604'),
+('20181031203140');
+
+
