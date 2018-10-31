@@ -26,8 +26,7 @@ class ReportsController < ApiController
         :lat,
         :lng,
         :address,
-        :license_plate_no,
-        :registered_at,
+        :license_plate_no
       )
   end
 

@@ -9,7 +9,6 @@ FactoryBot.define do
       short_label 'Transporto stovėjimo pažeidimai'
       requires_photos 2
       requires_license_plate_no true
-      requires_registered_at true
       requires_viisp_auth true
     end
   end

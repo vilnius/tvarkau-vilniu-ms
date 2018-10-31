@@ -13,7 +13,7 @@ class Reports::Filter
   end
 
   def run
-    scope = Report.offset(offset).limit(per_page).order(registered_at: :desc)
+    scope = Report.offset(offset).limit(per_page).order(id: :desc)
     scope = scope.where(user_id: params[:user_id]) if params[:user_id].present?
     scope = scope.where(report_status_id: params[:status]) if params[:status].present?
     scope = scope.where(report_type_id: params[:type]) if params[:type].present?
