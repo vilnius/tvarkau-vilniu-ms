@@ -15,7 +15,7 @@ RSpec.describe Reports::Create, '.run' do
       lat: 19,
       lng: 20,
       # license_plate_no: 'ABC123',
-      registered_at: Time.zone.parse('2017-12-01'),
+      violation_timestamp: Time.zone.parse('2017-12-01'),
     }
   end
 
@@ -29,7 +29,7 @@ RSpec.describe Reports::Create, '.run' do
     expect(subject.lat).to eq(params[:lat])
     expect(subject.lng).to eq(params[:lng])
     # expect(subject.license_plate_no).to eq(params[:license_plate_no])
-    expect(subject.registered_at).to eq(params[:registered_at])
+    expect(subject.violation_timestamp).to eq(params[:violation_timestamp])
   end
 
   context 'when report is invalid' do

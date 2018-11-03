@@ -9,7 +9,7 @@ class ReportSerializer < ActiveModel::Serializer
              :description,
              :answer,
              :license_plate_no,
-             :registered_at,
+             :violation_timestamp,
              :completed_at
 
   has_many :report_photos
