@@ -62,7 +62,7 @@ RSpec.describe ReportsController do
         license_plate_no: 'ABC123',
         lat: '10',
         lng: '10',
-        registered_at: '2017-12-01 12:00:00',
+        violation_timestamp: '2017-12-01 12:00:00',
       }
     end
 

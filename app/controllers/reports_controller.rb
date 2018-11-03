@@ -27,7 +27,7 @@ class ReportsController < ApiController
         :lng,
         :address,
         :license_plate_no,
-        :registered_at,
+        :violation_timestamp,
       )
   end
 

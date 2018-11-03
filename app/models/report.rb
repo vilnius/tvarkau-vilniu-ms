@@ -27,5 +27,5 @@ class Report < ApplicationRecord
             }
 
   validates :license_plate_no, presence: true, if: -> { report_type&.requires_license_plate_no? }
-  validates :registered_at, presence: true, if: -> { report_type&.requires_registered_at? }
+  validates :violation_timestamp, presence: true, if: -> { report_type&.requires_violation_timestamp? }
 end

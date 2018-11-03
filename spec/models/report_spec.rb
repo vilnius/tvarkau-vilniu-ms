@@ -9,7 +9,7 @@ RSpec.describe Report do
   it { is_expected.to validate_numericality_of(:lng).is_greater_than_or_equal_to(-180) }
   it { is_expected.to validate_numericality_of(:lng).is_less_than_or_equal_to(180) }
   it { is_expected.not_to validate_presence_of(:license_plate_no) }
-  it { is_expected.not_to validate_presence_of(:registered_at) }
+  it { is_expected.not_to validate_presence_of(:violation_timestamp) }
 
   describe 'validations by report type' do
     subject { build(:report, report_type: report_type) }
@@ -17,6 +17,6 @@ RSpec.describe Report do
     let(:report_type) { build(:parking_violation_report_type) }
 
     it { is_expected.to validate_presence_of(:license_plate_no) }
-    it { is_expected.to validate_presence_of(:registered_at) }
+    it { is_expected.to validate_presence_of(:violation_timestamp) }
   end
 end
