@@ -6,7 +6,7 @@ RSpec.describe Reports::Filter, '.for' do
   let(:registered) { create(:report_status) }
   let(:in_progress) { create(:report_status, :in_progress) }
   let(:postponed) { create(:report_status, :postponed) }
-  let!(:report_1) { create(:report, report_status: registered) }
+  let!(:report_1) { create(:report, report_status: registered, lat: '56.68', lng: '25.27') }
   let!(:report_2) { create(:report, report_status: in_progress, report_type: type_1) }
   let!(:report_3) { create(:report, report_status: postponed, report_type: type_2) }
   let(:params) do
@@ -59,8 +59,16 @@ RSpec.describe Reports::Filter, '.for' do
   end
 
   context 'with user filter' do
-    let!(:params) do
+    let(:params) do
       { user_id: report_1.user_id }
+    end
+
+    it { is_expected.to contain_exactly(report_1) }
+  end
+
+  context 'with coords filter' do
+    let(:params) do
+      { lat_from: 56.1, lat_to: 57.1, lng_from: 25.1, lng_to: 26.1 }
     end
 
     it { is_expected.to contain_exactly(report_1) }
