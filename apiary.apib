@@ -282,7 +282,11 @@ Android/iOS apps can use custom url scheme to handle return to the application w
     + type: 1 (number, optional) - Report type id
     + status: 1 (number, optional) - Report status id
     + user_id: 1 (number, optional) - Report creator user id
-    + page: 2 (number, optional) - Page number
+    + lat_from: 55.0 (number, optional) - Latitude from
+    + lat_to: 55.12 (number, optional) - Latitude to
+    + lng_from: 23.88 (number, optional) - Longitude from
+    + lng_to: 23.89 (number, optional) - Longitude to
+    + page: 2 (number, optional) - Page number, zero based
     + per_page: 20 (number, optional) - Returned entries limit
 
 + Response 200 (application/json)
